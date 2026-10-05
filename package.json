@@ -1,5 +1,5 @@
 {
-  "name": "asvacloud",
+  "name": "tomatribe",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,15 @@
   },
   "repository": { 
     "type": "git",
-    "url": "git+https://github.com/anna1801/asvacloud.git"
+    "url": "git+https://github.com/anna1801/tomatribe.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/anna1801/asvacloud/issues"
+    "url": "https://github.com/anna1801/tomatribe/issues"
   },
-  "homepage": "https://github.com/anna1801/asvacloud#readme",
+  "homepage": "https://github.com/anna1801/tomatribe#readme",
   "devDependencies": {
     "esbuild": "^0.25.10",
     "sass": "^1.80.0",
