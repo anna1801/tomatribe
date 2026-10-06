@@ -9,482 +9,232 @@
 </head>
 <body <?php body_class(); ?>>
 
-
-
-
-
-
+<?php $header_logo = get_field('header_logo', 'option'); ?>
 
 <header class="tv-header">
-
-    <!-- ================= DESKTOP HEADER ================= -->
     <div class="tv-desktop-header">
+        <?php 
+            $show_hide_top_header = get_field('show_hide_top_header', 'option');
+            if($show_hide_top_header) :
+                $top_header_content_alignment = get_field('top_header_content_alignment', 'option');
+                if($top_header_content_alignment) {
+                    $align = $top_header_content_alignment;
+                } else {
+                    $align = 'center';
+                }
+            ?>
+            <div class="tv-topbar">
+                <div class="tv-container tv-topbar-inner justify-content-<?php echo $align; ?> gap-5">
+                    <?php 
+                        if (have_rows('top_header_social_links', 'option')) :
+                            echo '<div class="tv-social">';
+                                echo '<span>Follow Us</span>';
+                                while (have_rows('top_header_social_links', 'option')) : the_row(); 
+                                    $icon = get_sub_field('icon'); 
+                                    $link = get_sub_field('link'); 
+                                    echo '<a href="'.$link.'" target="_blank"> <i class="'.$icon.'"></i> </a>';
+                                endwhile; 
+                            echo '</div>';
+                        endif; 
 
-        <!-- TOP BAR -->
-        <div class="tv-topbar">
-            <div class="tv-container tv-topbar-inner">
+                        $top_header_content = get_field('top_header_content', 'option');
+                        if($top_header_content) :
+                            echo ' <div class="tv-top-message">'.$top_header_content.'</div>';
+                        endif;
 
-                <!-- Social -->
-                <div class="tv-social">
-                    <span>Follow Us</span>
-                    <a href="https://www.facebook.com" target="_blank">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com" target="_blank">
-                        <i class="fa fa-instagram"></i>
-                    </a>
-                    <a href="https://www.youtube.com" target="_blank">
-                        <i class="fa fa-youtube-play"></i>
-                    </a>
+                        if (have_rows('top_header_contact', 'option')) :
+                            echo '<div class="tv-contact">';
+                                while (have_rows('top_header_contact', 'option')) : the_row(); 
+                                    $contact = get_sub_field('contact'); 
+                                    $value = get_sub_field('value'); 
+
+                                    if($contact == 'phone') {
+                                        $href = 'tel:'.$value;
+                                        $icon = 'fa fa-phone';
+                                    } elseif($contact == 'email') {
+                                        $href = 'mailto:'.$value;
+                                        $icon = 'fa fa-envelope';
+                                    }
+                                    echo ' <a href="'.$href.'"> <i class="'.$icon.'"></i> '.$value.' </a>';
+
+                                endwhile; 
+                            echo '</div>';
+                        endif; 
+                    ?>
                 </div>
-
-                <!-- Top message -->
-                <div class="tv-top-message">
-                    Handcrafted • Sustainable • Tribal Inspired
-                </div>
-
-                <!-- Contact -->
-                <div class="tv-contact">
-                    <a href="tel:+917219111073">
-                        <i class="fa fa-phone"></i> +91 7219 111 073
-                    </a>
-                </div>
-
             </div>
-        </div>
+        <?php endif; ?>
 
-
-        <!-- MAIN NAVIGATION -->
         <div class="tv-navigation">
             <div class="tv-container">
-
                 <div class="tv-nav-wrapper">
-
-                    <!-- LEFT MENU -->
                     <nav class="tv-nav tv-nav-left">
-
-                        <a href="index.html" class="tv-nav-link active">
-                            Home
-                        </a>
-
-                        <a href="about.html" class="tv-nav-link">
-                            About Us
-                        </a>
-
-                        <!-- Categories -->
-                        <div class="tv-nav-dropdown">
-
-                            <a href="#" class="tv-nav-link">
-                                Categories
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-
-                            <div class="tv-mega-menu">
-
-                               <div class="tv-mega-column">
-
-    <a href="product-category.html" class="tv-mega-title">
-        Menswear
-    </a>
-
-    <a href="product-sub-category.html">Shirts</a>
-    <a href="product-sub-category.html">T-Shirts</a>
-    <a href="product-sub-category.html">Trousers</a>
-    <a href="product-sub-category.html">Jeans</a>
-    <a href="product-sub-category.html">Shorts</a>
-    <a href="product-sub-category.html">Jackets</a>
-    <a href="product-sub-category.html">Kurtas</a>
-
-</div>
-
-
-<div class="tv-mega-column">
-
-    <a href="product-category.html" class="tv-mega-title">
-        Womenswear
-    </a>
-
-    <a href="product-sub-category.html">Dresses</a>
-    <a href="product-sub-category.html">Tops</a>
-    <a href="product-sub-category.html">Tunics</a>
-    <a href="product-sub-category.html">Skirts</a>
-    <a href="product-sub-category.html">Co-Ord Sets</a>
-    <a href="product-sub-category.html">Kimonos</a>
-    <a href="product-sub-category.html">Jumpsuits</a>
-
-</div>
-
-
-                            </div>
-
-                        </div>
-
+                        <?php
+                            wp_nav_menu(array(
+                                'theme_location' => 'header-menu',
+                                'container'      => false,
+                                'items_wrap'     => '%3$s',
+                                'fallback_cb'    => false,
+                                'depth'          => 3,
+                                'walker'         => new Tomatribe_Header_Nav_Walker(),
+                                'tv_part'        => 'left',
+                            ));
+                        ?>
                     </nav>
 
+                    <?php 
+                        if($header_logo) :
+                            echo '<div class="tv-logo"> 
+                                    <a href="'.home_url().'"><img src="'.$header_logo['url'].'" alt="'.$header_logo['alt'].'" style="width: 80px;"></a> 
+                                </div>';
+                        endif;
+                    ?>
 
-                    <!-- CENTER LOGO -->
-                    <div class="tv-logo">
-
-                        <a href="index.html">
-
-                            <img
-                                src="assets/img/logo/logo.png"
-                                alt="Toma Tribe by Shubhangi"
-                            style="    width: 80px;">
-
-                        </a>
-
-                    </div>
-
-
-                    <!-- RIGHT MENU -->
                     <nav class="tv-nav tv-nav-right">
-
-                        <a href="blog.html" class="tv-nav-link">
-                            Blog
-                        </a>
-
-                        <a href="contact-us.html" class="tv-nav-link">
-                            Contact
-                        </a>
-
-                        <a href="reviews.html" class="tv-nav-link">
-                            Reviews
-                        </a>
-
-
-                        <!-- SEARCH -->
-                        <button class="tv-icon-btn search-trigger"
-                                type="button"
-                                aria-label="Search">
-
-                            <i class="pe-7s-search"></i>
-
-                        </button>
-
-
-                        <!-- ACCOUNT -->
+                        <?php
+                            wp_nav_menu(array(
+                                'theme_location' => 'header-menu',
+                                'container'      => false,
+                                'items_wrap'     => '%3$s',
+                                'fallback_cb'    => false,
+                                'depth'          => 3,
+                                'walker'         => new Tomatribe_Header_Nav_Walker(),
+                                'tv_part'        => 'right',
+                            ));
+                        ?>
+                        <button class="tv-icon-btn search-trigger" type="button" aria-label="Search"> <i class="pe-7s-search"></i></button>
                         <div class="tv-account">
-
-                            <button class="tv-icon-btn" type="button">
-
-                                <i class="pe-7s-user"></i>
-
-                            </button>
-
+                            <button class="tv-icon-btn" type="button"><i class="pe-7s-user"></i></button>
+                            <!-- to do -->
                             <div class="tv-account-dropdown">
-
                                 <a href="login.html">Login</a>
                                 <a href="register.html">Register</a>
                                 <a href="my-account.html">My Account</a>
-
                             </div>
-
+                            <!-- to do end -->
                         </div>
-
-
-                        <!-- WISHLIST -->
-                        <a href="#" class="tv-icon-btn tv-icon-with-count">
-
-                            <i class="pe-7s-like"></i>
-
-                            <span class="tv-count">0</span>
-
-                        </a>
-
-
-                        <!-- CART -->
-                        <a href="cart.html"
-                           class="tv-icon-btn tv-icon-with-count">
-
-                            <i class="pe-7s-shopbag"></i>
-
-                            <span class="tv-count">2</span>
-
-                        </a>
-
+                        <a href="<?php echo esc_url(function_exists('YITH_WCWL') ? YITH_WCWL()->get_wishlist_url() : '#'); ?>" class="tv-icon-btn tv-icon-with-count"> <i class="pe-7s-like"></i> <span class="tv-count tv-wishlist-count"><?php echo esc_html(tomatribe_wishlist_count()); ?></span> </a>
+                        <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="tv-icon-btn tv-icon-with-count"> <i class="pe-7s-shopbag"></i> <?php echo tomatribe_cart_count_html(); ?></a>
                     </nav>
-
                 </div>
-
             </div>
         </div>
-
-
-        <!-- SEARCH BOX -->
         <div class="tv-search-panel">
-
             <div class="tv-container">
-
-                <form>
-
-                    <input
-                        type="text"
-                        placeholder="Search products..."
-                        class="tv-search-input"
-                    >
-
-                    <button type="submit">
-                        <i class="pe-7s-search"></i>
-                    </button>
-
+                <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+                    <input type="text" name="s" value="<?php echo get_search_query(); ?>" placeholder="Search products..." class="tv-search-input" aria-label="Search products" required>
+                    <input type="hidden" name="post_type" value="product">
+                    <button type="submit" aria-label="Search"> <i class="pe-7s-search"></i> </button>
                 </form>
-
             </div>
-
         </div>
-
     </div>
-
-
-    <!-- ================= MOBILE HEADER ================= -->
 
     <div class="tv-mobile-header">
-
         <div class="tv-mobile-inner">
-
-            <!-- Mobile menu -->
-            <button class="tv-mobile-menu-btn mobile-menu-btn"
-                    type="button">
-
+            <button class="tv-mobile-menu-btn mobile-menu-btn" type="button">
                 <span></span>
                 <span></span>
                 <span></span>
-
             </button>
-
-
-            <!-- Mobile logo -->
-            <div class="tv-mobile-logo">
-
-                <a href="index.html">
-
-                    <img
-                        src="assets/img/logo/logo.png"
-                        alt="Toma Tribe by Shubhangi"
-                    >
-
-                </a>
-
-            </div>
-
-
-            <!-- Mobile cart -->
-            <a href="cart.html"
-               class="tv-mobile-cart">
-
+            <?php 
+                if($header_logo) :
+                    echo '
+                        <div class="tv-mobile-logo">
+                            <a href="'.home_url().'">
+                                <img src="'.$header_logo['url'].'" alt="'.$header_logo['alt'].'" >
+                            </a>
+                        </div>
+                    ';
+                endif;
+            ?>
+            <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="tv-mobile-cart">
                 <i class="pe-7s-shopbag"></i>
-
-                <span>2</span>
-
+                <?php echo tomatribe_cart_count_html(true); ?>
             </a>
-
         </div>
-
     </div>
 
-
-    <!-- ================= MOBILE OFF CANVAS ================= -->
-
     <aside class="tv-mobile-offcanvas">
-
         <div class="tv-mobile-overlay off-canvas-overlay"></div>
-
         <div class="tv-mobile-panel">
+            <button class="tv-mobile-close btn-close-off-canvas" type="button"> <i class="pe-7s-close"></i> </button>
+            <?php 
+                if($header_logo) :
+                    echo '
+                        <div class="tv-mobile-panel-logo">
+                            <a href="'.home_url().'">
+                                <img src="'.$header_logo['url'].'" alt="'.$header_logo['alt'].'">
+                            </a>
+                        </div>
+                    ';
+                endif;
+            ?>
 
-            <!-- Close -->
-            <button class="tv-mobile-close btn-close-off-canvas"
-                    type="button">
-
-                <i class="pe-7s-close"></i>
-
-            </button>
-
-
-            <!-- Logo -->
-            <div class="tv-mobile-panel-logo">
-
-                <a href="index.html">
-
-                    <img
-                        src="assets/img/logo/logo.png"
-                        alt="Toma Tribe by Shubhangi"
-                     style="width:50%;">
-
-                </a>
-
-            </div>
-
-
-            <!-- Search -->
             <div class="tv-mobile-search">
-
-                <form>
-
-                    <input
-                        type="text"
-                        placeholder="Search products..."
-                    >
-
-                    <button type="submit">
+                <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+                    <input type="text" name="s" value="<?php echo get_search_query(); ?>" placeholder="Search products..." aria-label="Search products" required>
+                    <input type="hidden" name="post_type" value="product">
+                    <button type="submit" aria-label="Search">
                         <i class="pe-7s-search"></i>
                     </button>
-
                 </form>
-
             </div>
 
-
-            <!-- Mobile navigation -->
             <nav class="tv-mobile-navigation">
-
-                <a href="index.html" class="active">
-                    Home
-                </a>
-
-                <a href="about.html">
-                    About Us
-                </a>
-
-
-                <div class="tv-mobile-category">
-
-                    <div class="tv-mobile-category-title">
-                        <a href="#">
-                            Categories
-                        </a>
-
-                        <button type="button">
-                            <i class="fa fa-angle-down"></i>
-                        </button>
-                    </div>
-
-
-
-
-                    <div class="tv-mobile-submenu">
-
-                        <a href="product-category.html"
-                           class="tv-mobile-main-category">
-                            Menswear
-                        </a>
-
-    <a href="product-sub-category.html">Shirts</a>
-    <a href="product-sub-category.html">T-Shirts</a>
-    <a href="product-sub-category.html">Trousers</a>
-    <a href="product-sub-category.html">Jeans</a>
-    <a href="product-sub-category.html">Shorts</a>
-    <a href="product-sub-category.html">Jackets</a>
-    <a href="product-sub-category.html">Kurtas</a>
-
-
-                        <a href="product-category.html"
-                           class="tv-mobile-main-category">
-                            Womenswear
-                        </a>
-
-                           <a href="product-sub-category.html">Dresses</a>
-    <a href="product-sub-category.html">Tops</a>
-    <a href="product-sub-category.html">Tunics</a>
-    <a href="product-sub-category.html">Skirts</a>
-    <a href="product-sub-category.html">Co-Ord Sets</a>
-    <a href="product-sub-category.html">Kimonos</a>
-    <a href="product-sub-category.html">Jumpsuits</a>
-
-                    </div>
-
-                </div>
-
-
-                <a href="blog.html">
-                    Blog
-                </a>
-
-                <a href="contact-us.html">
-                    Contact Us
-                </a>
-
-                <a href="reviews.html">
-                    Reviews
-                </a>
-
+                <?php
+                    wp_nav_menu(array(
+                        'theme_location' => 'header-menu',
+                        'container'      => false,
+                        'items_wrap'     => '%3$s',
+                        'fallback_cb'    => false,
+                        'depth'          => 3,
+                        'walker'         => new Tomatribe_Mobile_Nav_Walker(),
+                    ));
+                ?>
             </nav>
-
-
-            <!-- Account -->
+            <!-- to do -->
             <div class="tv-mobile-account">
-
-                <div class="tv-mobile-account-title">
-                    My Account
-                </div>
-
-                <a href="my-account.html">
-                    My Account
-                </a>
-
-                <a href="login.html">
-                    Login
-                </a>
-
-                <a href="register.html">
-                    Register
-                </a>
-
+                <div class="tv-mobile-account-title"> My Account </div>
+                <a href="my-account.html"> My Account</a>
+                <a href="login.html"> Login </a>
+                <a href="register.html"> Register</a>
             </div>
+            <!-- to do end -->
 
+            <?php 
+                if (have_rows('top_header_contact', 'option')) :
+                    echo '<div class="tv-mobile-contact">';
+                        while (have_rows('top_header_contact', 'option')) : the_row(); 
+                            $contact = get_sub_field('contact'); 
+                            $value = get_sub_field('value'); 
 
-            <!-- Contact -->
-            <div class="tv-mobile-contact">
+                            if($contact == 'phone') {
+                                $href = 'tel:'.$value;
+                                $icon = 'fa fa-phone';
+                            } elseif($contact == 'email') {
+                                $href = 'mailto:'.$value;
+                                $icon = 'fa fa-envelope';
+                            }
+                            echo ' <a href="'.$href.'"> <i class="'.$icon.'"></i> '.$value.' </a>';
 
-                <a href="tel:+917219111073">
-                    <i class="fa fa-phone"></i>
-                    +91 7219 111 073
-                </a>
+                        endwhile; 
+                    echo '</div>';
+                endif; 
 
-                <a href="mailto:info@tomatribe.in">
-                    <i class="fa fa-envelope-o"></i>
-                    info@tomatribe.in
-                </a>
-
-            </div>
-
-
-            <!-- Social -->
-            <div class="tv-mobile-social">
-
-                <a href="https://www.facebook.com"
-                   target="_blank">
-                    <i class="fa fa-facebook"></i>
-                </a>
-
-                <a href="https://www.instagram.com"
-                   target="_blank">
-                    <i class="fa fa-instagram"></i>
-                </a>
-
-                <a href="https://www.youtube.com"
-                   target="_blank">
-                    <i class="fa fa-youtube-play"></i>
-                </a>
-
-            </div>
-
+                if (have_rows('top_header_social_links', 'option')) :
+                    echo '<div class="tv-mobile-social">';
+                        while (have_rows('top_header_social_links', 'option')) : the_row(); 
+                            $icon = get_sub_field('icon'); 
+                            $link = get_sub_field('link'); 
+                            echo '<a href="'.$link.'" target="_blank"> <i class="'.$icon.'"></i> </a>';
+                        endwhile; 
+                    echo '</div>';
+                endif; 
+            ?>
         </div>
-
     </aside>
 
 </header>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <main>

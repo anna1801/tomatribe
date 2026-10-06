@@ -6463,6 +6463,13 @@ blockquote {
   opacity: 0.55;
 }
 
+.tv-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 20px;
+}
+
 .tv-contact a {
   color: #fff;
   text-decoration: none;
@@ -6755,8 +6762,7 @@ blockquote {
 }
 
 .tv-mobile-inner {
-  height: 75px;
-  padding: 0 20px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -6764,14 +6770,8 @@ blockquote {
   border-bottom: 1px solid #eee;
 }
 
-.tv-mobile-logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 .tv-mobile-logo img {
-  width: 125px;
+  width: 60px;
   display: block;
 }
 
@@ -6876,7 +6876,7 @@ blockquote {
 }
 
 .tv-mobile-panel-logo img {
-  width: 145px;
+  width: 65px;
 }
 
 /* ===============================
@@ -6966,7 +6966,6 @@ blockquote {
 .tv-mobile-account {
   margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid #eee;
 }
 
 .tv-mobile-account-title {
@@ -7063,12 +7062,6 @@ blockquote {
   }
 }
 @media (max-width: 575px) {
-  .tv-mobile-inner {
-    height: 68px;
-  }
-  .tv-mobile-logo img {
-    width: 60px;
-  }
   .tv-mobile-panel {
     padding: 25px 22px;
   }
@@ -8009,11 +8002,6 @@ blockquote {
 /* =========================================================
    TABLET
 ========================================================= */
-@media (max-width: 1199px) {
-  .latest-product-image {
-    height: 250px;
-  }
-}
 /* =========================================================
    TABLET - 2 PRODUCTS
 ========================================================= */
@@ -8023,9 +8011,6 @@ blockquote {
   }
   .latest-products-heading h2 {
     font-size: 32px;
-  }
-  .latest-product-image {
-    height: 260px;
   }
   .latest-products-slider .slick-prev {
     left: 0;
@@ -8075,9 +8060,6 @@ blockquote {
     margin: -15px -14px -20px;
     padding: 30px 7px 55px !important;
   }
-  .latest-product-image {
-    height: 290px;
-  }
   .latest-products-slider .slick-arrow {
     width: 38px;
     height: 38px;
@@ -8093,9 +8075,6 @@ blockquote {
    EXTRA SMALL
 ========================================================= */
 @media (max-width: 380px) {
-  .latest-product-image {
-    height: 260px;
-  }
   .latest-product-info {
     padding: 16px;
   }

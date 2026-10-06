@@ -77,22 +77,22 @@ document.addEventListener("DOMContentLoaded", function () {
        MOBILE CATEGORY
     ================================ */
 
-    const category =
-        document.querySelector(".tv-mobile-category");
+    document.querySelectorAll(".tv-mobile-category").forEach(function (category) {
 
-    const categoryButton =
-        document.querySelector(".tv-mobile-category-title button");
+        const categoryButton =
+            category.querySelector(".tv-mobile-category-title button");
 
+        if (categoryButton) {
 
-    if (categoryButton && category) {
+            categoryButton.addEventListener("click", function () {
 
-        categoryButton.addEventListener("click", function () {
+                category.classList.toggle("open");
 
-            category.classList.toggle("open");
+            });
 
-        });
+        }
 
-    }
+    });
 
 });
 

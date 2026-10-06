@@ -59,7 +59,7 @@ function theme_scripts() {
   wp_enqueue_script('nice-select-js', get_template_directory_uri() . '/assets/js/plugins/nice-select.min.js', array('jquery'), '1.0', true);
   wp_enqueue_script('image-zoom-js', get_template_directory_uri() . '/assets/js/plugins/image-zoom.min.js', array('jquery'), '1.7.21', true);
   wp_enqueue_script( 'main-js', get_template_directory_uri() . '/assets/js/main.min.js', array(), _S_VERSION, true );
-  wp_enqueue_script( 'additional-js', get_template_directory_uri() . '/assets/custom/js/custom.js', array(), _S_VERSION, true );
+  wp_enqueue_script( 'additional-js', get_template_directory_uri() . '/assets/custom/js/custom.js', array('jquery'), _S_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'theme_scripts' );
 
@@ -68,5 +68,8 @@ add_filter('wpcf7_autop_or_not', '__return_false');
 
 // custom functions
 require get_template_directory() . '/includes/custom.php';
+require get_template_directory() . '/includes/nav-walker.php';
+require get_template_directory() . '/includes/header-counts.php';
+require get_template_directory() . '/includes/product-search.php';
 
 ?>
