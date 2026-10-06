@@ -492,24 +492,6 @@
         shopProductWrap.removeClass('grid-view list-view').addClass(viewMode);
 	})
 	
-	
-	// pricing filter
-	var rangeSlider = $(".price-range"),
-		amount = $("#amount"),
-		minPrice = rangeSlider.data('min'),
-		maxPrice = rangeSlider.data('max');
-	rangeSlider.slider({
-		range: true,
-		min: minPrice,
-		max: maxPrice,
-		values: [minPrice, maxPrice],
-		slide: function (event, ui) {
-			amount.val("$" + ui.values[0] + " - ₹" + ui.values[1]);
-		}
-	});
-	amount.val(" ₹" + rangeSlider.slider("values", 0) +
-		" - ₹" + rangeSlider.slider("values", 1)
-	);
 
 
 	// Checkout Page accordion
@@ -549,27 +531,6 @@
 	$(".search-trigger").on('click', function(){
 		$(".header-search-box").toggleClass('search-box-open');
 	})
-
-
-	// Mail-chimp for dynamic newsletter
-    $('#mc-form').ajaxChimp({
-        language: 'en',
-        callback: mailChimpResponse,
-        // ADD YOUR MAILCHIMP URL BELOW HERE!
-        url: 'https://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef'
-
-    });
-
-    // mail-chimp active js
-    function mailChimpResponse(resp) {
-        if (resp.result === 'success') {
-            $('.mailchimp-success').html('' + resp.msg).fadeIn(900);
-            $('.mailchimp-error').fadeOut(400);
-
-        } else if (resp.result === 'error') {
-            $('.mailchimp-error').html('' + resp.msg).fadeIn(900);
-        }
-	}
 
 	// Instagram feed carousel active
 	$('.instagram-carousel').slick({
