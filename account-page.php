@@ -5,6 +5,8 @@
  * Styling: .tp-account-section in assets/scss/_general.scss.
  */
 $title = tomatribe_account_title();
+// The login / register card has its own headings, so no page heading there (lost / reset password keeps it)
+$show_heading = is_user_logged_in() || is_wc_endpoint_url('lost-password');
 
 get_header();
 ?>
@@ -13,10 +15,12 @@ get_header();
     <div class="container">
         <?php get_template_part('template/breadcrumb', null, array('current' => $title)); ?>
 
-        <div class="latest-products-heading">
-            <span class="latest-products-subtitle"> <?php echo is_user_logged_in() ? 'My Account' : 'Welcome'; ?> </span>
-            <h2> <?php echo esc_html($title); ?> </h2>
-        </div>
+        <?php if ($show_heading) : ?>
+            <div class="latest-products-heading">
+                <span class="latest-products-subtitle"> <?php echo is_user_logged_in() ? 'My Account' : 'Welcome'; ?> </span>
+                <h2> <?php echo esc_html($title); ?> </h2>
+            </div>
+        <?php endif; ?>
 
         <?php while (have_posts()) : the_post(); ?>
             <div class="tp-account">

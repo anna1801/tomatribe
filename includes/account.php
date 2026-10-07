@@ -17,6 +17,42 @@ function tomatribe_account_template($template) {
 }
 add_filter('template_include', 'tomatribe_account_template');
 
+/* Log in / Register tabs on the logged out account page (woocommerce/myaccount/form-login.php) */
+function tomatribe_account_scripts() {
+  if (!function_exists('is_account_page') || !is_account_page() || is_user_logged_in()) return;
+
+  wp_enqueue_script('account-js', get_template_directory_uri() . '/assets/custom/js/account.js', array('jquery'), _S_VERSION, true);
+}
+add_action('wp_enqueue_scripts', 'tomatribe_account_scripts', 20);
+
+/* Register form: the account page with ?action=register opens the Register tab (woocommerce/myaccount/form-login.php) */
+function tomatribe_register_url() {
+  return add_query_arg('action', 'register', wc_get_page_permalink('myaccount'));
+}
+
+function tomatribe_registration_enabled() {
+  return 'yes' === get_option('woocommerce_enable_myaccount_registration');
+}
+
+/* Header account links (desktop dropdown and mobile menu): Login / Register, or My Account / Orders / Logout */
+function tomatribe_header_account_links() {
+  if (!function_exists('wc_get_page_permalink')) return array();
+
+  if (is_user_logged_in()) {
+    return array(
+      __('My account', 'woocommerce') => wc_get_page_permalink('myaccount'),
+      __('Orders', 'woocommerce')     => wc_get_account_endpoint_url('orders'),
+      __('Log out', 'woocommerce')    => wc_logout_url(),
+    );
+  }
+
+  $links = array(__('Log in', 'woocommerce') => wc_get_page_permalink('myaccount'));
+  if (tomatribe_registration_enabled()) {
+    $links[__('Register', 'woocommerce')] = tomatribe_register_url();
+  }
+  return $links;
+}
+
 /* Page heading: the current endpoint's title ("Orders", "Order #187", "Addresses" ...), else the page title */
 function tomatribe_account_title() {
   if (!is_user_logged_in()) {

@@ -5256,106 +5256,150 @@
     }
 }
 
-/* Logged out: login and register as two cards (or one centered card) */
+/* Logged out: one card with "Log in" / "Register" tabs (woocommerce/myaccount/form-login.php),
+   and the lost / reset password forms as the same card */
 .tp-account-section.is-logged-out .tp-account > .woocommerce {
-    max-width: 1040px;
+    max-width: 560px;
     margin: 0 auto;
 
-    .u-columns.col2-set {
+    .tp-auth,
+    > form.lost_reset_password {
+        border: 1px solid var(--tp-line);
+        background: #fff;
+        box-shadow: 0 18px 40px rgba(70, 55, 25, 0.07);
+    }
+
+    .tp-auth-tabs {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 30px;
+        grid-template-columns: repeat(2, 1fr);
+        border-bottom: 1px solid var(--tp-line);
+    }
 
-        @media (max-width: 767px) {
-            grid-template-columns: minmax(0, 1fr);
+    .tp-auth-tab {
+        position: relative;
+        padding: 20px 10px;
+        background: var(--tp-accent-light);
+        color: var(--tp-muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: color 0.2s, background 0.2s;
+
+        &:hover {
+            color: var(--tp-text);
         }
 
-        &::before,
-        &::after {
-            display: none;
-        }
-
-        .u-column1,
-        .u-column2 {
-            float: none;
-            width: auto;
-            max-width: none;
-            padding: 40px;
-            border: 1px solid var(--tp-line);
+        // Gold underline on the active tab
+        &.is-active {
             background: #fff;
+            color: var(--tp-text);
 
-            @media (max-width: 575px) {
-                padding: 28px 20px;
+            &::after {
+                content: "";
+                position: absolute;
+                right: 0;
+                bottom: -1px;
+                left: 0;
+                height: 2px;
+                background: var(--tp-accent);
             }
         }
-
-        .u-column2 {
-            background: var(--tp-accent-light);
-        }
     }
 
-    // Only the login form (registration disabled) or the lost / reset password form
-    > h2,
-    > form.woocommerce-form-login,
+    .tp-auth-panel,
     > form.lost_reset_password {
-        max-width: 520px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-    > form.woocommerce-form-login,
-    > form.lost_reset_password {
-        margin-top: 0;
-        margin-bottom: 0;
-        padding: 40px;
-        border: 1px solid var(--tp-line);
-        border-radius: 0;
-        background: #fff;
+        padding: 40px 44px 36px;
 
         @media (max-width: 575px) {
-            padding: 28px 20px;
+            padding: 30px 20px 26px;
         }
+    }
+
+    > form.lost_reset_password {
+        margin: 0;
+        border-radius: 0;
     }
 
     h2 {
-        margin: 0 0 24px;
+        margin: 0 0 8px;
         color: var(--tp-text);
         font-family: $font-secondary;
         font-size: 28px;
         font-weight: 400;
+        text-align: center;
     }
 
-    // Forms inside the two cards: no box of their own (woocommerce.css draws one)
-    .u-columns form.login,
-    .u-columns form.register {
+    .tp-auth-intro,
+    form.lost_reset_password > p:not(.form-row) {
+        max-width: 400px;
+        margin: 0 auto 28px;
+        color: var(--tp-muted);
+        font-size: 14px;
+        line-height: 1.7;
+        text-align: center;
+    }
+
+    form.login,
+    form.register {
         margin: 0;
         padding: 0;
         border: 0;
         border-radius: 0;
     }
 
-    form.login,
-    form.register,
-    form.lost_reset_password {
-        > p:not(.form-row) {
-            color: var(--tp-muted);
-            font-size: 14px;
-            line-height: 1.7;
+    .clear {
+        display: none;
+    }
+
+    // "Remember me" and "Lost your password?" on one line
+    .tp-auth-row {
+        &::after,
+        &::before {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
         }
 
-        .clear {
-            display: none;
+        @media (max-width: 767px) {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 12px;
+            flex-flow: column;
+
+            .tp-auth-lost {
+                width: 100%;
+                text-align: center;
+            }
         }
     }
 
-    // "Remember me" above a full width button
-    .woocommerce-form-login .form-row:has(.woocommerce-form-login__submit),
-    .woocommerce-form-register .form-row:has(.woocommerce-form-register__submit) {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 18px;
-        margin-top: 6px;
+    .tp-auth-lost {
+        font-size: 13px;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+
+        &:hover {
+            color: var(--tp-accent);
+        }
+    }
+
+    .tp-auth-note,
+    .woocommerce-privacy-policy-text {
+        color: var(--tp-muted);
+        font-size: 12px;
+        line-height: 1.6;
+
+        a {
+            text-decoration: underline;
+        }
     }
 
     .woocommerce-form-login__submit,
@@ -5364,29 +5408,27 @@
         width: 100%;
         height: 54px;
         margin: 0;
+        font-size: 12px;
+        letter-spacing: 3px;
     }
 
-    .lost_password {
-        margin: 18px 0 0;
-        font-size: 13px;
+    .tp-auth-switch {
+        margin: 24px 0 0;
+        padding-top: 22px;
+        border-top: 1px solid var(--tp-border);
+        color: var(--tp-muted);
+        font-size: 14px;
+        text-align: center;
 
         a {
+            margin-left: 4px;
+            font-weight: 700;
             text-decoration: underline;
             text-underline-offset: 3px;
 
             &:hover {
                 color: var(--tp-accent);
             }
-        }
-    }
-
-    .woocommerce-privacy-policy-text {
-        color: var(--tp-muted);
-        font-size: 12px;
-        line-height: 1.6;
-
-        a {
-            text-decoration: underline;
         }
     }
 }

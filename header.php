@@ -109,13 +109,11 @@
                         <button class="tv-icon-btn search-trigger" type="button" aria-label="Search"> <i class="pe-7s-search"></i></button>
                         <div class="tv-account">
                             <button class="tv-icon-btn" type="button"><i class="pe-7s-user"></i></button>
-                            <!-- to do -->
                             <div class="tv-account-dropdown">
-                                <a href="login.html">Login</a>
-                                <a href="register.html">Register</a>
-                                <a href="my-account.html">My Account</a>
+                                <?php foreach (tomatribe_header_account_links() as $label => $url) : ?>
+                                    <a href="<?php echo esc_url($url); ?>"><?php echo esc_html($label); ?></a>
+                                <?php endforeach; ?>
                             </div>
-                            <!-- to do end -->
                         </div>
                         <a href="<?php echo esc_url(function_exists('YITH_WCWL') ? YITH_WCWL()->get_wishlist_url() : '#'); ?>" class="tv-icon-btn tv-icon-with-count"> <i class="pe-7s-like"></i> <span class="tv-count tv-wishlist-count"><?php echo esc_html(tomatribe_wishlist_count()); ?></span> </a>
                         <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="tv-icon-btn tv-icon-with-count<?php echo $tomatribe_minicart_class; ?>"> <i class="pe-7s-shopbag"></i> <?php echo tomatribe_cart_count_html(); ?></a>
@@ -197,14 +195,12 @@
                     ));
                 ?>
             </nav>
-            <!-- to do -->
             <div class="tv-mobile-account">
                 <div class="tv-mobile-account-title"> My Account </div>
-                <a href="my-account.html"> My Account</a>
-                <a href="login.html"> Login </a>
-                <a href="register.html"> Register</a>
+                <?php foreach (tomatribe_header_account_links() as $label => $url) : ?>
+                    <a href="<?php echo esc_url($url); ?>"> <?php echo esc_html($label); ?> </a>
+                <?php endforeach; ?>
             </div>
-            <!-- to do end -->
 
             <?php 
                 if (have_rows('top_header_contact', 'option')) :
