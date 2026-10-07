@@ -64,9 +64,9 @@ function tomatribe_free_shipping_progress() {
   return null;
 }
 
-/* Cart totals: "Remove" instead of "[Remove]" after an applied coupon */
+/* Cart & checkout totals: "Remove" instead of "[Remove]" after an applied coupon */
 function tomatribe_cart_coupon_html($html) {
-  if (!is_cart()) return $html;
+  if (!is_cart() && !is_checkout()) return $html;
   return str_replace('>' . __('[Remove]', 'woocommerce') . '</a>', '>' . __('Remove', 'woocommerce') . '</a>', $html);
 }
 add_filter('woocommerce_cart_totals_coupon_html', 'tomatribe_cart_coupon_html');

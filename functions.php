@@ -87,5 +87,7 @@ require get_template_directory() . '/includes/category-filters.php';
 require get_template_directory() . '/includes/single-product.php';
 require get_template_directory() . '/includes/cart.php';
 require get_template_directory() . '/includes/wishlist.php';
+require get_template_directory() . '/includes/checkout.php';
+require get_template_directory() . '/includes/account.php';
 
 ?>
