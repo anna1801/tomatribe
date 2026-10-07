@@ -120,9 +120,9 @@ while (have_posts()) : the_post();
             <?php endif; ?>
 
             <?php 
-                if (have_rows('features_single_products', 'option')) : 
+                if (have_rows('features_tomatribe', 'option')) : 
                     echo '<ul class="tp-highlights">';
-                        while (have_rows('features_single_products', 'option')) : the_row(); 
+                        while (have_rows('features_tomatribe', 'option')) : the_row(); 
                             $icon = get_sub_field('icon');
                             $text = get_sub_field('text');
                             echo '<li> <i class="'.$icon.'"></i> '.$text.' </li>';

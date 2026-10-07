@@ -557,6 +557,7 @@
 /* Single product page (single-product.php, template/product-*.php, template/size-guide.php) */
 .tp-product-section,
 .tp-cart-section,
+.tp-wishlist-section,
 .tp-drawer {
     --tp-text: #222;
     --tp-muted: #777;
@@ -2475,7 +2476,8 @@
         }
     }
 
-    // Message from wc_empty_cart_message(): a notice box by default
+    // Message from wc_empty_cart_message() (a notice box by default), or the wishlist's h3
+    &-title,
     .wc-empty-cart-message .cart-empty.woocommerce-info {
         margin: 0 0 12px;
         padding: 0;
@@ -2550,6 +2552,376 @@
             border-color: var(--tp-text);
             background: var(--tp-text);
             color: #fff;
+        }
+    }
+}
+
+/* Wishlist page (wishlist-page.php + woocommerce/wishlist-view.php): YITH wishlist as product cards */
+.tp-wishlist-section {
+    padding: 30px 0 80px;
+    color: var(--tp-text);
+
+    .container {
+        max-width: 1400px;
+    }
+
+    .latest-products-heading {
+        margin-bottom: 36px;
+    }
+
+    .tp-highlights {
+        justify-content: center;
+        max-width: none;
+        margin-top: 60px;
+        padding-top: 40px;
+        border-top: 1px solid var(--tp-border);
+    }
+
+    // The page heading above replaces YITH's "My wishlist" title
+    .wishlist-title-container {
+        display: none;
+    }
+
+    // Cards are links/buttons only: no form chrome from YITH
+    .yith-wcwl-form {
+        margin: 0;
+    }
+}
+
+.tp-wishlist {
+    &.wishlist_table {
+        font-size: inherit;
+    }
+
+    &-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 30px;
+
+        @media (max-width: 1199px) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        @media (max-width: 767px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+    }
+
+    // Portrait images, like the cart
+    .latest-product-image {
+        aspect-ratio: 4 / 5;
+    }
+
+    .latest-product-badge {
+        border-radius: 0;
+        background: var(--tp-accent);
+        letter-spacing: 1.5px;
+    }
+
+    .tp-wishlist-badge-soldout {
+        background: var(--tp-text);
+    }
+
+    // Remove: always-visible round button, like the card's hover actions
+    .tp-wishlist-remove {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        z-index: 10;
+
+        a.remove_from_wishlist {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #fff;
+            color: var(--tp-text);
+            font-size: 22px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+            transition: background 0.25s, color 0.25s;
+
+            &:hover {
+                background: var(--tp-error);
+                color: #fff;
+            }
+        }
+    }
+
+    .tp-wishlist-check {
+        position: absolute;
+        bottom: 14px;
+        left: 14px;
+        z-index: 10;
+        margin: 0;
+
+        input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--tp-text);
+        }
+    }
+
+    .is-out-of-stock .latest-product-image img {
+        opacity: 0.55;
+        filter: grayscale(0.4);
+    }
+
+    .latest-product-info h3 {
+        margin-bottom: 8px;
+    }
+
+    .tp-wishlist-variation {
+        margin: -2px 0 8px;
+        color: var(--tp-muted);
+        font-size: 12px;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .tp-wishlist-quantity {
+        margin-top: 10px;
+        color: var(--tp-muted);
+        font-size: 12px;
+
+        input {
+            width: 64px;
+            height: 34px;
+            margin-left: 6px;
+            border: 1px solid var(--tp-border);
+            text-align: center;
+        }
+    }
+
+    .tp-wishlist-date {
+        display: block;
+        margin-top: 8px;
+        color: var(--tp-muted);
+        font-size: 11px;
+    }
+
+    // Add to basket: always visible at the bottom of the card
+    .tp-wishlist-cart {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: auto;
+        padding-top: 16px;
+    }
+
+    // YITH may strip the "button" class (its "Add to cart" style set to link), so style every link but "View basket"
+    .product-add-to-cart.tp-wishlist-cart a:not(.added_to_cart) {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 44px;
+        margin: 0 !important;
+        padding: 0 12px !important;
+        border: 1px solid var(--tp-text);
+        border-radius: 0;
+        background: var(--tp-text);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        line-height: 1;
+        text-align: center;
+        text-transform: uppercase;
+        transition: background 0.25s, border-color 0.25s, color 0.25s;
+
+        &:hover {
+            border-color: rgb(161, 120, 78);
+            background: rgb(161, 120, 78);
+            color: #fff;
+        }
+
+        // Variable products ("Select options"): outlined
+        &.product_type_variable {
+            background: transparent;
+            color: var(--tp-text);
+
+            &:hover {
+                border-color: var(--tp-text);
+                background: var(--tp-text);
+                color: #fff;
+            }
+        }
+
+        &.loading {
+            opacity: 0.6;
+        }
+
+        &.added::after {
+            content: "\f00c";
+            margin-left: 8px;
+            font-family: FontAwesome;
+            letter-spacing: 0;
+        }
+    }
+
+    // "View basket" link WooCommerce adds after an AJAX add to cart
+    .product-add-to-cart.tp-wishlist-cart a.added_to_cart {
+        display: block !important;
+        margin: 0 !important;
+        color: var(--tp-text);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-align: center;
+        text-decoration: underline;
+        text-transform: uppercase;
+        text-underline-offset: 3px;
+
+        &:hover {
+            color: var(--tp-accent);
+        }
+    }
+
+    .tp-wishlist-soldout {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        border: 1px solid var(--tp-border);
+        color: var(--tp-muted);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    &-pagination {
+        margin-top: 40px;
+        text-align: center;
+
+        .page-numbers {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+            margin: 0 3px;
+            padding: 0 10px;
+            border: 1px solid var(--tp-border);
+            color: var(--tp-text);
+            font-size: 13px;
+
+            &.current,
+            &:hover {
+                border-color: var(--tp-text);
+                background: var(--tp-text);
+                color: #fff;
+            }
+        }
+    }
+}
+
+/* Wishlist footer: share links as round outline icons, like the footer's social links */
+.tp-wishlist-section {
+    .yith_wcwl_wishlist_footer {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
+
+    .yith-wcwl-share {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 14px 18px;
+        float: none;
+        margin: 0;
+
+        h4.yith-wcwl-share-title {
+            margin: 0;
+            color: var(--tp-muted);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+        }
+
+        ul {
+            gap: 10px;
+            margin: 0;
+        }
+
+        li a,
+        li .tp-share-copy {
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border: 1px solid var(--tp-border);
+            border-radius: 50%;
+            background: #fff;
+            color: var(--tp-text);
+            transition: background 0.25s, border-color 0.25s, color 0.25s;
+
+            &:hover {
+                border-color: var(--tp-accent);
+                background: var(--tp-accent);
+                color: #fff;
+            }
+
+            svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        // Copy link icon (woocommerce/share.php) with a "Link copied" tooltip above it
+        .tp-share-copy {
+            position: relative;
+            font-size: 16px;
+
+            &.is-copied {
+                border-color: var(--tp-accent);
+                background: var(--tp-accent);
+                color: #fff;
+            }
+        }
+
+        .tp-share-tooltip {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            padding: 6px 10px;
+            background: var(--tp-text);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translate(-50%, 4px);
+            transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                border: 5px solid transparent;
+                border-top-color: var(--tp-text);
+                transform: translateX(-50%);
+            }
+        }
+
+        .is-copied .tp-share-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0);
         }
     }
 }
