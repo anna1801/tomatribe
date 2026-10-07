@@ -436,7 +436,8 @@
 
 
 	//nice select active start
-	$('select').niceSelect();
+	// Not on WooCommerce's address selects (shipping calculator, checkout): its country script swaps the state field
+	$('select').not('.country_to_state, .state_select').niceSelect();
 
 
 	// Image zoom effect

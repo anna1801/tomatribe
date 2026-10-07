@@ -1,7 +1,7 @@
 <?php
 /*
- * Cart page: breadcrumb, heading, the WooCommerce Cart block (page content) and store highlights.
- * Used for the cart page via includes/cart.php. Block styling: .tp-cart-section in assets/scss/_general.scss.
+ * Cart page: breadcrumb, heading, the [woocommerce_cart] shortcode (page content, markup in woocommerce/cart/) and store highlights.
+ * Used for the cart page via includes/cart.php. Cart styling: .tp-cart-section in assets/scss/_general.scss.
  */
 get_header();
 ?>
