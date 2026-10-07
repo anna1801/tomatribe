@@ -2094,7 +2094,7 @@ textarea:focus {
   width: 100vw;
   height: 100vh;
   transition: 0.4s;
-  z-index: 9;
+  z-index: 999;
   opacity: 0;
   visibility: hidden;
 }
@@ -2131,6 +2131,11 @@ textarea:focus {
   right: 375px;
   position: absolute;
 }
+@media (max-width: 767px) {
+  .minicart-inner .minicart-close {
+    right: 0;
+  }
+}
 
 .minicart-inner .minicart-close i {
   display: block;
@@ -2153,6 +2158,11 @@ textarea:focus {
   transform: translateX(calc(100% + 50px));
   transition: 0.4s;
   padding: 50px 20px;
+}
+@media (max-width: 540px) {
+  .minicart-inner .minicart-inner-content {
+    max-width: 100%;
+  }
 }
 
 .minicart-content-box {
@@ -2230,13 +2240,18 @@ textarea:focus {
   max-width: 30px;
   flex-basis: 30px;
   text-align: center;
-  font-size: 18px;
+  font-size: 25px;
   line-height: 1;
   color: #1a4247;
 }
+.minicart-remove i {
+  border: 1px solid transparent;
+  transition: 0.4s;
+}
 
-.minicart-remove:hover {
+.minicart-remove:hover i {
   color: #5a5b2f;
+  border: 1px solid #5a5b2f;
 }
 
 .minicart-pricing-box {
@@ -6414,9 +6429,41 @@ blockquote {
 .tv-header {
   width: 100%;
   background: #ffffff;
-  position: relative;
-  z-index: 9999;
+  position: sticky;
+  top: 0;
+  z-index: 99;
   font-family: inherit;
+  transition: box-shadow 0.3s;
+}
+
+/* Sticky header: on desktop the top bar (38px) scrolls away and .tv-navigation stays fixed */
+@media (min-width: 992px) {
+  .tv-header.has-topbar {
+    top: -38px;
+  }
+}
+/* Keep the header below the WP admin bar when logged in */
+.admin-bar .tv-header {
+  top: 32px;
+}
+
+@media (min-width: 992px) {
+  .admin-bar .tv-header.has-topbar {
+    top: -6px;
+  }
+}
+@media (max-width: 782px) {
+  .admin-bar .tv-header {
+    top: 46px;
+  }
+}
+@media (max-width: 600px) {
+  .admin-bar .tv-header {
+    top: 0;
+  }
+}
+.tv-header.is-scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 /* ===============================

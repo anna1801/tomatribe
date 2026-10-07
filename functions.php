@@ -18,6 +18,7 @@ add_action( 'after_setup_theme', 'theme_setup' );
 function register_my_menu() {
   register_nav_menu('header-menu',__( 'Header Menu' ));
   register_nav_menu('footer-menu',__( 'Footer menu' ));
+  register_nav_menu('bottom-footer-menu',__( 'Bottom Footer menu' ));
 }
 add_action( 'init', 'register_my_menu' );
 
@@ -70,6 +71,7 @@ add_filter('wpcf7_autop_or_not', '__return_false');
 require get_template_directory() . '/includes/custom.php';
 require get_template_directory() . '/includes/nav-walker.php';
 require get_template_directory() . '/includes/header-counts.php';
+require get_template_directory() . '/includes/mini-cart.php';
 require get_template_directory() . '/includes/product-search.php';
 
 ?>

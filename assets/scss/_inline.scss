@@ -5,9 +5,45 @@
 .tv-header {
     width: 100%;
     background: #ffffff;
-    position: relative;
-    z-index: 9999;
+    position: sticky;
+    top: 0;
+    z-index: 99;
     font-family: inherit;
+    transition: box-shadow .3s;
+}
+
+/* Sticky header: on desktop the top bar (38px) scrolls away and .tv-navigation stays fixed */
+@media (min-width: 992px) {
+    .tv-header.has-topbar {
+        top: -38px;
+    }
+}
+
+/* Keep the header below the WP admin bar when logged in */
+.admin-bar .tv-header {
+    top: 32px;
+}
+
+@media (min-width: 992px) {
+    .admin-bar .tv-header.has-topbar {
+        top: calc(32px - 38px);
+    }
+}
+
+@media (max-width: 782px) {
+    .admin-bar .tv-header {
+        top: 46px;
+    }
+}
+
+@media (max-width: 600px) {
+    .admin-bar .tv-header {
+        top: 0;
+    }
+}
+
+.tv-header.is-scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
 }
 
 

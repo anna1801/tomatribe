@@ -10,6 +10,8 @@
 		} else {
 			$(".sticky").addClass("is-sticky");
 		}
+		// shadow on the sticky header once the page is scrolled
+		$(".tv-header").toggleClass("is-scrolled", scroll > 50);
 	});
 
 
@@ -442,7 +444,8 @@
 
 
 	// offcanvas minicart button js
-	$(".minicart-btn").on('click', function(){
+	$(".minicart-btn").on('click', function(e){
+		e.preventDefault();
 		$("body").addClass('fix');
 		$(".minicart-inner").addClass('show')
 	})
@@ -521,9 +524,7 @@
 		}
 	});
 	$('.scroll-top').on('click', function (event) {
-		$('html,body').animate({
-			scrollTop: 0
-		}, 1000);
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	});
 	
 

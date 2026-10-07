@@ -1966,7 +1966,7 @@ textarea:focus {
   -webkit-transition: 0.4s;
   -o-transition: 0.4s;
   transition: 0.4s;
-  z-index: 9;
+  z-index: 999;
   opacity: 0;
   visibility: hidden;
 }
@@ -2000,6 +2000,10 @@ textarea:focus {
   top: 0;
   right: 375px;
   position: absolute;
+
+  @media (max-width: 767px) {
+    right: 0;
+  }
 }
 .minicart-inner .minicart-close i {
   display: block;
@@ -2028,6 +2032,10 @@ textarea:focus {
   -o-transition: 0.4s;
   transition: 0.4s;
   padding: 50px 20px;
+
+  @media (max-width: 540px) {
+    max-width: 100%;
+  }
 }
 
 .minicart-content-box {
@@ -2105,12 +2113,19 @@ textarea:focus {
       -ms-flex-preferred-size: 30px;
           flex-basis: 30px;
   text-align: center;
-  font-size: 18px;
+  font-size: 25px;
   line-height: 1;
   color: #1a4247;
+  i {
+    border: 1px solid transparent;
+    transition: 0.4s;
+  }
 }
 .minicart-remove:hover {
-  color: #5a5b2f;
+  i {
+    color: #5a5b2f;
+    border: 1px solid #5a5b2f;
+  }
 }
 
 .minicart-pricing-box {

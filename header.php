@@ -9,12 +9,16 @@
 </head>
 <body <?php body_class(); ?>>
 
-<?php $header_logo = get_field('header_logo', 'option'); ?>
+<?php
+    $header_logo = get_field('header_logo', 'option');
+    $show_hide_top_header = get_field('show_hide_top_header', 'option');
+    // Open mini cart on cart icon click, except on cart & checkout pages (plain link there)
+    $tomatribe_minicart_class = tomatribe_show_mini_cart() ? ' minicart-btn' : '';
+?>
 
-<header class="tv-header">
+<header class="tv-header<?php echo $show_hide_top_header ? ' has-topbar' : ''; ?>">
     <div class="tv-desktop-header">
         <?php 
-            $show_hide_top_header = get_field('show_hide_top_header', 'option');
             if($show_hide_top_header) :
                 $top_header_content_alignment = get_field('top_header_content_alignment', 'option');
                 if($top_header_content_alignment) {
@@ -114,7 +118,7 @@
                             <!-- to do end -->
                         </div>
                         <a href="<?php echo esc_url(function_exists('YITH_WCWL') ? YITH_WCWL()->get_wishlist_url() : '#'); ?>" class="tv-icon-btn tv-icon-with-count"> <i class="pe-7s-like"></i> <span class="tv-count tv-wishlist-count"><?php echo esc_html(tomatribe_wishlist_count()); ?></span> </a>
-                        <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="tv-icon-btn tv-icon-with-count"> <i class="pe-7s-shopbag"></i> <?php echo tomatribe_cart_count_html(); ?></a>
+                        <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="tv-icon-btn tv-icon-with-count<?php echo $tomatribe_minicart_class; ?>"> <i class="pe-7s-shopbag"></i> <?php echo tomatribe_cart_count_html(); ?></a>
                     </nav>
                 </div>
             </div>
@@ -148,7 +152,7 @@
                     ';
                 endif;
             ?>
-            <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="tv-mobile-cart">
+            <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="tv-mobile-cart<?php echo $tomatribe_minicart_class; ?>">
                 <i class="pe-7s-shopbag"></i>
                 <?php echo tomatribe_cart_count_html(true); ?>
             </a>
