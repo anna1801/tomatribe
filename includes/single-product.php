@@ -228,7 +228,8 @@ add_filter('woocommerce_ajax_variation_threshold', 'tomatribe_ajax_variation_thr
 
 /*
  * AJAX add to cart from the product page form (simple and variable products).
- * Responds like WooCommerce's own add to cart (fragments + cart hash) so the header counts and mini cart refresh.
+ * Responds like WooCommerce's own add to cart (fragments + cart hash) so the header counts and mini cart refresh,
+ * plus the success / error notices for the page's notices wrapper.
  */
 function tomatribe_ajax_add_to_cart() {
   $product_id = isset($_POST['product_id']) ? absint($_POST['product_id']) : 0;
@@ -246,13 +247,29 @@ function tomatribe_ajax_add_to_cart() {
 
   if ($passed && WC()->cart->add_to_cart($product_id, $quantity, $variation_id, $variation) !== false) {
     do_action('woocommerce_ajax_added_to_cart', $product_id);
-    wc_clear_notices();
-    WC_AJAX::get_refreshed_fragments();
+
+    // "“Product” has been added to your cart. View cart". With redirect to cart it stays queued for the cart page.
+    wc_add_to_cart_message(array($product_id => $quantity), true);
+    $notices = get_option('woocommerce_cart_redirect_after_add') === 'yes' ? '' : wc_print_notices(true);
+
+    // Same fragments as WC_AJAX::get_refreshed_fragments()
+    ob_start();
+    woocommerce_mini_cart();
+    $mini_cart = ob_get_clean();
+
+    wp_send_json(array(
+      'fragments' => apply_filters('woocommerce_add_to_cart_fragments', array(
+        'div.widget_shopping_cart_content' => '<div class="widget_shopping_cart_content">' . $mini_cart . '</div>',
+      )),
+      'cart_hash' => WC()->cart->get_cart_hash(),
+      'notices'   => $notices,
+    ));
   }
 
-  $messages = wp_list_pluck(wc_get_notices('error'), 'notice');
-  wc_clear_notices();
-  wp_send_json_error(array('messages' => $messages ? $messages : array('Could not add this product to the cart. Please try again.')));
+  if (!wc_notice_count('error')) {
+    wc_add_notice('Could not add this product to the cart. Please try again.', 'error');
+  }
+  wp_send_json_error(array('notices' => wc_print_notices(true)));
 }
 add_action('wp_ajax_tomatribe_add_to_cart', 'tomatribe_ajax_add_to_cart');
 add_action('wp_ajax_nopriv_tomatribe_add_to_cart', 'tomatribe_ajax_add_to_cart');

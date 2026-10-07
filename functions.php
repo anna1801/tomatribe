@@ -85,5 +85,6 @@ require get_template_directory() . '/includes/mini-cart.php';
 require get_template_directory() . '/includes/product-search.php';
 require get_template_directory() . '/includes/category-filters.php';
 require get_template_directory() . '/includes/single-product.php';
+require get_template_directory() . '/includes/cart.php';
 
 ?>

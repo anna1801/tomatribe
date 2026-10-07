@@ -318,6 +318,18 @@
     }
 
     /* ---------- AJAX add to cart (includes/single-product.php) ---------- */
+    // Success / error notices go in the WooCommerce notices wrapper above the product
+    function showNotices(html) {
+      var $wrapper = $('.tp-product-section .woocommerce-notices-wrapper').first();
+      if (!$wrapper.length) {
+        $wrapper = $('<div class="woocommerce-notices-wrapper"></div>').insertBefore('.tp-product');
+      }
+      $wrapper.html(html);
+      if (html && $wrapper.offset().top - 120 < $(window).scrollTop()) {
+        $('html, body').animate({ scrollTop: $wrapper.offset().top - 120 }, 400);
+      }
+    }
+
     $(document).on('submit', 'form.tp-cart-form', function (event) {
       var $cartForm = $(this);
       var $button = $cartForm.find('.single_add_to_cart_button');
@@ -332,7 +344,7 @@
       data.push({ name: 'action', value: 'tomatribe_add_to_cart' });
       data.push({ name: 'product_id', value: $cartForm.find('[name="add-to-cart"]').val() });
 
-      $cartForm.find('.tp-cart-message').remove();
+      showNotices('');
       $button.addClass('loading').prop('disabled', true);
 
       $.post(params.ajaxUrl, $.param(data))
@@ -346,14 +358,14 @@
             $.each(response.fragments, function (selector, html) {
               $(selector).replaceWith(html);
             });
+            showNotices(response.notices || '');
             $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash]);
             return;
           }
 
-          var messages = response && response.data && response.data.messages ? response.data.messages : [];
-          $('<div class="tp-cart-message" role="alert"></div>')
-            .html(messages.length ? messages.join('<br>') : 'Could not add this product to the cart. Please try again.')
-            .insertAfter($button);
+          showNotices(response && response.data && response.data.notices
+            ? response.data.notices
+            : '<ul class="woocommerce-error" role="alert"><li>Could not add this product to the cart. Please try again.</li></ul>');
         })
         .fail(function () {
           // Fall back to the regular form post
