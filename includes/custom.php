@@ -40,4 +40,19 @@ function tomatribe_get_product_prices($product) {
   );
 }
 
+/* Five Font Awesome stars (full, half or empty) for an average rating */
+function tomatribe_rating_stars_html($rating) {
+  $html = '';
+  for ($i = 1; $i <= 5; $i++) {
+    if ($rating >= $i) {
+      $html .= '<i class="fa fa-star"></i>';
+    } elseif ($rating >= $i - 0.5) {
+      $html .= '<i class="fa fa-star-half-o"></i>';
+    } else {
+      $html .= '<i class="fa fa-star-o"></i>';
+    }
+  }
+  return $html;
+}
+
 ?>

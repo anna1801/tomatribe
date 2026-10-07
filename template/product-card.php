@@ -46,17 +46,7 @@ $rating = (float) $product->get_average_rating();
         <?php endif; ?>
         <h3> <a href="<?php echo esc_url($permalink); ?>"> <?php the_title(); ?> </a> </h3>
         <div class="latest-product-rating">
-            <?php
-                for ($i = 1; $i <= 5; $i++) :
-                    if ($rating >= $i) :
-                        echo '<i class="fa fa-star"></i>';
-                    elseif ($rating >= $i - 0.5) :
-                        echo '<i class="fa fa-star-half-o"></i>';
-                    else :
-                        echo '<i class="fa fa-star-o"></i>';
-                    endif;
-                endfor;
-            ?>
+            <?php echo tomatribe_rating_stars_html($rating); ?>
         </div>
         <?php if ($prices = tomatribe_get_product_prices($product)) : ?>
             <div class="latest-product-price">

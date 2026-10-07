@@ -51,8 +51,7 @@ function theme_scripts() {
   wp_enqueue_style('slick-css', get_template_directory_uri() . '/assets/css/plugins/slick.min.css', array(), '1.9.0');
   wp_enqueue_style('animate-css', get_template_directory_uri() . '/assets/css/plugins/animate.css', array(), '3.7.0');
   wp_enqueue_style('nice-select-css', get_template_directory_uri() . '/assets/css/plugins/nice-select.css', array(), '1.0');
-  wp_enqueue_style( 'main-css', get_template_directory_uri() . '/assets/css/style.min.css', array(), '1.0' );
-  wp_enqueue_style( 'additional-css', get_template_directory_uri() . '/assets/custom/css/custom.css', array(), '1.0' );
+  wp_enqueue_style( 'main-css', get_template_directory_uri() . '/assets/css/style.min.css', array(), filemtime( get_template_directory() . '/assets/css/style.min.css' ) );
   wp_style_add_data( 'theme-style', 'rtl', 'replace' );
 // js
   wp_enqueue_script('bootstrap-js',get_template_directory_uri() . '/assets/js/vendor/bootstrap.bundle.min.js', array('jquery'), _S_VERSION, true );
@@ -67,11 +66,24 @@ add_action( 'wp_enqueue_scripts', 'theme_scripts' );
 // Disable automatic <p> and <br> tags in Contact Form 7 forms
 add_filter('wpcf7_autop_or_not', '__return_false');
 
+//woocommerce support
+function tomatribe_woocommerce_setup() {
+    add_theme_support( 'woocommerce' );
+
+    add_theme_support( 'wc-product-gallery-zoom' );
+    add_theme_support( 'wc-product-gallery-lightbox' );
+    add_theme_support( 'wc-product-gallery-slider' );
+
+}
+add_action( 'after_setup_theme', 'tomatribe_woocommerce_setup' );
+
 // custom functions
 require get_template_directory() . '/includes/custom.php';
 require get_template_directory() . '/includes/nav-walker.php';
 require get_template_directory() . '/includes/header-counts.php';
 require get_template_directory() . '/includes/mini-cart.php';
 require get_template_directory() . '/includes/product-search.php';
+require get_template_directory() . '/includes/category-filters.php';
+require get_template_directory() . '/includes/single-product.php';
 
 ?>
