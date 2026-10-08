@@ -26,11 +26,20 @@ add_action( 'init', 'register_my_menu' );
 add_filter('use_block_editor_for_post', '__return_false', 10);
 
 // support SVG
-  function cc_mime_types($mimes) {
-    $mimes['svg'] = 'image/svg+xml';
-    return $mimes;
+function cc_mime_types($mimes) {
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter('upload_mimes', 'cc_mime_types');
+
+// Fix SVG MIME type detection
+add_filter('wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
+  if (strtolower(pathinfo($filename, PATHINFO_EXTENSION)) === 'svg') {
+    $data['ext']  = 'svg';
+    $data['type'] = 'image/svg+xml';
   }
-  add_filter('upload_mimes', 'cc_mime_types');
+  return $data;
+}, 10, 4);
 
 /* Convert to WEBP URL*/
 function webpUrl($url) {
