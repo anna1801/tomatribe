@@ -110,11 +110,12 @@
 ================================ */
 
 .tv-navigation {
-    height: 108px;
     background: #fff;
     border-bottom: 1px solid #eeeeee;
     display: flex;
     align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .tv-nav-wrapper {
@@ -196,12 +197,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fff;
     padding: 0 25px;
 }
 
 .tv-logo img {
-    width: 155px;
+    width: 110px;
     max-width: 100%;
     height: auto;
     display: block;
@@ -260,7 +260,7 @@
 
 .tv-mega-column .tv-mega-title {
     color: #211d19;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -387,7 +387,7 @@
     outline: none;
     background: transparent;
     padding: 10px 0;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .tv-search-panel button {
@@ -423,7 +423,7 @@
 // }
 
 .tv-mobile-logo img {
-    width: 60px;
+    width: 80px;
     display: block;
 }
 
@@ -715,10 +715,6 @@
         font-size: 10px;
     }
 
-    .tv-logo img {
-        width: 135px;
-    }
-
 }
 
 
@@ -958,7 +954,7 @@
 }
 
 .tribal-hero-btn i {
-    font-size: 14px;
+    font-size: 16px;
 
     transition: transform .3s ease;
 }
@@ -1254,7 +1250,7 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
-    padding: 8px 25px;
+    padding: 8px 22px;
     border-right: 1px solid #eeeeee;
 }
 
@@ -1287,7 +1283,7 @@
 
     color: #292521;
 
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
 
     letter-spacing: .5px;
@@ -1298,7 +1294,7 @@
 
     color: #888888;
 
-    font-size: 11px;
+    font-size: 16px;
     font-weight: 400;
 }
 
@@ -1407,7 +1403,7 @@
 
     color: #222;
     font-size: 36px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .latest-products-heading h1:after,
@@ -1432,7 +1428,7 @@
     margin: 18px 0 0;
 
     color: #777;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 
@@ -1864,8 +1860,8 @@
 
     color: #b99a5b;
 
-    font-size: 9px;
-    font-weight: 700;
+    font-size: 10px;
+    font-weight: 500;
 
     letter-spacing: 1.2px;
     text-transform: uppercase;
@@ -1880,7 +1876,7 @@
 .latest-product-info h3 a {
     color: #252525;
 
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
 
     line-height: 1.4;
@@ -1938,7 +1934,7 @@
 .latest-product-price del {
     color: #aaa;
 
-    font-size: 11px;
+    font-size: 16px;
 }
 
 
@@ -2279,6 +2275,12 @@
     line-height: 1.9;
     margin: 0;
     max-width: 340px;
+}
+
+.footer-about {
+    img {
+        width: 120px;
+    }
 }
 
 

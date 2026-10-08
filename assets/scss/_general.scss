@@ -394,7 +394,7 @@
 .tf-no-filters {
     padding-top: 20px;
     color: #777;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 /* Results */
@@ -418,7 +418,7 @@
 .tf-result-count {
     margin: 0;
     color: #777;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .tf-sort .nice-select {
@@ -434,7 +434,7 @@
     border: 1px solid #dcdcdc;
     background: #fff;
     color: #222;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
 
     i {
@@ -460,7 +460,7 @@
     color: #777;
 
     .tf-clear-all {
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 
@@ -532,7 +532,7 @@
         border: 0;
         background: #222;
         color: #fff;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 600;
         letter-spacing: 1px;
         text-transform: uppercase;
@@ -874,7 +874,7 @@
     border: 1px solid #dcdcdc;
     background: #fff;
     color: var(--tp-text);
-    font-size: 14px;
+    font-size: 16px;
     transition: border-color 0.2s;
 
     &:hover {
@@ -969,7 +969,7 @@
 .tp-short-description {
     margin-top: 32px;
     color: #555;
-    font-size: 14px;
+    font-size: 16px;
 
     ul {
         padding-left: 18px;
@@ -1016,7 +1016,7 @@
     border-bottom: 2px solid transparent;
     background: none;
     color: var(--tp-muted);
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -1034,7 +1034,7 @@
 .tp-tab-panel {
     padding-top: 28px;
     color: #555;
-    font-size: 14px;
+    font-size: 16px;
 
     ul,
     ol {
@@ -1088,7 +1088,7 @@
     gap: 16px;
 
     .tp-stars {
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 
@@ -1222,7 +1222,7 @@
 
                     strong {
                         color: var(--tp-text);
-                        font-size: 14px;
+                        font-size: 16px;
                         font-weight: 600;
                     }
 
@@ -1248,7 +1248,7 @@
                 .description {
                     margin-top: 10px;
                     color: #555;
-                    font-size: 14px;
+                    font-size: 16px;
                     line-height: 1.7;
 
                     p:last-child {
@@ -1348,7 +1348,7 @@
             border-radius: 0;
             background: #fff;
             color: var(--tp-text);
-            font-size: 14px;
+            font-size: 16px;
             transition: border-color 0.2s;
 
             &:focus {
@@ -1529,7 +1529,7 @@
 }
 
 .tp-size-guide-content {
-    font-size: 14px;
+    font-size: 16px;
 
     > :last-child {
         margin-bottom: 0;
@@ -1703,7 +1703,7 @@
         gap: 12px;
         margin: 0 0 14px;
         color: var(--tp-text);
-        font-size: 14px;
+        font-size: 16px;
     }
 
     i {
@@ -1815,7 +1815,7 @@
         align-items: center;
         gap: 4px 10px;
         color: var(--tp-muted);
-        font-size: 14px;
+        font-size: 16px;
 
         del {
             font-size: 13px;
@@ -1917,7 +1917,7 @@
         border: 0;
         background: transparent;
         color: var(--tp-text);
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 600;
         text-align: center;
         appearance: textfield;
@@ -2221,7 +2221,7 @@
             border: 1px solid var(--tp-border);
             border-radius: 0;
             background: #fff;
-            font-size: 14px;
+            font-size: 16px;
 
             &:focus {
                 border-color: var(--tp-text);
@@ -2351,7 +2351,7 @@
                 background-color: #fff;
                 box-shadow: none;
                 color: var(--tp-text);
-                font-size: 14px;
+                font-size: 16px;
                 line-height: normal;
 
                 &:focus {
@@ -2967,7 +2967,7 @@
         border-left: 3px solid var(--tp-accent);
         background: var(--tp-accent-light);
         color: var(--tp-text);
-        font-size: 14px;
+        font-size: 16px;
         list-style: none;
         outline: none;
 
@@ -3151,7 +3151,7 @@
         gap: 10px;
         margin: 0;
         color: var(--tp-text);
-        font-size: 14px;
+        font-size: 16px;
         line-height: 1.5;
         cursor: pointer;
     }
@@ -3203,7 +3203,7 @@
             padding: 12px 22px;
             border: 0;
             color: var(--tp-text);
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 500;
             vertical-align: middle;
         }
@@ -3354,7 +3354,27 @@
             .tp-total-actions th,
             .tp-total-actions td {
                 padding-top: 12px;
-                font-size: 13px;
+                font-size: 16px;
+            }
+
+            // Buttons right-aligned in a row, wrapping with an even gap (no woocommerce.css margin-right stagger)
+            .tp-order-actions {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                gap: 8px;
+
+                .order-actions-button {
+                    flex: 0 0 auto;
+                    margin: 0;
+                    text-align: center;
+                }
+
+                // Phones: stack equal-width buttons
+                @media (max-width: 575px) {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
             }
 
             tr:last-child th,
@@ -3579,7 +3599,7 @@
         > p:first-child {
             margin-top: 0;
             color: var(--tp-muted);
-            font-size: 14px;
+            font-size: 16px;
         }
     }
 
@@ -3803,7 +3823,7 @@
 
     .select2-results__option {
         padding: 8px 14px;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .select2-results__option--highlighted[aria-selected],
@@ -4357,7 +4377,7 @@
         border-radius: 0;
         background: var(--tp-text);
         color: #fff;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 700;
         letter-spacing: 2px;
         line-height: 1;
@@ -4853,7 +4873,7 @@
     .tp-account-recent-date,
     .tp-account-recent-total {
         color: var(--tp-muted);
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .tp-account-recent-total {
@@ -4883,7 +4903,7 @@
             border: 0;
             border-top: 1px solid var(--tp-border);
             color: var(--tp-text);
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 400;
             line-height: 1.5;
             vertical-align: middle;
@@ -5184,7 +5204,7 @@
 
         .description p {
             margin: 0;
-            font-size: 14px;
+            font-size: 16px;
         }
     }
 
@@ -5283,7 +5303,7 @@
 
     .woocommerce-Address address {
         color: var(--tp-muted);
-        font-size: 14px;
+        font-size: 16px;
         font-style: normal;
         line-height: 1.8;
     }
@@ -5492,7 +5512,7 @@
         max-width: 400px;
         margin: 0 auto 28px;
         color: var(--tp-muted);
-        font-size: 14px;
+        font-size: 16px;
         line-height: 1.7;
         text-align: center;
     }
@@ -5573,7 +5593,7 @@
         padding-top: 22px;
         border-top: 1px solid var(--tp-border);
         color: var(--tp-muted);
-        font-size: 14px;
+        font-size: 16px;
         text-align: center;
 
         a {
@@ -5894,7 +5914,7 @@ section {
                 display: inline-flex;
                 align-items: center;
                 gap: 10px;
-                font-size: 14px;
+                font-size: 16px;
                 font-weight: 400;
                 letter-spacing: 0;
                 text-transform: none;
@@ -5971,7 +5991,7 @@ section {
             border-left: 3px solid var(--tp-accent);
             background: var(--tp-accent-light);
             color: var(--tp-text);
-            font-size: 14px;
+            font-size: 16px;
         }
 
         &.sent .wpcf7-response-output {
@@ -6102,7 +6122,7 @@ section {
             border: 0;
             background: transparent;
             color: var(--tp-text);
-            font-size: 14px;
+            font-size: 16px;
             outline: 0;
         }
 
@@ -6400,7 +6420,7 @@ section {
         width: 100%;
         margin: 0 0 24px;
         border-collapse: collapse;
-        font-size: 14px;
+        font-size: 16px;
 
         th,
         td {
@@ -6450,6 +6470,6 @@ section {
     }
 
     @media (max-width: 767px) {
-        font-size: 14px;
+        font-size: 16px;
     }
 }

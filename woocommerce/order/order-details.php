@@ -119,6 +119,7 @@ if ( $show_downloads ) {
 			<tr class="tp-total-row tp-total-actions">
 				<th class="order-actions--heading"><?php esc_html_e( 'Actions', 'woocommerce' ); ?>:</th>
 				<td>
+					<div class="tp-order-actions">
 						<?php
 						$wp_button_class = wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '';
 						foreach ( $actions as $key => $action ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
@@ -133,6 +134,7 @@ if ( $show_downloads ) {
 								unset( $action_aria_label );
 						}
 						?>
+					</div>
 					</td>
 				</tr>
 			<?php endif; ?>

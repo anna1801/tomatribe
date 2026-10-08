@@ -10,7 +10,7 @@
                     $footer_logo = get_field('footer_logo', 'option');
                     if($footer_logo) :
                         echo '<a href="'.home_url().'" class="footer-logo">
-                                <img src="'.$footer_logo['url'].'" alt="'.$footer_logo['alt'].'"style="width: 80px;">
+                                <img src="'.$footer_logo['url'].'" alt="'.$footer_logo['alt'].'">
                             </a>';
                     endif;
 

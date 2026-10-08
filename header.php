@@ -89,7 +89,7 @@
                     <?php 
                         if($header_logo) :
                             echo '<div class="tv-logo"> 
-                                    <a href="'.home_url().'"><img src="'.$header_logo['url'].'" alt="'.$header_logo['alt'].'" style="width: 80px;"></a> 
+                                    <a href="'.home_url().'"><img src="'.$header_logo['url'].'" alt="'.$header_logo['alt'].'"></a> 
                                 </div>';
                         endif;
                     ?>

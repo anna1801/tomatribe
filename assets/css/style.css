@@ -80,11 +80,11 @@ $font-5xl: 80px * $font-scale;
 
 /*------ Typography Style Start ------*/
 body {
-  color: #1a4247;
+  color: #555;
   line-height: 1.7;
-  font-size: 14px;
-  font-weight: 600;
-  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Outfit", sans-serif;
 }
 
 a {
@@ -106,9 +106,8 @@ p:last-child {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Outfit", sans-serif;
   color: #1a4247;
-  font-weight: 700;
   margin: 0;
   line-height: 1.2;
 }
@@ -120,26 +119,32 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, .h1 {
   font-size: 36px;
+  font-weight: 600;
 }
 
 h2, .h2 {
   font-size: 30px;
+  font-weight: 600;
 }
 
 h3, .h3 {
   font-size: 24px;
+  font-weight: 500;
 }
 
 h4, .h4 {
   font-size: 20px;
+  font-weight: 500;
 }
 
 h5, .h5 {
   font-size: 18px;
+  font-weight: 500;
 }
 
 h6, .h6 {
   font-size: 16px;
+  font-weight: 500;
 }
 
 ul {
@@ -196,7 +201,7 @@ textarea:focus {
 }
 
 .form-control:focus {
-  border-color: #5a5b2f;
+  border-color: #b18d45;
   box-shadow: none;
 }
 
@@ -206,12 +211,12 @@ textarea:focus {
 
 ::-moz-selection {
   color: #fff;
-  background: #5a5b2f;
+  background: #b18d45;
 }
 
 ::selection {
   color: #fff;
-  background: #5a5b2f;
+  background: #b18d45;
 }
 
 ::-moz-placeholder {
@@ -333,7 +338,7 @@ textarea:focus {
 }
 
 .slick-arrow-style button.slick-arrow:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .slick-arrow-style:hover button.slick-arrow {
@@ -377,7 +382,7 @@ textarea:focus {
 }
 
 .slick-arrow-style_hero button.slick-arrow:hover {
-  color: #5a5b2f;
+  color: #b18d45;
   background-color: transparent;
 }
 
@@ -405,7 +410,7 @@ textarea:focus {
 }
 
 .slick-append button:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 /*--------- slick slider dot style start -------*/
@@ -440,8 +445,8 @@ textarea:focus {
 }
 
 .slick-dot-style ul.slick-dots li.slick-active button {
-  border-color: #5a5b2f;
-  background-color: #5a5b2f;
+  border-color: #b18d45;
+  background-color: #b18d45;
 }
 
 .slick-row-3 .slick-list {
@@ -672,7 +677,7 @@ textarea:focus {
   z-index: 9999;
   transition: 0.4s;
   border-radius: 50%;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
   box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
@@ -1103,7 +1108,7 @@ textarea:focus {
 .header-top-settings ul li {
   color: #1a4247;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   position: relative;
   margin-left: 40px;
   position: relative;
@@ -1162,7 +1167,7 @@ textarea:focus {
 }
 
 .header-top-settings ul li .dropdown-list li a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .header-top-settings ul li .dropdown-list li a img {
@@ -1182,7 +1187,7 @@ textarea:focus {
 
 .welcome-message p {
   color: #1a4247;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1;
 }
 
@@ -1221,11 +1226,11 @@ textarea:focus {
   font-size: 10px;
   color: #fff;
   border-radius: 50%;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
 }
 
 .header-configure-area ul li a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .header-configure-area ul li:first-child {
@@ -1266,7 +1271,7 @@ textarea:focus {
 }
 
 .header-configure-area ul li.user-hover .dropdown-list li a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .header-configure-area ul li.user-hover:hover .dropdown-list {
@@ -1286,7 +1291,7 @@ textarea:focus {
 }
 
 .header-search-box:hover .header-search-btn {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .header-search-btn {
@@ -1341,7 +1346,7 @@ textarea:focus {
 }
 
 .header-social-link a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 /*-------- header social link end --------*/
@@ -1365,7 +1370,7 @@ textarea:focus {
 }
 
 .main-menu ul li a i {
-  font-size: 14px;
+  font-size: 16px;
   padding: 0 3px;
 }
 
@@ -1374,7 +1379,7 @@ textarea:focus {
 }
 
 .main-menu ul li:hover > a, .main-menu ul li.active > a {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .main-menu ul li ul.dropdown {
@@ -1400,7 +1405,7 @@ textarea:focus {
 
 .main-menu ul li ul.dropdown li a {
   color: #1a4247;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   padding: 10px 20px;
   text-transform: capitalize;
@@ -1416,7 +1421,7 @@ textarea:focus {
   top: 50%;
   content: " ";
   position: absolute;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
   transform: translateY(-50%);
   opacity: 0;
   visibility: hidden;
@@ -1430,7 +1435,7 @@ textarea:focus {
 }
 
 .main-menu ul li ul.dropdown li:hover > a {
-  color: #5a5b2f;
+  color: #b18d45;
   background-color: #fff;
   padding-left: 35px;
 }
@@ -1504,7 +1509,7 @@ textarea:focus {
 
 .main-menu ul li ul.megamenu li.mega-title span:after {
   width: 50%;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
 }
 
 .main-menu ul li ul.megamenu li a {
@@ -1521,7 +1526,7 @@ textarea:focus {
 }
 
 .main-menu ul li ul.megamenu li:hover > a {
-  color: #5a5b2f;
+  color: #b18d45;
   padding-left: 15px;
 }
 
@@ -1628,7 +1633,7 @@ textarea:focus {
 /*------ sticky menu style end ------*/
 /*------- Buttons Style here -------*/
 .btn {
-  font-size: 14px;
+  font-size: 16px;
   color: #1a4247;
   line-height: 1;
 }
@@ -1651,11 +1656,11 @@ textarea:focus {
 }
 
 .btn-text:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .btn-text:hover:before {
-  background-color: #5a5b2f;
+  background-color: #b18d45;
 }
 
 .btn-cart {
@@ -1668,7 +1673,7 @@ textarea:focus {
 
 .btn-cart:hover {
   color: #fff;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
 }
 
 .btn-cart2 {
@@ -1677,7 +1682,7 @@ textarea:focus {
   line-height: 40px;
   border-radius: 50px;
   padding: 0 25px;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
 }
 
 .btn-cart2:hover {
@@ -1689,7 +1694,7 @@ textarea:focus {
   color: #fff;
   font-size: 15px;
   border-radius: 0;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
   padding: 12px 25px;
 }
 
@@ -1739,7 +1744,7 @@ textarea:focus {
 }
 
 .mobile-main-header .mobile-menu-toggler .mini-cart-wrap a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .mobile-main-header .mobile-menu-toggler .mini-cart-wrap .notification {
@@ -1754,7 +1759,7 @@ textarea:focus {
   right: -4px;
   top: -4px;
   position: absolute;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
 }
 
 .mobile-main-header .mobile-menu-toggler .mobile-menu-btn {
@@ -1775,7 +1780,7 @@ textarea:focus {
 }
 
 .mobile-main-header .mobile-menu-toggler .mobile-menu-btn:hover span {
-  background-color: #5a5b2f;
+  background-color: #b18d45;
 }
 
 .mobile-main-header .mobile-menu-toggler .mobile-menu-btn:hover span:nth-child(1), .mobile-main-header .mobile-menu-toggler .mobile-menu-btn:hover span:nth-child(3) {
@@ -1815,7 +1820,7 @@ textarea:focus {
 }
 
 .mobile-menu li > a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .mobile-menu li ul li {
@@ -1823,7 +1828,7 @@ textarea:focus {
 }
 
 .mobile-menu li ul li a {
-  font-size: 14px;
+  font-size: 16px;
   text-transform: capitalize;
   padding: 10px 0 8px;
 }
@@ -1899,7 +1904,7 @@ textarea:focus {
 }
 
 .off-canvas-contact-widget li a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .off-canvas-social-widget {
@@ -1914,7 +1919,7 @@ textarea:focus {
 }
 
 .off-canvas-social-widget a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 /*------ offcanvas widget area end ------*/
@@ -1978,7 +1983,7 @@ textarea:focus {
   cursor: pointer;
   position: absolute;
   transition: 0.4s;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
 }
 
 .off-canvas-wrapper .btn-close-off-canvas i {
@@ -2026,7 +2031,7 @@ textarea:focus {
 }
 
 .search-box-offcanvas form .search-btn:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 /*------- mobile top bar settings start -------*/
@@ -2045,7 +2050,7 @@ textarea:focus {
 }
 
 .mobile-settings .nav .mobile-top-dropdown .dropdown-toggle {
-  font-size: 14px;
+  font-size: 16px;
   color: #1a4247;
   cursor: pointer;
 }
@@ -2057,7 +2062,7 @@ textarea:focus {
 }
 
 .mobile-settings .nav .mobile-top-dropdown .dropdown-toggle:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .mobile-settings .nav .mobile-top-dropdown .dropdown-toggle:after {
@@ -2119,7 +2124,7 @@ textarea:focus {
   width: 50px;
   height: 50px;
   text-align: center;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
   color: #fff;
   font-size: 50px;
   cursor: pointer;
@@ -2200,8 +2205,8 @@ textarea:focus {
 }
 
 .minicart-content .product-name {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 500;
   line-height: 1.5;
   padding-bottom: 10px;
 }
@@ -2211,7 +2216,7 @@ textarea:focus {
 }
 
 .minicart-content .product-name a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .minicart-content .cart-quantity {
@@ -2227,8 +2232,8 @@ textarea:focus {
 }
 
 .minicart-content .cart-price {
-  color: #5a5b2f;
-  font-size: 14px;
+  color: #b18d45;
+  font-size: 16px;
   line-height: 1;
 }
 
@@ -2246,8 +2251,8 @@ textarea:focus {
 }
 
 .minicart-remove:hover i {
-  color: #5a5b2f;
-  border: 1px solid #5a5b2f;
+  color: #b18d45;
+  border: 1px solid #b18d45;
 }
 
 .minicart-pricing-box {
@@ -2264,13 +2269,13 @@ textarea:focus {
 }
 
 .minicart-pricing-box li span {
-  font-size: 14px;
+  font-size: 16px;
   color: #1a4247;
   text-transform: capitalize;
 }
 
 .minicart-pricing-box li span strong {
-  color: #5a5b2f;
+  color: #b18d45;
   font-weight: 400;
 }
 
@@ -2284,7 +2289,7 @@ textarea:focus {
 
 .minicart-button a {
   color: #1a4247;
-  font-size: 14px;
+  font-size: 12px;
   display: block;
   font-weight: 700;
   line-height: 1;
@@ -2293,6 +2298,8 @@ textarea:focus {
   border-radius: 40px;
   text-align: center;
   margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
 .minicart-button a i {
@@ -2302,7 +2309,7 @@ textarea:focus {
 .minicart-button a:hover {
   color: #fff;
   letter-spacing: 1.1px;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
 }
 
 .minicart-button a:last-child {
@@ -2424,7 +2431,7 @@ textarea:focus {
   padding: 14px 30px;
   display: inline-block;
   border-radius: 50px;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
   margin-top: 38px;
 }
 
@@ -2571,7 +2578,7 @@ textarea:focus {
   padding-bottom: 6px;
   overflow-wrap: break-word;
   text-transform: uppercase;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -2590,7 +2597,7 @@ textarea:focus {
   font-weight: 400;
   line-height: 1.2;
   text-transform: capitalize;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 
 @media only screen and (max-width: 479.98px) {
@@ -2640,7 +2647,7 @@ textarea:focus {
 .policy-icon {
   font-size: 30px;
   line-height: 1;
-  color: #5a5b2f;
+  color: #b18d45;
   padding-right: 16px;
 }
 
@@ -2720,7 +2727,7 @@ textarea:focus {
 }
 
 .banner-content_style2 .banner-text3 a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .banner-content_style3 {
@@ -2738,7 +2745,7 @@ textarea:focus {
 
 @media only screen and (max-width: 767.98px) {
   .banner-text1 {
-    font-size: 14px;
+    font-size: 16px;
     padding-bottom: 10px;
   }
 }
@@ -2750,7 +2757,7 @@ textarea:focus {
 }
 @media only screen and (max-width: 479.98px) {
   .banner-text1 {
-    font-size: 14px;
+    font-size: 16px;
     padding-bottom: 10px;
   }
 }
@@ -2801,7 +2808,7 @@ textarea:focus {
 
 .section-title .title {
   text-transform: capitalize;
-  background: linear-gradient(90deg, #5a5b2f, #000, #5a5b2f);
+  background: linear-gradient(90deg, #b18d45, #000, #b18d45);
   background-repeat: no-repeat;
   background-size: 90%;
   animation: shine 3s linear infinite;
@@ -2880,7 +2887,7 @@ textarea:focus {
 
 .custom-checkbox .custom-control-label,
 .custom-radio .custom-control-label {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1;
   padding-left: 10px;
   font-weight: 400;
@@ -2920,7 +2927,7 @@ textarea:focus {
 
 .custom-checkbox .custom-control-label a:hover,
 .custom-radio .custom-control-label a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .custom-checkbox input,
@@ -2950,8 +2957,8 @@ textarea:focus {
 .custom-radio input:checked label:before,
 .custom-radio .custom-control-input:checked ~ .custom-control-label:before,
 .custom-radio .custom-control-input:checked label:before {
-  background-color: #5a5b2f;
-  border-color: #5a5b2f;
+  background-color: #b18d45;
+  border-color: #b18d45;
 }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
@@ -2999,7 +3006,7 @@ textarea:focus {
 }
 
 .twitter-feed-content p a {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .twitter-feed-content p a:hover {
@@ -3057,7 +3064,7 @@ textarea:focus {
 /*----- brand logo style end -----*/
 /*----- hot deals item start -----*/
 .hot-deals-item {
-  border: 2px dashed #5a5b2f;
+  border: 2px dashed #b18d45;
   border-radius: 5px;
 }
 
@@ -3095,7 +3102,7 @@ textarea:focus {
 }
 
 .progress-bar {
-  background-color: #5a5b2f !important;
+  background-color: #b18d45 !important;
   width: 60%;
 }
 
@@ -3115,13 +3122,13 @@ textarea:focus {
 
 .product-sold,
 .product-available {
-  font-size: 14px;
+  font-size: 16px;
   color: #1a4247;
 }
 
 .product-sold span,
 .product-available span {
-  color: #5a5b2f;
+  color: #b18d45;
   font-weight: 700;
 }
 
@@ -3236,7 +3243,7 @@ textarea:focus {
   }
 }
 .policy-list a {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .policy-title {
@@ -3307,7 +3314,7 @@ textarea:focus {
 }
 
 .product-caption .product-name a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .manufacturer-name {
@@ -3316,14 +3323,14 @@ textarea:focus {
 }
 
 .manufacturer-name a {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1;
   color: #1a4247;
   text-transform: capitalize;
 }
 
 .manufacturer-name a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .color-categories {
@@ -3339,7 +3346,7 @@ textarea:focus {
 }
 
 .color-categories li:hover {
-  border-color: #5a5b2f;
+  border-color: #b18d45;
 }
 
 .color-categories li a {
@@ -3393,7 +3400,7 @@ textarea:focus {
 }
 
 .button-group a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .cart-hover {
@@ -3442,7 +3449,7 @@ textarea:focus {
 
 .ratings {
   color: #f9bd22;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .ratings span {
@@ -3455,7 +3462,7 @@ textarea:focus {
 }
 
 .price-regular {
-  color: #5a5b2f;
+  color: #b18d45;
   font-weight: 500;
 }
 
@@ -3520,7 +3527,7 @@ textarea:focus {
 }
 
 .product-content-list .product-name a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .product-content-list p {
@@ -3565,7 +3572,7 @@ textarea:focus {
 }
 
 .group-item-desc .group-product-name a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
   text-decoration: underline;
 }
 
@@ -3665,7 +3672,7 @@ textarea:focus {
 }
 
 .breadcrumb-wrap .breadcrumb .breadcrumb-item a {
-  color: #1a4247;
+  color: #777;
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
@@ -3673,7 +3680,7 @@ textarea:focus {
 }
 
 .breadcrumb-wrap .breadcrumb .breadcrumb-item a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .breadcrumb-wrap .breadcrumb .breadcrumb-item:before {
@@ -3688,7 +3695,7 @@ textarea:focus {
 }
 
 .breadcrumb-wrap .breadcrumb .breadcrumb-item.active {
-  color: #5a5b2f;
+  color: #b18d45;
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
@@ -3752,7 +3759,7 @@ textarea:focus {
 }
 
 .price-range-wrap .price-range.ui-widget-content .ui-slider-range {
-  background-color: #5a5b2f;
+  background-color: #b18d45;
   border-radius: 0;
 }
 
@@ -3774,7 +3781,7 @@ textarea:focus {
   width: 6px;
   height: 6px;
   position: absolute;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
@@ -3800,7 +3807,7 @@ textarea:focus {
 .price-range-wrap .range-slider button.filter-btn {
   border: none;
   color: #1a4247;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   cursor: pointer;
   text-transform: uppercase;
@@ -3811,7 +3818,7 @@ textarea:focus {
 
 .price-range-wrap .range-slider button.filter-btn:hover {
   color: #fff;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
 }
 
 /*------ pricing filter slider end ------*/
@@ -3826,7 +3833,7 @@ textarea:focus {
 }
 
 .categories-list li:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 /*------ shop categories area start ------*/
@@ -3851,7 +3858,7 @@ textarea:focus {
 }
 
 .shop-categories li:hover a {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 /*------ shop categories area end ------*/
@@ -3881,7 +3888,7 @@ textarea:focus {
   color: #1a4247;
   height: 36px;
   width: 36px;
-  font-size: 14px;
+  font-size: 16px;
   display: inline-block;
   text-align: center;
   line-height: 36px;
@@ -3896,13 +3903,13 @@ textarea:focus {
 
 .paginatoin-area .pagination-box li a:hover {
   color: #fff;
-  border-color: #5a5b2f;
-  background-color: #5a5b2f;
+  border-color: #b18d45;
+  background-color: #b18d45;
 }
 
 .paginatoin-area .pagination-box li.active a {
   color: #fff;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
 }
 
 /*------ pagination area style end ------*/
@@ -3935,7 +3942,7 @@ textarea:focus {
 }
 
 .blog-title a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .blog-meta {
@@ -3950,7 +3957,7 @@ textarea:focus {
 }
 
 .blog-meta p a {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 /*------- blog item end -------*/
@@ -4001,7 +4008,7 @@ textarea:focus {
 }
 
 .blog-list-inner .blog-post-item .blog-content .blog-read-more:hover {
-  color: #5a5b2f;
+  color: #b18d45;
   text-decoration: underline;
 }
 
@@ -4055,7 +4062,7 @@ textarea:focus {
   border: 1px solid #dadada;
   padding: 0 10px;
   color: #1a4247;
-  font-size: 14px;
+  font-size: 16px;
   height: 50px;
   float: left;
   text-transform: capitalize;
@@ -4080,8 +4087,8 @@ textarea:focus {
 }
 
 .blog-sidebar .search-btn:hover {
-  background-color: #5a5b2f;
-  border-color: #5a5b2f;
+  background-color: #b18d45;
+  border-color: #b18d45;
 }
 
 .blog-sidebar .search-btn:hover i {
@@ -4094,7 +4101,7 @@ textarea:focus {
 
 .blog-sidebar .blog-archive li a {
   color: #1a4247;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1;
   text-transform: capitalize;
   padding: 13px 0;
@@ -4102,7 +4109,7 @@ textarea:focus {
 }
 
 .blog-sidebar .blog-archive li a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .blog-sidebar .blog-archive li:last-child a {
@@ -4120,7 +4127,7 @@ textarea:focus {
 
 .blog-sidebar .blog-tags li a {
   color: #1a4247;
-  font-size: 14px;
+  font-size: 16px;
   border: 1px solid #dadada;
   padding: 6px 15px 4px;
   display: inline-block;
@@ -4129,8 +4136,8 @@ textarea:focus {
 
 .blog-sidebar .blog-tags li a:hover {
   color: #fff;
-  background-color: #5a5b2f;
-  border-color: #5a5b2f;
+  background-color: #b18d45;
+  border-color: #b18d45;
 }
 
 .blog-category {
@@ -4156,7 +4163,7 @@ textarea:focus {
 }
 
 .recent-post-item .recent-post-description h6 {
-  font-size: 14px;
+  font-size: 16px;
   padding-bottom: 5px;
   text-transform: capitalize;
 }
@@ -4172,7 +4179,7 @@ textarea:focus {
 }
 
 .recent-post-item .recent-post-description h6 a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .recent-post-item .recent-post-description p {
@@ -4186,7 +4193,7 @@ textarea:focus {
 }
 
 blockquote {
-  border-left: 5px solid #5a5b2f;
+  border-left: 5px solid #b18d45;
   margin: 25px 32px 25px 30px;
   background-color: #f8f8f8;
   padding: 15px;
@@ -4224,7 +4231,7 @@ blockquote {
 }
 
 .blog-post-item .tag-line h6 {
-  font-size: 14px;
+  font-size: 16px;
   display: inline-block;
   padding-right: 5px;
 }
@@ -4235,7 +4242,7 @@ blockquote {
 }
 
 .blog-post-item .tag-line a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .blog-share-link {
@@ -4250,7 +4257,7 @@ blockquote {
   }
 }
 .blog-share-link h6 {
-  font-size: 14px;
+  font-size: 16px;
   padding-right: 15px;
 }
 
@@ -4361,7 +4368,7 @@ blockquote {
 }
 
 .comment-section ul li .comment-body h5 {
-  font-size: 14px;
+  font-size: 16px;
   padding-bottom: 5px;
 }
 
@@ -4386,8 +4393,8 @@ blockquote {
 
 .comment-section ul li .comment-body .reply-btn a:hover {
   color: #fff !important;
-  border-color: #5a5b2f;
-  background-color: #5a5b2f;
+  border-color: #b18d45;
+  background-color: #b18d45;
 }
 
 /*--- blog comment section end ---*/
@@ -4503,7 +4510,7 @@ blockquote {
   }
 }
 .about-content p {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.8;
   padding-bottom: 12px;
 }
@@ -4530,7 +4537,7 @@ blockquote {
 }
 
 .single-choose-item h4 {
-  color: #1a4247;
+  color: #25211e;
   font-size: 18px;
   font-weight: 500;
   padding: 15px 0 10px;
@@ -4538,7 +4545,7 @@ blockquote {
 }
 
 .single-choose-item:hover i {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 /*-------- choosing area end --------*/
@@ -4574,7 +4581,7 @@ blockquote {
   color: #1a4247;
   width: 30px;
   height: 30px;
-  font-size: 14px;
+  font-size: 16px;
   display: inline-block;
   text-align: center;
   line-height: 30px;
@@ -4585,8 +4592,8 @@ blockquote {
 
 .team-member .team-thumb .team-social a:hover {
   color: #fff;
-  background-color: #5a5b2f;
-  border-color: #5a5b2f;
+  background-color: #b18d45;
+  border-color: #b18d45;
 }
 
 .team-member .team-content .team-member-name {
@@ -4594,10 +4601,10 @@ blockquote {
 }
 
 .team-member .team-content p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1;
   padding-top: 5px;
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .team-member:hover .team-social {
@@ -4649,16 +4656,16 @@ blockquote {
 }
 
 .top-bar-left .product-view-mode a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .top-bar-left .product-view-mode a.active {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .top-bar-left .product-amount p {
   color: #1a4247;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: capitalize;
 }
 
@@ -4699,7 +4706,7 @@ blockquote {
   }
 }
 .nice-select.open {
-  border-color: #5a5b2f;
+  border-color: #b18d45;
 }
 
 .nice-select .list {
@@ -4800,7 +4807,7 @@ blockquote {
 }
 
 .product-details-des .pro-review span {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1;
   color: #1a4247;
 }
@@ -4821,7 +4828,7 @@ blockquote {
 }
 
 .product-details-des .customer-rev a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .product-details-des .offer-text {
@@ -4894,7 +4901,7 @@ blockquote {
 }
 
 .product-details-des .useful-links a {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: #1a4247;
   margin-right: 20px;
@@ -4902,7 +4909,7 @@ blockquote {
 }
 
 .product-details-des .useful-links a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .product-details-des .useful-links a i {
@@ -4990,7 +4997,7 @@ blockquote {
   }
 }
 .product-details-des .share-icon a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .product-details-des .color-option {
@@ -5035,7 +5042,7 @@ blockquote {
 }
 
 .product-details-des .group-product-table td a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .product-details-des .group-product-table td .pro-qty {
@@ -5145,9 +5152,9 @@ blockquote {
   line-height: 1;
   text-transform: capitalize;
   padding: 8px 10px;
-  border: 1px solid #5a5b2f;
+  border: 1px solid #b18d45;
   border-bottom: none;
-  background-color: #5a5b2f;
+  background-color: #b18d45;
 }
 
 .product-review-info .nav.review-tab li a:hover, .product-review-info .nav.review-tab li a.active {
@@ -5158,7 +5165,7 @@ blockquote {
 
 @media only screen and (max-width: 479.98px) {
   .product-review-info .nav.review-tab li a {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 .product-review-info .tab-content.reviews-tab {
@@ -5212,7 +5219,7 @@ blockquote {
   }
 }
 .product-review-info .tab-content .review-description .tab-des h3 {
-  color: #5a5b2f;
+  color: #b18d45;
   font-size: 20px;
   font-weight: 22px;
   font-weight: 700;
@@ -5284,7 +5291,7 @@ blockquote {
 }
 
 .total-reviews .review-box p {
-  font-size: 14px;
+  font-size: 16px;
   font-style: italic;
 }
 
@@ -5305,15 +5312,15 @@ blockquote {
 
 .checkoutaccordion h6 {
   background-color: #f7f7f7;
-  border-top: 3px solid #5a5b2f;
-  font-size: 14px;
+  border-top: 3px solid #b18d45;
+  font-size: 16px;
   padding: 15px 20px;
   position: relative;
   text-transform: capitalize;
 }
 
 .checkoutaccordion h6 span {
-  color: #5a5b2f;
+  color: #b18d45;
   cursor: pointer;
   transition: 0.4s;
   margin-left: 10px;
@@ -5332,7 +5339,7 @@ blockquote {
 
 @media only screen and (max-width: 479.98px) {
   .checkoutaccordion h6 {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 .checkoutaccordion .card {
@@ -5348,7 +5355,7 @@ blockquote {
 
 .checkoutaccordion .card .card-body {
   border: 1px solid #dadada;
-  font-size: 14px;
+  font-size: 16px;
   padding: 20px;
 }
 
@@ -5390,8 +5397,8 @@ blockquote {
   }
 }
 .forget-pwd {
-  color: #5a5b2f;
-  font-size: 14px;
+  color: #b18d45;
+  font-size: 16px;
   margin-top: -6px;
 }
 
@@ -5402,7 +5409,7 @@ blockquote {
 
 .single-form-row p {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -5539,13 +5546,13 @@ blockquote {
 .single-input-item label {
   color: #1a4247;
   text-transform: capitalize;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .single-input-item label.required:after {
   content: "*";
   color: red;
-  font-size: 14px;
+  font-size: 16px;
   margin-left: 3px;
   margin-top: 5px;
 }
@@ -5556,14 +5563,14 @@ blockquote {
   border: 1px solid #dadada;
   padding: 12px 10px;
   width: 100%;
-  font-size: 14px;
+  font-size: 16px;
   background: #f7f7f7;
 }
 
 .single-input-item input:active, .single-input-item input:focus,
 .single-input-item textarea:active,
 .single-input-item textarea:focus {
-  border-color: #5a5b2f;
+  border-color: #b18d45;
   background-color: #fff;
 }
 
@@ -5593,14 +5600,14 @@ blockquote {
 }
 
 .cart-table .table thead {
-  background-color: #5a5b2f;
+  background-color: #b18d45;
 }
 
 .cart-table .table thead tr th {
-  border-color: #5a5b2f;
+  border-color: #b18d45;
   border-bottom: 0 solid transparent;
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   padding: 15px 20px;
   text-align: center;
@@ -5623,7 +5630,7 @@ blockquote {
 }
 
 .cart-table .table tbody tr td a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .cart-table .table tbody tr td a.btn {
@@ -5708,7 +5715,7 @@ blockquote {
 
 .cart-update-option .apply-coupon-wrapper form input {
   border: 1px solid #dadada;
-  font-size: 14px;
+  font-size: 16px;
   padding: 9px 10px;
   outline: none;
   margin-right: 15px;
@@ -5717,7 +5724,7 @@ blockquote {
 }
 
 .cart-update-option .apply-coupon-wrapper form input:focus, .cart-update-option .apply-coupon-wrapper form input:active {
-  border-color: #5a5b2f;
+  border-color: #b18d45;
 }
 
 @media only screen and (max-width: 767.98px) {
@@ -5767,7 +5774,7 @@ blockquote {
 }
 
 .cart-calculator-wrapper .cart-calculate-items .table tr td.total-amount {
-  color: #5a5b2f;
+  color: #b18d45;
   font-weight: 700;
 }
 
@@ -5818,7 +5825,7 @@ blockquote {
 .compare-table .table tbody tr td.product-image-title .category {
   float: left;
   clear: both;
-  color: #5a5b2f;
+  color: #b18d45;
   text-transform: capitalize;
   letter-spacing: 0.5px;
 }
@@ -5833,7 +5840,7 @@ blockquote {
 }
 
 .compare-table .table tbody tr td.product-image-title .title:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .compare-table .table tbody tr td.pro-desc p {
@@ -5842,7 +5849,7 @@ blockquote {
 }
 
 .compare-table .table tbody tr td.pro-price, .compare-table .table tbody tr td.pro-color, .compare-table .table tbody tr td.pro-stock {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -5863,7 +5870,7 @@ blockquote {
 }
 
 .compare-table .table tbody tr td.pro-ratting i {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 /*------ end Compare Page Wrapper -----*/
@@ -5888,13 +5895,13 @@ blockquote {
 }
 
 .myaccount-tab-menu a:hover, .myaccount-tab-menu a.active {
-  background-color: #5a5b2f;
-  border-color: #5a5b2f;
+  background-color: #b18d45;
+  border-color: #b18d45;
   color: #fff;
 }
 
 .myaccount-tab-menu a i.fa {
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
   width: 25px;
 }
@@ -5929,12 +5936,12 @@ blockquote {
 }
 
 .myaccount-content .welcome a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .myaccount-content .welcome strong {
   font-weight: 500;
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .myaccount-content fieldset {
@@ -5951,7 +5958,7 @@ blockquote {
 
 .myaccount-table {
   white-space: nowrap;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .myaccount-table table th,
@@ -5973,7 +5980,7 @@ blockquote {
 
 .saved-message {
   background-color: #f4f5f7;
-  border-top: 3px solid #5a5b2f;
+  border-top: 3px solid #b18d45;
   border-radius: 5px 5px 0 0;
   font-weight: 400;
   font-size: 15px;
@@ -5999,7 +6006,7 @@ blockquote {
 }
 
 .login-reg-form-wrap .login-reg-form-meta a {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -6179,7 +6186,7 @@ blockquote {
 }
 
 .contact-block li a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
   letter-spacing: 1.1px;
 }
 
@@ -6199,7 +6206,7 @@ blockquote {
 }
 
 .info-list li a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .social-link {
@@ -6226,8 +6233,8 @@ blockquote {
 
 .social-link a:hover {
   color: #fff;
-  background-color: #5a5b2f;
-  border-color: #5a5b2f;
+  background-color: #b18d45;
+  border-color: #b18d45;
 }
 
 @media only screen and (max-width: 767.98px) {
@@ -6261,9 +6268,9 @@ blockquote {
   right: 10px;
   line-height: 40px;
   position: absolute;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 .newsletter-inner .news-btn:hover {
@@ -6289,7 +6296,7 @@ blockquote {
 }
 
 .copyright-text p a:hover {
-  color: #5a5b2f;
+  color: #b18d45;
 }
 
 /*----- footer area end -----*/
@@ -6362,7 +6369,7 @@ blockquote {
   display: inline-grid;
   place-items: center;
   font-weight: 700;
-  background: #5a5b2f;
+  background: #b18d45;
   color: #fff;
   font-size: 0.95rem;
   border: 1px solid rgba(0, 0, 0, 0.04);
@@ -6760,7 +6767,7 @@ blockquote {
 .tf-no-filters {
   padding-top: 20px;
   color: #777;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* Results */
@@ -6783,7 +6790,7 @@ blockquote {
 .tf-result-count {
   margin: 0;
   color: #777;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .tf-sort .nice-select {
@@ -6799,7 +6806,7 @@ blockquote {
   border: 1px solid #dcdcdc;
   background: #fff;
   color: #222;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
 }
 .tf-filter-toggle i {
@@ -6824,7 +6831,7 @@ blockquote {
   color: #777;
 }
 .tf-empty .tf-clear-all {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* Off-canvas filter drawer below 992px */
@@ -6886,7 +6893,7 @@ blockquote {
     border: 0;
     background: #222;
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -7196,7 +7203,7 @@ blockquote {
   border: 1px solid #dcdcdc;
   background: #fff;
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
   transition: border-color 0.2s;
 }
 .tp-swatch:hover {
@@ -7279,7 +7286,7 @@ blockquote {
 .tp-short-description {
   margin-top: 32px;
   color: #555;
-  font-size: 14px;
+  font-size: 16px;
 }
 .tp-short-description ul {
   padding-left: 18px;
@@ -7323,7 +7330,7 @@ blockquote {
   border-bottom: 2px solid transparent;
   background: none;
   color: var(--tp-muted);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -7338,7 +7345,7 @@ blockquote {
 .tp-tab-panel {
   padding-top: 28px;
   color: #555;
-  font-size: 14px;
+  font-size: 16px;
 }
 .tp-tab-panel ul,
 .tp-tab-panel ol {
@@ -7383,7 +7390,7 @@ blockquote {
   gap: 16px;
 }
 .tp-review-score .tp-stars {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .tp-review-average {
@@ -7506,7 +7513,7 @@ blockquote {
 }
 .tp-tab-panel #reviews #comments ol.commentlist li .comment-text p.meta strong {
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
 }
 .tp-tab-panel #reviews #comments ol.commentlist li .comment-text p.meta .woocommerce-review__dash {
@@ -7527,7 +7534,7 @@ blockquote {
 .tp-tab-panel #reviews #comments ol.commentlist li .comment-text .description {
   margin-top: 10px;
   color: #555;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.7;
 }
 .tp-tab-panel #reviews #comments ol.commentlist li .comment-text .description p:last-child {
@@ -7607,7 +7614,7 @@ blockquote {
   border-radius: 0;
   background: #fff;
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
   transition: border-color 0.2s;
 }
 .tp-tab-panel #reviews #respond input[type=text]:focus,
@@ -7766,7 +7773,7 @@ blockquote {
 }
 
 .tp-size-guide-content {
-  font-size: 14px;
+  font-size: 16px;
 }
 .tp-size-guide-content > :last-child {
   margin-bottom: 0;
@@ -7914,7 +7921,7 @@ blockquote {
   gap: 12px;
   margin: 0 0 14px;
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
 }
 .tp-free-shipping i {
   color: var(--tp-accent);
@@ -8016,7 +8023,7 @@ blockquote {
   align-items: center;
   gap: 4px 10px;
   color: var(--tp-muted);
-  font-size: 14px;
+  font-size: 16px;
 }
 .tp-cart-section .tp-cart-item .tp-cart-item-price del {
   font-size: 13px;
@@ -8102,7 +8109,7 @@ blockquote {
   border: 0;
   background: transparent;
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   text-align: center;
   -webkit-appearance: textfield;
@@ -8239,7 +8246,7 @@ blockquote {
   border: 1px solid var(--tp-border);
   border-radius: 0;
   background: #fff;
-  font-size: 14px;
+  font-size: 16px;
 }
 .tp-cart-sidebar .tp-coupon #coupon_code:focus {
   border-color: var(--tp-text);
@@ -8471,7 +8478,7 @@ blockquote {
   background-color: #fff;
   box-shadow: none;
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
   line-height: normal;
 }
 .tp-cart-sidebar .cart-collaterals .cart_totals .tp-totals-table .woocommerce-shipping-totals .shipping-calculator-form .input-text:focus,
@@ -9132,7 +9139,7 @@ blockquote {
   border-left: 3px solid var(--tp-accent);
   background: var(--tp-accent-light);
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
   list-style: none;
   outline: none;
 }
@@ -9193,7 +9200,7 @@ blockquote {
 .tp-checkout-section .woocommerce form.woocommerce-form-login > p:first-child {
   margin-top: 0;
   color: var(--tp-muted);
-  font-size: 14px;
+  font-size: 16px;
 }
 .tp-checkout-section .woocommerce form.checkout_coupon {
   display: flex;
@@ -9494,7 +9501,7 @@ blockquote {
   gap: 10px;
   margin: 0;
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
   cursor: pointer;
 }
@@ -9535,7 +9542,7 @@ blockquote {
 }
 .woocommerce-checkout .select2-dropdown .select2-results__option {
   padding: 8px 14px;
-  font-size: 14px;
+  font-size: 16px;
 }
 .woocommerce-checkout .select2-dropdown .select2-results__option--highlighted[aria-selected],
 .woocommerce-checkout .select2-dropdown .select2-results__option--highlighted[data-selected] {
@@ -10098,7 +10105,7 @@ blockquote {
   padding: 12px 22px;
   border: 0;
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   vertical-align: middle;
 }
@@ -10224,7 +10231,24 @@ blockquote {
 .tp-checkout-section.is-order-received table.woocommerce-table--order-details tfoot .tp-total-actions th,
 .tp-checkout-section.is-order-received table.woocommerce-table--order-details tfoot .tp-total-actions td {
   padding-top: 12px;
-  font-size: 13px;
+  font-size: 16px;
+}
+.tp-checkout-section.is-order-received table.woocommerce-table--order-details tfoot .tp-order-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.tp-checkout-section.is-order-received table.woocommerce-table--order-details tfoot .tp-order-actions .order-actions-button {
+  flex: 0 0 auto;
+  margin: 0;
+  text-align: center;
+}
+@media (max-width: 575px) {
+  .tp-checkout-section.is-order-received table.woocommerce-table--order-details tfoot .tp-order-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 .tp-checkout-section.is-order-received table.woocommerce-table--order-details tfoot tr:last-child th,
 .tp-checkout-section.is-order-received table.woocommerce-table--order-details tfoot tr:last-child td {
@@ -10289,7 +10313,7 @@ blockquote {
   border-left: 3px solid var(--tp-accent);
   background: var(--tp-accent-light);
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
   list-style: none;
   outline: none;
 }
@@ -10461,7 +10485,7 @@ blockquote {
   gap: 10px;
   margin: 0;
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
   cursor: pointer;
 }
@@ -10498,7 +10522,7 @@ blockquote {
   border-radius: 0;
   background: var(--tp-text);
   color: #fff;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 2px;
   line-height: 1;
@@ -10930,7 +10954,7 @@ blockquote {
 .tp-account-section .woocommerce-MyAccount-content .tp-account-recent-date,
 .tp-account-section .woocommerce-MyAccount-content .tp-account-recent-total {
   color: var(--tp-muted);
-  font-size: 14px;
+  font-size: 16px;
 }
 .tp-account-section .woocommerce-MyAccount-content .tp-account-recent-total {
   text-align: right;
@@ -10958,7 +10982,7 @@ blockquote {
   border: 0;
   border-top: 1px solid var(--tp-border);
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
   vertical-align: middle;
@@ -11234,7 +11258,7 @@ blockquote {
 }
 .tp-account-section .woocommerce-MyAccount-content ol.woocommerce-OrderUpdates .description p {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
 }
 .tp-account-section .woocommerce-MyAccount-content .woocommerce-order-details {
   margin-bottom: 40px;
@@ -11251,7 +11275,7 @@ blockquote {
   padding: 12px 22px;
   border: 0;
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   vertical-align: middle;
 }
@@ -11377,7 +11401,24 @@ blockquote {
 .tp-account-section .woocommerce-MyAccount-content table.woocommerce-table--order-details tfoot .tp-total-actions th,
 .tp-account-section .woocommerce-MyAccount-content table.woocommerce-table--order-details tfoot .tp-total-actions td {
   padding-top: 12px;
-  font-size: 13px;
+  font-size: 16px;
+}
+.tp-account-section .woocommerce-MyAccount-content table.woocommerce-table--order-details tfoot .tp-order-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.tp-account-section .woocommerce-MyAccount-content table.woocommerce-table--order-details tfoot .tp-order-actions .order-actions-button {
+  flex: 0 0 auto;
+  margin: 0;
+  text-align: center;
+}
+@media (max-width: 575px) {
+  .tp-account-section .woocommerce-MyAccount-content table.woocommerce-table--order-details tfoot .tp-order-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 .tp-account-section .woocommerce-MyAccount-content table.woocommerce-table--order-details tfoot tr:last-child th,
 .tp-account-section .woocommerce-MyAccount-content table.woocommerce-table--order-details tfoot tr:last-child td {
@@ -11496,7 +11537,7 @@ blockquote {
 }
 .tp-account-section .woocommerce .woocommerce-MyAccount-content .woocommerce-Address address {
   color: var(--tp-muted);
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   line-height: 1.8;
 }
@@ -11676,7 +11717,7 @@ blockquote {
   max-width: 400px;
   margin: 0 auto 28px;
   color: var(--tp-muted);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.7;
   text-align: center;
 }
@@ -11746,7 +11787,7 @@ blockquote {
   padding-top: 22px;
   border-top: 1px solid var(--tp-border);
   color: var(--tp-muted);
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
 }
 .tp-account-section.is-logged-out .tp-account > .woocommerce .tp-auth-switch a {
@@ -12050,7 +12091,7 @@ section.about-us .about-content h2 {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   letter-spacing: 0;
   text-transform: none;
@@ -12113,7 +12154,7 @@ section.about-us .about-content h2 {
   border-left: 3px solid var(--tp-accent);
   background: var(--tp-accent-light);
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
 }
 .contact-us .wpcf7-form.sent .wpcf7-response-output {
   border-left-color: var(--tp-success);
@@ -12230,7 +12271,7 @@ section.about-us .about-content h2 {
   border: 0;
   background: transparent;
   color: var(--tp-text);
-  font-size: 14px;
+  font-size: 16px;
   outline: 0;
 }
 .tp-404-search button {
@@ -12332,7 +12373,7 @@ section.about-us .about-content h2 {
 .tp-page-content h5,
 .tp-page-content h6 {
   color: var(--tp-text);
-  font-family: "Quicksand", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 700;
   line-height: 1.3;
   margin: 42px 0 16px;
@@ -12457,7 +12498,7 @@ section.about-us .about-content h2 {
   display: block;
   margin-top: 12px;
   color: var(--tp-muted);
-  font-family: "Quicksand", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: 12px;
   font-style: normal;
   letter-spacing: 1.5px;
@@ -12487,7 +12528,7 @@ section.about-us .about-content h2 {
   width: 100%;
   margin: 0 0 24px;
   border-collapse: collapse;
-  font-size: 14px;
+  font-size: 16px;
 }
 .tp-page-content table th,
 .tp-page-content table td {
@@ -12529,7 +12570,7 @@ section.about-us .about-content h2 {
 }
 @media (max-width: 767px) {
   .tp-page-content {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
@@ -12640,11 +12681,12 @@ section.about-us .about-content h2 {
    NAVIGATION
 ================================ */
 .tv-navigation {
-  height: 108px;
   background: #fff;
   border-bottom: 1px solid #eeeeee;
   display: flex;
   align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .tv-nav-wrapper {
@@ -12722,12 +12764,11 @@ section.about-us .about-content h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
   padding: 0 25px;
 }
 
 .tv-logo img {
-  width: 155px;
+  width: 110px;
   max-width: 100%;
   height: auto;
   display: block;
@@ -12784,7 +12825,7 @@ section.about-us .about-content h2 {
 
 .tv-mega-column .tv-mega-title {
   color: #211d19;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -12905,7 +12946,7 @@ section.about-us .about-content h2 {
   outline: none;
   background: transparent;
   padding: 10px 0;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .tv-search-panel button {
@@ -12932,7 +12973,7 @@ section.about-us .about-content h2 {
 }
 
 .tv-mobile-logo img {
-  width: 60px;
+  width: 80px;
   display: block;
 }
 
@@ -13204,9 +13245,6 @@ section.about-us .about-content h2 {
   .tv-nav-link {
     font-size: 10px;
   }
-  .tv-logo img {
-    width: 135px;
-  }
 }
 @media (max-width: 991px) {
   .tv-desktop-header {
@@ -13358,7 +13396,7 @@ section.about-us .about-content h2 {
 }
 
 .tribal-hero-btn i {
-  font-size: 14px;
+  font-size: 16px;
   transition: transform 0.3s ease;
 }
 
@@ -13566,7 +13604,7 @@ section.about-us .about-content h2 {
   align-items: center;
   justify-content: center;
   gap: 15px;
-  padding: 8px 25px;
+  padding: 8px 22px;
   border-right: 1px solid #eeeeee;
 }
 
@@ -13590,7 +13628,7 @@ section.about-us .about-content h2 {
 .simple-policy-content h6 {
   margin: 0 0 5px;
   color: #292521;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
@@ -13598,7 +13636,7 @@ section.about-us .about-content h2 {
 .simple-policy-content p {
   margin: 0;
   color: #888888;
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -13682,7 +13720,7 @@ section.about-us .about-content h2 {
   padding-bottom: 15px;
   color: #222;
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .latest-products-heading h1:after,
@@ -13701,7 +13739,7 @@ section.about-us .about-content h2 {
 .latest-products-heading p {
   margin: 18px 0 0;
   color: #777;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* =========================================================
@@ -14006,8 +14044,8 @@ section.about-us .about-content h2 {
   display: block;
   margin-bottom: 7px;
   color: #b99a5b;
-  font-size: 9px;
-  font-weight: 700;
+  font-size: 10px;
+  font-weight: 500;
   letter-spacing: 1.2px;
   text-transform: uppercase;
 }
@@ -14019,7 +14057,7 @@ section.about-us .about-content h2 {
 
 .latest-product-info h3 a {
   color: #252525;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.4;
   text-decoration: none;
@@ -14064,7 +14102,7 @@ section.about-us .about-content h2 {
 
 .latest-product-price del {
   color: #aaa;
-  font-size: 11px;
+  font-size: 16px;
 }
 
 /* =========================================================
@@ -14307,6 +14345,10 @@ section.about-us .about-content h2 {
   line-height: 1.9;
   margin: 0;
   max-width: 340px;
+}
+
+.footer-about img {
+  width: 120px;
 }
 
 /* =========================================

@@ -58,7 +58,7 @@ function tomatribe_stripe_appearance($params) {
       'colorTextPlaceholder' => '#aaaaaa',
       'colorDanger'          => '#c0392b',
       'colorIcon'            => '#777777',
-      'fontFamily'           => 'Quicksand, sans-serif',
+      'fontFamily'           => 'Outfit, sans-serif',
       'fontSizeBase'         => '15px',
       'borderRadius'         => '0px',
       'spacingUnit'          => '4px',
