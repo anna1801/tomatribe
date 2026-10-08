@@ -15,7 +15,9 @@ $rating = (float) $product->get_average_rating();
             <?php echo $product->get_image('woocommerce_full'); ?>
         </a>
 
-        <?php if (get_post_time('U', true) >= strtotime('-1 week')) : ?>
+        <?php if ($discount = tomatribe_product_discount($product)) : ?>
+            <span class="latest-product-badge"> <?php echo esc_html(($discount['varies'] ? 'Up to ' : '') . $discount['percent'] . '% OFF'); ?> </span>
+        <?php elseif (get_post_time('U', true) >= strtotime('-1 week')) : ?>
             <span class="latest-product-badge"> NEW </span>
         <?php endif; ?>
         <div class="latest-product-actions">

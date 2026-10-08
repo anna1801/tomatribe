@@ -1,11 +1,12 @@
 <?php
 /*
- * Category page filter sidebar. Off-canvas drawer below 992px.
- * Usage: get_template_part('template/category-filters', null, array('term' => $term));
+ * Category / shop page filter sidebar. Off-canvas drawer below 992px.
+ * Usage: get_template_part('template/category-filters', null, array('term' => $term)); (no term on the shop page)
  * Filter changes are applied over AJAX by assets/custom/js/category-filters.js.
  */
-$term = $args['term'];
+$term = isset($args['term']) ? $args['term'] : null;
 $data = tomatribe_category_filter_data($term);
+$form_action = $term ? get_term_link($term) : wc_get_page_permalink('shop');
 $selected_sub_cats = tomatribe_filter_values('sub_cat');
 $active_filters = tomatribe_active_filter_count();
 ?>
@@ -20,7 +21,7 @@ $active_filters = tomatribe_active_filter_count();
             <button type="button" class="tf-clear-all"<?php echo $active_filters ? '' : ' hidden'; ?>> Clear all </button>
         </div>
 
-        <form class="tf-form" action="<?php echo esc_url(get_term_link($term)); ?>" method="get">
+        <form class="tf-form" action="<?php echo esc_url($form_action); ?>" method="get">
 
             <?php foreach ($data['attributes'] as $attribute) : $selected = tomatribe_filter_values($attribute['name']); ?>
                 <div class="tf-group is-open">
@@ -43,7 +44,7 @@ $active_filters = tomatribe_active_filter_count();
             <?php if ($data['sub_cats']) : ?>
                 <div class="tf-group is-open">
                     <button type="button" class="tf-group-toggle" aria-expanded="true">
-                        Product type <i class="pe-7s-angle-up"></i>
+                        <?php echo $term ? 'Product type' : 'Category'; ?> <i class="pe-7s-angle-up"></i>
                     </button>
                     <div class="tf-group-body">
                         <?php foreach ($data['sub_cats'] as $sub_cat) : ?>
@@ -93,7 +94,7 @@ $active_filters = tomatribe_active_filter_count();
             <?php endif; ?>
 
             <?php if (!$data['attributes'] && !$data['sub_cats'] && !$data['price']) : ?>
-                <p class="tf-no-filters"> No filters available for this category. </p>
+                <p class="tf-no-filters"> No filters available<?php echo $term ? ' for this category' : ''; ?>. </p>
             <?php endif; ?>
         </form>
     </div>

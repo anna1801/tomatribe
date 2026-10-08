@@ -1,7 +1,8 @@
 <?php
 
 /*
- * Product category page (taxonomy-product_cat.php): AJAX filters by sub category, attribute and price.
+ * Product category page (taxonomy-product_cat.php) and shop page (shop-page.php): AJAX filters by sub category, attribute and price.
+ * On the shop page the "sub categories" are the top level categories.
  *
  * Filtering runs on the main query through WooCommerce's own query vars
  * (filter_{attribute}, query_type_{attribute}, min_price, max_price, orderby)
@@ -9,19 +10,39 @@
  * AJAX requests load the same URL with "tf_ajax=1" and get only template/category-products.php back.
  */
 
-/* Products per page on category pages */
+/* Products per page on category and shop pages */
 define('TOMATRIBE_CATEGORY_PER_PAGE', 12);
 
 function tomatribe_is_category_page() {
   return function_exists('is_product_category') && is_product_category();
 }
 
+/* Shop page (is_shop() is also true for product searches, which keep search.php) */
+function tomatribe_is_shop_page() {
+  return function_exists('is_shop') && is_shop() && !is_search();
+}
+
+/* Pages with the filter sidebar */
+function tomatribe_is_filter_page() {
+  return tomatribe_is_category_page() || tomatribe_is_shop_page();
+}
+
+/* Shop page: themed template with the filter sidebar instead of WooCommerce's archive-product.php (after WooCommerce's loader at 10) */
+function tomatribe_shop_template($template) {
+  if (tomatribe_is_shop_page()) {
+    $shop_template = locate_template('shop-page.php');
+    if ($shop_template) return $shop_template;
+  }
+  return $template;
+}
+add_filter('template_include', 'tomatribe_shop_template', 20);
+
 /*
  * The theme doesn't declare WooCommerce support, so WooCommerce would replace the category query
  * with a dummy page. Unhook that on category pages so WordPress loads taxonomy-product_cat.php.
  */
 function tomatribe_category_template_support() {
-  if (tomatribe_is_category_page()) {
+  if (tomatribe_is_filter_page()) {
     remove_action('template_redirect', array('WC_Template_Loader', 'unsupported_theme_init'));
   }
 }
@@ -49,7 +70,7 @@ function tomatribe_active_filter_count() {
 
 /* Products per page */
 function tomatribe_category_product_query($q) {
-  if ($q->is_tax('product_cat')) {
+  if ($q->is_tax('product_cat') || ($q->is_post_type_archive('product') && !$q->is_search())) {
     $q->set('posts_per_page', TOMATRIBE_CATEGORY_PER_PAGE);
   }
 }
@@ -60,16 +81,17 @@ add_action('woocommerce_product_query', 'tomatribe_category_product_query');
  * A product_cat tax_query clause would change the page's queried object to the sub category.
  */
 function tomatribe_sub_cat_post_in($post_in) {
-  if (!tomatribe_is_category_page()) return $post_in;
+  if (!tomatribe_is_filter_page()) return $post_in;
 
   $slugs = tomatribe_filter_values('sub_cat');
   if (!$slugs) return $post_in;
 
-  $parent = get_queried_object();
+  // Shop page: any category
+  $parent = tomatribe_is_category_page() ? get_queried_object() : null;
   $term_ids = array();
   foreach ($slugs as $slug) {
     $sub = get_term_by('slug', $slug, 'product_cat');
-    if ($sub && term_is_ancestor_of($parent, $sub, 'product_cat')) {
+    if ($sub && (!$parent || term_is_ancestor_of($parent, $sub, 'product_cat'))) {
       $term_ids[] = $sub->term_id;
       $term_ids = array_merge($term_ids, get_term_children($sub->term_id, 'product_cat'));
     }
@@ -87,8 +109,8 @@ function tomatribe_sub_cat_post_in($post_in) {
 add_filter('loop_shop_post_in', 'tomatribe_sub_cat_post_in');
 
 /*
- * Filter options for a category, counted against all visible products in it:
- * - sub_cats:   direct child categories (counts include their own children)
+ * Filter options for a category (or the whole shop when $term is null), counted against all visible products in it:
+ * - sub_cats:   direct child categories, or top level categories for the shop (counts include their own children)
  * - attributes: product attributes used in the category
  * - price:      min / max price
  */
@@ -97,15 +119,14 @@ function tomatribe_category_filter_data($term) {
 
   $data = array('sub_cats' => array(), 'attributes' => array(), 'price' => null);
 
+  $tax_query = $term ? array(array('taxonomy' => 'product_cat', 'field' => 'term_id', 'terms' => $term->term_id)) : array();
   $ids = get_posts(array(
     'post_type'      => 'product',
     'post_status'    => 'publish',
     'fields'         => 'ids',
     'posts_per_page' => -1,
     'no_found_rows'  => true,
-    'tax_query'      => WC()->query->get_tax_query(array(
-      array('taxonomy' => 'product_cat', 'field' => 'term_id', 'terms' => $term->term_id),
-    )),
+    'tax_query'      => WC()->query->get_tax_query($tax_query),
   ));
   if (!$ids) return $data;
 
@@ -126,9 +147,12 @@ function tomatribe_category_filter_data($term) {
   }
 
   // Sub categories
-  $children = get_terms(array('taxonomy' => 'product_cat', 'parent' => $term->term_id, 'hide_empty' => false));
+  $children = get_terms(array('taxonomy' => 'product_cat', 'parent' => $term ? $term->term_id : 0, 'hide_empty' => false));
   if (!is_wp_error($children)) {
     foreach ($children as $child) {
+      // Shop page: leave out the default "Uncategorized" category
+      if (!$term && (int) $child->term_id === (int) get_option('default_product_cat')) continue;
+
       $products = array();
       foreach (array_merge(array($child->term_id), get_term_children($child->term_id, 'product_cat')) as $term_id) {
         if (isset($objects['product_cat'][$term_id])) {
@@ -180,7 +204,7 @@ function tomatribe_category_filter_data($term) {
 
 /* AJAX filter request: return only the results markup */
 function tomatribe_category_ajax_results() {
-  if (!tomatribe_is_category_page() || empty($_GET['tf_ajax'])) return;
+  if (!tomatribe_is_filter_page() || empty($_GET['tf_ajax'])) return;
 
   // Keep the AJAX flag out of the pagination links
   add_filter('paginate_links', function ($link) {
@@ -192,9 +216,9 @@ function tomatribe_category_ajax_results() {
 }
 add_action('template_redirect', 'tomatribe_category_ajax_results', 20);
 
-/* Filter script on category pages only */
+/* Filter script on category and shop pages only */
 function tomatribe_category_filter_scripts() {
-  if (!tomatribe_is_category_page()) return;
+  if (!tomatribe_is_filter_page()) return;
   wp_enqueue_script('category-filters-js', get_template_directory_uri() . '/assets/custom/js/category-filters.js', array('jquery'), _S_VERSION, true);
 }
 add_action('wp_enqueue_scripts', 'tomatribe_category_filter_scripts');

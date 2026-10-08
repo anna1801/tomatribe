@@ -15,3 +15,16 @@ function tomatribe_product_search_query($query) {
   $query->set('tax_query', WC()->query->get_tax_query((array) $query->get('tax_query'), true));
 }
 add_action('pre_get_posts', 'tomatribe_product_search_query');
+
+/*
+ * The header search sends post_type=product, which makes it the product archive, so WooCommerce
+ * would load its archive-product.php. Keep searches on the theme's search.php (after WooCommerce's loader at 10).
+ */
+function tomatribe_search_template($template) {
+  if (is_search()) {
+    $search_template = locate_template('search.php');
+    if ($search_template) return $search_template;
+  }
+  return $template;
+}
+add_filter('template_include', 'tomatribe_search_template', 20);
