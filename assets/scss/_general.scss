@@ -560,7 +560,8 @@
 .tp-wishlist-section,
 .tp-checkout-section,
 .tp-account-section,
-.tp-drawer {
+.tp-drawer,
+.contact-us {
     --tp-text: #222;
     --tp-muted: #777;
     --tp-accent: #b99a5b;
@@ -3215,12 +3216,11 @@
             padding-bottom: 16px;
         }
 
-        // Thumbnail, name and quantity inline (the cell stays a table cell)
+        // Thumbnail floated left, name / quantity / meta stacked beside it (the cell stays a table cell)
         td.product-name {
             .tp-order-item-thumb {
-                display: inline-block;
+                float: left;
                 margin-right: 16px;
-                vertical-align: middle;
 
                 img {
                     display: block;
@@ -3231,14 +3231,14 @@
                 }
             }
 
+            // Own column next to the thumbnail, so a long name wraps beside it, not under it
             .tp-order-item-name {
+                display: block;
+                overflow: hidden;
+                padding-top: 6px;
                 font-family: $font-secondary;
                 font-size: 16px;
-                vertical-align: middle;
-            }
-
-            .product-quantity {
-                vertical-align: middle;
+                line-height: 1.35;
             }
 
             a {
@@ -3250,12 +3250,17 @@
             }
 
             .product-quantity {
+                display: block;
+                overflow: hidden;
+                margin-top: 4px;
                 color: var(--tp-muted);
+                font-size: 13px;
                 font-weight: 600;
             }
 
             .wc-item-meta {
-                margin: 4px 0 0 72px;
+                overflow: hidden;
+                margin: 4px 0 0;
                 padding: 0;
                 color: var(--tp-muted);
                 font-size: 12px;
@@ -4354,7 +4359,7 @@
         }
     }
 
-    // Notice buttons ("Browse products"): compact, outlined
+    // Notice buttons ("Browse products", "Confirm email address"): compact, outlined
     .woocommerce .woocommerce-info .button,
     .woocommerce .woocommerce-message .button {
         float: right;
@@ -4368,6 +4373,19 @@
             border-color: var(--tp-text);
             background: var(--tp-text);
             color: #fff;
+        }
+
+        // Phones: on its own line, so it doesn't squeeze the message
+        @media (max-width: 767px) {
+            float: none;
+            display: flex;
+            width: fit-content;
+            max-width: 100%;
+            height: auto;
+            min-height: 38px;
+            margin: 12px 0;
+            padding: 8px 16px;
+            text-align: center;
         }
     }
 }
@@ -4568,7 +4586,7 @@
         }
     }
 
-    // Phones / tablets: menu as a scrollable row of chips under the profile
+    // Phones / tablets: menu as a grid of chips under the profile (every item visible, no sideways scrolling)
     @media (max-width: 991px) {
         padding: 20px 0;
 
@@ -4578,22 +4596,25 @@
         }
 
         ul {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 8px;
             padding: 0 20px;
-            overflow-x: auto;
-            scrollbar-width: none;
         }
 
         li a {
             gap: 8px;
-            padding: 10px 14px;
+            height: 100%;
+            padding: 10px 12px;
             border: 1px solid var(--tp-line);
             border-left-width: 1px;
             background: #fff;
-            white-space: nowrap;
+            font-size: 11px;
+            letter-spacing: 1px;
+            line-height: 1.3;
 
             i {
+                flex: 0 0 auto;
                 width: auto;
                 font-size: 18px;
             }
@@ -4771,8 +4792,34 @@
             }
 
             @media (max-width: 575px) {
-                grid-template-columns: auto minmax(0, 1fr) 20px;
-                gap: 6px 12px;
+                grid-template-columns: auto minmax(0, 1fr) auto;
+                grid-template-areas:
+                    "number date status"
+                    "total total chevron";
+                gap: 8px 12px;
+                padding: 16px 4px;
+
+                .tp-account-recent-number {
+                    grid-area: number;
+                }
+
+                .tp-account-recent-date {
+                    grid-area: date;
+                }
+
+                .tp-order-status {
+                    grid-area: status;
+                }
+
+                .tp-account-recent-total {
+                    grid-area: total;
+                    text-align: left;
+                }
+
+                i {
+                    grid-area: chevron;
+                    justify-self: end;
+                }
             }
         }
 
@@ -4794,11 +4841,11 @@
 
     .tp-account-recent-total {
         text-align: right;
+    }
 
-        @media (max-width: 575px) {
-            grid-column: 1 / -1;
-            grid-row: 2;
-            text-align: left;
+    @media (max-width: 575px) {
+        .tp-account-recent-date {
+            font-size: 13px;
         }
     }
 }
@@ -4918,10 +4965,14 @@
             }
         }
 
-        // Phones: woocommerce-smallscreen.css stacks the cells with their labels
+        // Phones: woocommerce-smallscreen.css stacks the cells with "Label:" in front; each row becomes a card
         @media (max-width: 768px) {
+            border: 0;
+
             tbody tr {
-                border-top: 1px solid var(--tp-border);
+                margin-bottom: 12px;
+                padding: 8px 0;
+                border: 1px solid var(--tp-border);
             }
 
             tbody tr:nth-child(2n) td {
@@ -4930,7 +4981,7 @@
 
             th,
             td {
-                padding: 10px 16px;
+                padding: 8px 16px;
                 border-top: 0;
             }
 
@@ -4942,8 +4993,96 @@
                 text-transform: uppercase;
             }
 
-            td.woocommerce-orders-table__cell-order-status::before {
-                margin-right: 0;
+            // Action buttons: no (empty) label, left aligned under a divider
+            td.payment-method-actions {
+                margin-top: 6px;
+                padding-top: 14px;
+                border-top: 1px solid var(--tp-border);
+                text-align: left !important;
+
+                &::before {
+                    content: none;
+                }
+            }
+        }
+    }
+
+    // Orders table on phones: a compact card per order
+    @media (max-width: 768px) {
+        table.woocommerce-orders-table tbody tr {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 6px 12px;
+            padding: 16px;
+        }
+
+        table.woocommerce-orders-table tbody th,
+        table.woocommerce-orders-table tbody td {
+            grid-column: 1 / -1;
+            padding: 0;
+        }
+
+        table.woocommerce-orders-table tbody .woocommerce-orders-table__cell-order-number,
+        table.woocommerce-orders-table tbody .woocommerce-orders-table__cell-order-date,
+        table.woocommerce-orders-table tbody .woocommerce-orders-table__cell-order-status,
+        table.woocommerce-orders-table tbody .woocommerce-orders-table__cell-order-total,
+        table.woocommerce-orders-table tbody .woocommerce-orders-table__cell-order-actions {
+            &::before {
+                content: none;
+            }
+        }
+
+        // The order number is a <th>, which woocommerce-smallscreen.css hides
+        table.woocommerce-orders-table tbody th.woocommerce-orders-table__cell-order-number {
+            display: block;
+            grid-column: 1;
+            grid-row: 1;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        table.woocommerce-orders-table tbody td.woocommerce-orders-table__cell-order-status {
+            grid-column: 2;
+            grid-row: 1;
+            text-align: right !important;
+
+            // Dot in the status colour (the phone label styles would make it grey)
+            &::before {
+                content: "";
+                float: none;
+                margin-right: 6px;
+                background: var(--tp-status, var(--tp-muted));
+            }
+        }
+
+        table.woocommerce-orders-table tbody td.woocommerce-orders-table__cell-order-date {
+            grid-column: 1;
+            grid-row: 2;
+            color: var(--tp-muted);
+            font-size: 13px;
+            text-align: left !important;
+        }
+
+        table.woocommerce-orders-table tbody td.woocommerce-orders-table__cell-order-total {
+            grid-column: 2;
+            grid-row: 2;
+            font-size: 13px;
+            text-align: right !important;
+        }
+
+        table.woocommerce-orders-table tbody td.woocommerce-orders-table__cell-order-actions {
+            grid-row: 3;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+            padding-top: 14px;
+            border-top: 1px solid var(--tp-border);
+            text-align: left !important;
+
+            .button {
+                flex: 0 0 auto;
+                margin: 0;
             }
         }
     }
@@ -5588,5 +5727,247 @@
 
     @media (max-width: 575px) {
         width: 100%;
+    }
+}
+
+section {
+    &.about-us {
+        .about-content {
+            h1,
+            h2 {
+                font-size: 48px;
+                color: #d1d1d1;
+                display: block;
+                line-height: 1.1;
+                margin-bottom: 38px;
+                
+                @media only screen and (max-width: 767.98px) {
+                    font-size: 26px;
+                    color: #1a4247;
+                    margin-bottom: 25px;
+                }
+            }
+        }
+    }
+}
+/* Contact page (page-templates/template-contact.php): Contact Form 7 form, styled like the checkout fields */
+.contact-us {
+    color: var(--tp-text);
+
+    .contact-thumb img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .contact-title {
+        font-size: 48px;
+        color: #d1d1d1;
+        display: block;
+        line-height: 1.1;
+        margin-bottom: 38px;
+        
+        @media only screen and (max-width: 767.98px) {
+            font-size: 26px;
+            color: #1a4247;
+            margin-bottom: 25px;
+        }   
+    }
+
+    .contact-content {
+
+        @media (min-width: 992px) {
+            padding-left: 30px;
+        }
+
+        @media (max-width: 991px) {
+            margin-top: 40px;
+        }
+    }
+
+    .contact-title {
+        margin-bottom: 30px;
+        padding-bottom: 0;
+    }
+
+    .wpcf7-form {
+        // Spacing between fields (labels are direct children of the form; <p> if auto-paragraphs are on)
+        > label,
+        p {
+            margin: 0 0 18px;
+        }
+
+        p > label {
+            margin: 0;
+        }
+
+        // Labels: uppercase, with the field on its own line underneath
+        label {
+            display: block;
+            color: var(--tp-text);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            line-height: 1.4;
+            text-transform: uppercase;
+
+            br {
+                display: none;
+            }
+        }
+
+        .wpcf7-form-control-wrap {
+            display: block;
+            margin-top: 7px;
+        }
+
+        // Fields: square, 50px high, dark border on focus
+        input:is([type="text"], [type="email"], [type="tel"], [type="url"], [type="number"], [type="date"]),
+        select,
+        textarea {
+            display: block;
+            width: 100%;
+            height: 50px;
+            margin: 0;
+            padding: 0 16px;
+            border: 1px solid var(--tp-border);
+            border-radius: 0;
+            background-color: #fff;
+            box-shadow: none;
+            color: var(--tp-text);
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: normal;
+            line-height: normal;
+            text-transform: none;
+            transition: border-color 0.2s;
+
+            &::placeholder {
+                color: #aaa;
+            }
+
+            &:focus {
+                border-color: var(--tp-text);
+                outline: none;
+            }
+        }
+
+        select {
+            padding-right: 40px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23222' stroke-width='1.5'/%3E%3C/svg%3E");
+            background-position: right 16px center;
+            background-repeat: no-repeat;
+            background-size: 12px 8px;
+            cursor: pointer;
+        }
+
+        textarea {
+            height: 150px;
+            padding: 14px 16px;
+            line-height: 1.6;
+            resize: vertical;
+        }
+
+        // Checkboxes / radios / acceptance
+        .wpcf7-list-item {
+            margin: 0 16px 0 0;
+
+            label {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 14px;
+                font-weight: 400;
+                letter-spacing: 0;
+                text-transform: none;
+                cursor: pointer;
+            }
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+            accent-color: var(--tp-text);
+        }
+
+        // Submit: black, full width, like the checkout's "Place order"
+        .wpcf7-submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 56px;
+            margin: 26px 0 0;
+            padding: 0 20px;
+            border: 0;
+            border-radius: 0;
+            background: var(--tp-text);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s;
+
+            &:hover,
+            &:focus-visible {
+                background: rgb(161, 120, 78);
+                color: #fff;
+            }
+
+            &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+        }
+
+        // Sending spinner: pulled up over the button's right end (button 56px, spinner 24px), takes no extra space
+        .wpcf7-spinner {
+            display: block;
+            margin: -40px 16px 16px auto;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        // Validation
+        .wpcf7-not-valid {
+            border-color: var(--tp-error);
+        }
+
+        .wpcf7-not-valid-tip {
+            margin-top: 6px;
+            color: var(--tp-error);
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        // Response message: beige bar with a coloured left edge, like the WooCommerce notices
+        .wpcf7-response-output {
+            margin: 18px 0 0;
+            padding: 16px 20px;
+            border: 0;
+            border-left: 3px solid var(--tp-accent);
+            background: var(--tp-accent-light);
+            color: var(--tp-text);
+            font-size: 14px;
+        }
+
+        &.sent .wpcf7-response-output {
+            border-left-color: var(--tp-success);
+        }
+
+        &.failed,
+        &.aborted,
+        &.spam {
+            .wpcf7-response-output {
+                border-left-color: var(--tp-error);
+                background: #fdf3f2;
+            }
+        }
     }
 }

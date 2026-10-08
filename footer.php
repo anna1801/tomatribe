@@ -74,14 +74,14 @@
                 if (have_rows('footer_social_links', 'option')) :
                     echo '<div class="footer-social">';
 
-                        $footer_social_links_label = get_field('footer_social_links_label', 'option');
-                        if($footer_social_links_label) :
-                            echo '<h4>'.$footer_social_links_label.'</h4>';
+                        $footer_address_label = get_field('footer_address_label', 'option');
+                        if($footer_address_label) :
+                            echo '<h4>'.$footer_address_label.'</h4>';
                         endif;
 
-                        $footer_social_links_info = get_field('footer_social_links_info', 'option');
-                        if($footer_social_links_info) :
-                            echo '<p class="social-text">'.$footer_social_links_info.'</p>';
+                        $footer_address = get_field('footer_address', 'option');
+                        if($footer_address) :
+                            echo '<p class="social-text">'.$footer_address.'</p>';
                         endif;
 
                         echo '<div class="social-icons">';
