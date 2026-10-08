@@ -6455,7 +6455,7 @@ blockquote {
   margin: 15px 0 25px;
 }
 
-/* Product category page breadcrumb (taxonomy-product_cat.php) */
+/* Product category and shop page breadcrumb (taxonomy-product_cat.php, shop-page.php) */
 .latest-products-section.tf-category {
   padding-top: 30px;
 }
@@ -6920,7 +6920,8 @@ blockquote {
 .tp-account-section,
 .tp-drawer,
 .contact-us,
-.tp-404-section {
+.tp-404-section,
+.tp-page-section {
   --tp-text: #222;
   --tp-muted: #777;
   --tp-accent: #b99a5b;
@@ -12297,6 +12298,241 @@ section.about-us .about-content h2 {
   margin-bottom: 36px;
 }
 
+/* Default page template (page.php): readable column for policy / info pages written in the block editor */
+.tp-page-section {
+  padding: 30px 0 80px;
+  color: var(--tp-text);
+}
+.tp-page-section .container {
+  max-width: 1400px;
+}
+.tp-page-section .latest-products-heading {
+  margin-bottom: 40px;
+}
+
+.tp-page-content {
+  max-width: 860px;
+  margin: 0 auto;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.85;
+}
+.tp-page-content > :first-child {
+  margin-top: 0;
+}
+.tp-page-content > :last-child {
+  margin-bottom: 0;
+}
+.tp-page-content p {
+  margin: 0 0 18px;
+}
+.tp-page-content h2,
+.tp-page-content h3,
+.tp-page-content h4,
+.tp-page-content h5,
+.tp-page-content h6 {
+  color: var(--tp-text);
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 42px 0 16px;
+}
+.tp-page-content h2 {
+  position: relative;
+  padding: 0 0 14px 18px;
+  border-bottom: 1px solid var(--tp-line, #e8dfcd);
+  font-size: 26px;
+}
+.tp-page-content h2::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 4px;
+  height: 22px;
+  border-radius: 4px;
+  background: var(--tp-accent);
+}
+@media (max-width: 767px) {
+  .tp-page-content h2 {
+    font-size: 21px;
+  }
+  .tp-page-content h2::before {
+    top: 4px;
+    height: 19px;
+  }
+}
+.tp-page-content h3 {
+  margin-top: 32px;
+  font-size: 20px;
+}
+.tp-page-content h4 {
+  margin-top: 28px;
+  font-size: 17px;
+}
+.tp-page-content h5,
+.tp-page-content h6 {
+  margin-top: 24px;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.tp-page-content a:not(.wp-block-button__link) {
+  color: var(--tp-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.tp-page-content a:not(.wp-block-button__link):hover {
+  color: var(--tp-text);
+}
+.tp-page-content strong,
+.tp-page-content b {
+  color: var(--tp-text);
+  font-weight: 700;
+}
+.tp-page-content ul,
+.tp-page-content ol {
+  margin: 0 0 22px;
+  padding-left: 0;
+}
+.tp-page-content ul ul,
+.tp-page-content ul ol,
+.tp-page-content ol ul,
+.tp-page-content ol ol {
+  margin: 8px 0 0;
+}
+.tp-page-content ul {
+  list-style: none;
+}
+.tp-page-content ul > li {
+  position: relative;
+  padding-left: 24px;
+}
+.tp-page-content ul > li::before {
+  content: "";
+  position: absolute;
+  top: 0.75em;
+  left: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tp-accent);
+}
+.tp-page-content ol {
+  padding-left: 24px;
+  list-style: decimal;
+}
+.tp-page-content ol > li {
+  padding-left: 4px;
+}
+.tp-page-content ol > li::marker {
+  color: var(--tp-accent);
+  font-weight: 700;
+}
+.tp-page-content li {
+  margin-bottom: 8px;
+}
+.tp-page-content blockquote,
+.tp-page-content .wp-block-quote,
+.tp-page-content .wp-block-pullquote {
+  margin: 30px 0;
+  padding: 24px 28px;
+  border: 0;
+  border-left: 3px solid var(--tp-accent);
+  background: var(--tp-accent-light);
+  color: var(--tp-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-style: italic;
+  text-align: left;
+}
+.tp-page-content blockquote p:last-child,
+.tp-page-content .wp-block-quote p:last-child,
+.tp-page-content .wp-block-pullquote p:last-child {
+  margin-bottom: 0;
+}
+.tp-page-content blockquote cite,
+.tp-page-content .wp-block-quote cite,
+.tp-page-content .wp-block-pullquote cite {
+  display: block;
+  margin-top: 12px;
+  color: var(--tp-muted);
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.tp-page-content img {
+  height: auto;
+}
+.tp-page-content figure {
+  margin: 30px 0;
+}
+.tp-page-content figcaption,
+.tp-page-content .wp-element-caption {
+  margin-top: 10px;
+  color: var(--tp-muted);
+  font-size: 13px;
+  text-align: center;
+}
+.tp-page-content hr,
+.tp-page-content .wp-block-separator {
+  margin: 40px 0;
+  border: 0;
+  border-top: 1px solid var(--tp-line, #e8dfcd);
+  opacity: 1;
+}
+.tp-page-content table {
+  width: 100%;
+  margin: 0 0 24px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.tp-page-content table th,
+.tp-page-content table td {
+  padding: 12px 16px;
+  border: 1px solid var(--tp-border);
+  text-align: left;
+  vertical-align: top;
+}
+.tp-page-content table th,
+.tp-page-content table thead td {
+  background: var(--tp-accent-light);
+  color: var(--tp-text);
+  font-weight: 700;
+}
+.tp-page-content .wp-block-table {
+  overflow-x: auto;
+}
+.tp-page-content .wp-block-button__link {
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: 0;
+  background: var(--tp-text);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.2s;
+}
+.tp-page-content .wp-block-button__link:hover {
+  background: var(--tp-accent);
+  color: #fff;
+}
+.tp-page-content .tp-page-links {
+  margin-top: 40px;
+  color: var(--tp-text);
+  font-weight: 700;
+}
+@media (max-width: 767px) {
+  .tp-page-content {
+    font-size: 14px;
+  }
+}
+
 .latest-products-section .container {
   max-width: 1400px;
 }
@@ -13438,6 +13674,7 @@ section.about-us .about-content h2 {
   text-transform: uppercase;
 }
 
+.latest-products-heading h1,
 .latest-products-heading h2 {
   position: relative;
   display: inline-block;
@@ -13448,6 +13685,7 @@ section.about-us .about-content h2 {
   font-weight: 700;
 }
 
+.latest-products-heading h1:after,
 .latest-products-heading h2:after {
   content: "";
   position: absolute;
@@ -13934,6 +14172,7 @@ section.about-us .about-content h2 {
   .latest-products-section {
     padding: 70px 0 80px;
   }
+  .latest-products-heading h1,
   .latest-products-heading h2 {
     font-size: 32px;
   }
@@ -13967,6 +14206,7 @@ section.about-us .about-content h2 {
   .latest-products-heading {
     margin-bottom: 30px;
   }
+  .latest-products-heading h1,
   .latest-products-heading h2 {
     font-size: 27px;
   }

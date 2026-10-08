@@ -102,6 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
         ".tribal-hero-slide"
     );
 
+    // Hero slider only exists on the home page
+    if (!slides.length) {
+        return;
+    }
+
     const dots = document.querySelectorAll(
         ".tribal-dot"
     );

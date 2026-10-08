@@ -1396,6 +1396,7 @@
     text-transform: uppercase;
 }
 
+.latest-products-heading h1,
 .latest-products-heading h2 {
     position: relative;
 
@@ -1409,6 +1410,7 @@
     font-weight: 700;
 }
 
+.latest-products-heading h1:after,
 .latest-products-heading h2:after {
     content: "";
 
@@ -2095,6 +2097,7 @@
         padding: 70px 0 80px;
     }
 
+    .latest-products-heading h1,
     .latest-products-heading h2 {
         font-size: 32px;
     }
@@ -2145,6 +2148,7 @@
         margin-bottom: 30px;
     }
 
+    .latest-products-heading h1,
     .latest-products-heading h2 {
         font-size: 27px;
     }
