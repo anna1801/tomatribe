@@ -1093,10 +1093,6 @@
     animation: tribal-dot-progress 5s linear forwards;
 }
 
-.tribal-hero.is-paused .tribal-dot.active::after {
-    animation-play-state: paused;
-}
-
 @keyframes tribal-dot-progress {
     from {
         width: 0;
@@ -2412,8 +2408,12 @@
 
 .home-categories-section {
     position: relative;
-    padding: 60px 0 70px;
     background: #fff;
+}
+
+/* Section padding lives here so the whole block pins as one piece */
+.home-categories-sticky {
+    padding: 60px 0 70px;
 }
 
 @media (min-width: 992px) {
@@ -2501,7 +2501,7 @@
 
 @media (max-width: 991px) {
 
-    .home-categories-section {
+    .home-categories-sticky {
         padding: 50px 0 60px;
     }
 
@@ -2526,7 +2526,7 @@
 
 @media (max-width: 575px) {
 
-    .home-categories-section {
+    .home-categories-sticky {
         padding: 40px 0 50px;
     }
 
@@ -2542,6 +2542,26 @@
         margin-top: 18px;
 
         font-size: 14px;
+    }
+
+}
+
+
+/*
+ * Pinned mode (set by JS when the row overflows): the wrapper sticks while
+ * vertical scroll slides the row sideways via transform.
+ */
+.home-categories-section.is-pinned {
+
+    .home-categories-sticky {
+        position: sticky;
+        overflow: hidden;
+    }
+
+    .home-categories-list {
+        overflow: visible;
+        scroll-snap-type: none;
+        will-change: transform;
     }
 
 }
@@ -3151,4 +3171,22 @@
         gap: 8px;
     }
 
+}
+.black-btn {
+    margin: 26px 0 0;
+    padding: 20px 24px;
+    border: 0;
+    border-radius: 0;
+    background: #000;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s;
+
+    &:hover {
+        background: #a1784e;
+    }
 }

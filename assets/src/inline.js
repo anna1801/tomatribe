@@ -287,45 +287,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     startTimer();
 
-
-    /* ==========================================
-       PAUSE ON MOUSE HOVER
-    ========================================== */
-
-    const hero = document.querySelector(
-        ".tribal-hero"
-    );
-
-    if (hero) {
-
-        hero.addEventListener(
-            "mouseenter",
-            function () {
-
-                clearInterval(slideTimer);
-
-                hero.classList.add("is-paused");
-
-            }
-        );
-
-
-        hero.addEventListener(
-            "mouseleave",
-            function () {
-
-                hero.classList.remove("is-paused");
-
-                // Timer restarts from zero, so the progress line does too
-                restartProgress();
-
-                startTimer();
-
-            }
-        );
-
-    }
-
 });
 
 jQuery(document).ready(function($) {
@@ -625,3 +586,141 @@ jQuery(document).ready(function($) {
     });
 
 })(jQuery);
+
+
+/* ===============================
+   HOME CATEGORIES - PINNED HORIZONTAL SCROLL
+   While the section is on screen, vertical scrolling slides the row
+   sideways; once the last category is in view the page scrolls on.
+   Only kicks in when the categories don't all fit on screen.
+================================ */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const section =
+        document.querySelector(".home-categories-section");
+
+    if (!section) return;
+
+    const sticky = section.querySelector(".home-categories-sticky");
+    const list = section.querySelector(".home-categories-list");
+    const header = document.querySelector(".tv-header");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    let distance = 0;   // how far the row has to travel sideways
+    let progress = 0;   // how far it has travelled
+    let stickyTop = 0;
+    let ticking = false;
+    let lastWidth = window.innerWidth;
+
+
+    function setup() {
+
+        section.classList.remove("is-pinned");
+        section.style.height = "";
+        sticky.style.top = "";
+        list.style.transform = "";
+        list.scrollLeft = 0;
+        distance = 0;
+        progress = 0;
+
+        const lastItem = list.lastElementChild;
+
+        if (reduceMotion.matches || !lastItem) return;
+
+        const paddingRight = parseFloat(getComputedStyle(list).paddingRight) || 0;
+
+        distance = Math.ceil(
+            lastItem.getBoundingClientRect().right + paddingRight - list.getBoundingClientRect().right
+        );
+
+        if (distance <= 0) {
+            distance = 0;
+            return;
+        }
+
+        // Extra section height = the vertical scroll spent moving sideways
+        section.classList.add("is-pinned");
+        section.style.height = (sticky.offsetHeight + distance) + "px";
+
+        update();
+
+    }
+
+
+    function update() {
+
+        ticking = false;
+
+        if (!distance) return;
+
+        // Centre the pinned block in the space below the sticky header
+        const headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+        const space = window.innerHeight - headerBottom - sticky.offsetHeight;
+
+        stickyTop = space >= 0
+            ? headerBottom + space / 2
+            : window.innerHeight - sticky.offsetHeight;
+
+        sticky.style.top = stickyTop + "px";
+
+        progress = Math.min(Math.max(stickyTop - section.getBoundingClientRect().top, 0), distance);
+
+        list.style.transform = "translate3d(" + (-progress) + "px, 0, 0)";
+
+    }
+
+
+    function requestUpdate() {
+
+        if (!ticking) {
+            ticking = true;
+            window.requestAnimationFrame(update);
+        }
+
+    }
+
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+
+    // Mobile address bars fire resize on scroll; only rebuild when the width changes
+    window.addEventListener("resize", function () {
+
+        if (window.innerWidth !== lastWidth) {
+            lastWidth = window.innerWidth;
+            setup();
+        } else {
+            requestUpdate();
+        }
+
+    });
+
+    window.addEventListener("load", setup);
+
+    if (reduceMotion.addEventListener) {
+        reduceMotion.addEventListener("change", setup);
+    }
+
+
+    // Keyboard users: scroll the page so a focused, off-screen category slides into view
+    list.addEventListener("focusin", function (event) {
+
+        const item = event.target.closest(".home-category-item");
+
+        if (!distance || !item) return;
+
+        sticky.scrollLeft = 0;
+
+        const listLeft = list.getBoundingClientRect().left + progress;
+        const paddingLeft = parseFloat(getComputedStyle(list).paddingLeft) || 0;
+        const target = Math.min(Math.max(item.getBoundingClientRect().left + progress - listLeft - paddingLeft, 0), distance);
+        const sectionTop = window.scrollY + section.getBoundingClientRect().top;
+
+        window.scrollTo(0, sectionTop - stickyTop + target);
+
+    });
+
+
+    setup();
+
+});
