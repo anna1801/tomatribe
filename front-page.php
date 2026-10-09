@@ -153,7 +153,7 @@
     $about_description = get_field('about_description');
     if($about_featured_image || $about_description) :
 ?>
-    <section class="founders-section">
+    <section class="founders-section" id="about">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
@@ -231,7 +231,7 @@
     $testimonials_images = get_field('testimonials_images');
     if($testimonials_images) :
 ?>
-    <section class="testimonials-section">
+    <section class="testimonials-section" id="reviews">
         <div class="container">
             <?php 
                 $testimonials_subtitle = get_field('testimonials_subtitle');
