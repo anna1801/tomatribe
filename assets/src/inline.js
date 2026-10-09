@@ -155,12 +155,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
         slides[index].classList.add("active");
 
-        if (dots[index]) {
-            dots[index].classList.add("active");
+        currentSlide = index;
+
+        restartProgress();
+
+    }
+
+
+    /* ==========================================
+       PROGRESS LINE
+    ========================================== */
+
+    function restartProgress() {
+
+        const dot = dots[currentSlide];
+
+        if (!dot) {
+            return;
         }
 
+        dot.classList.remove("active");
 
-        currentSlide = index;
+        // Force reflow so the fill animation starts again from zero
+        void dot.offsetWidth;
+
+        dot.classList.add("active");
 
     }
 
@@ -285,6 +304,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 clearInterval(slideTimer);
 
+                hero.classList.add("is-paused");
+
             }
         );
 
@@ -292,6 +313,11 @@ document.addEventListener("DOMContentLoaded", function () {
         hero.addEventListener(
             "mouseleave",
             function () {
+
+                hero.classList.remove("is-paused");
+
+                // Timer restarts from zero, so the progress line does too
+                restartProgress();
 
                 startTimer();
 
@@ -526,5 +552,76 @@ jQuery(document).ready(function($) {
 
     });
 
+
+})(jQuery);
+
+/* =========================================================
+   TESTIMONIALS SLIDER
+========================================================= */
+
+(function ($) {
+
+    "use strict";
+
+    $(window).on('load', function () {
+
+        var $testimonials = $('.testimonials-slider');
+
+        if (!$testimonials.length || $testimonials.hasClass('slick-initialized')) {
+            return;
+        }
+
+        $testimonials.slick({
+
+            slidesToShow: 4,
+            slidesToScroll: 1,
+
+            infinite: true,
+
+            arrows: true,
+            dots: true,
+
+            autoplay: true,
+            autoplaySpeed: 4000,
+
+            speed: 650,
+
+            cssEase: 'ease-in-out',
+
+            pauseOnHover: true,
+            pauseOnFocus: true,
+
+            swipe: true,
+            draggable: true,
+            touchMove: true,
+
+            responsive: [
+
+                {
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                },
+
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                },
+
+                {
+                    breakpoint: 576,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                }
+
+            ]
+
+        });
+
+    });
 
 })(jQuery);
