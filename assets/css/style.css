@@ -6448,6 +6448,13 @@ blockquote {
   margin: 0;
 }
 
+.minicart-pricing-box li.minicart-shipping {
+  gap: 15px;
+}
+.minicart-pricing-box li.minicart-shipping > span:last-child {
+  white-space: nowrap;
+}
+
 .minicart-empty {
   text-align: center;
   padding-top: 40px;

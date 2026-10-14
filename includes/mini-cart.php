@@ -89,6 +89,34 @@ function tomatribe_mini_cart_html() {
               <span><strong>-<?php echo wc_price($cart->get_coupon_discount_amount($code, $cart->display_cart_ex_tax)); ?></strong></span>
             </li>
           <?php endforeach; ?>
+          <?php if ($cart->needs_shipping() && $cart->show_shipping()) :
+            // Totals may be restored from the session without running shipping, so calculate the chosen rates here
+            $chosen_rates = $cart->calculate_shipping();
+            $packages     = WC()->shipping()->get_packages();
+            ?>
+            <?php if ($chosen_rates) : ?>
+              <?php foreach ($chosen_rates as $package_key => $rate) :
+                // Shipping zone name (e.g. "Kerala"), falling back to the method title for the "not covered" zone
+                $zone  = isset($packages[$package_key]) ? WC_Shipping_Zones::get_zone_matching_package($packages[$package_key]) : null;
+                $title = $zone && $zone->get_id() ? $zone->get_zone_name() : $rate->get_label();
+
+                $cost = (float) $rate->get_cost();
+                if ($cart->display_prices_including_tax()) {
+                  $cost += array_sum($rate->get_shipping_tax());
+                }
+                ?>
+                <li class="minicart-shipping">
+                  <span><?php echo esc_html($title ? $title : __('Shipping', 'tomatribe')); ?></span>
+                  <span><strong><?php echo $cost > 0 ? wc_price($cost) : esc_html__('Free', 'tomatribe'); ?></strong></span>
+                </li>
+              <?php endforeach; ?>
+            <?php else : ?>
+              <li class="minicart-shipping">
+                <span><?php esc_html_e('Shipping', 'tomatribe'); ?></span>
+                <span><strong><?php esc_html_e('Calculated at checkout', 'tomatribe'); ?></strong></span>
+              </li>
+            <?php endif; ?>
+          <?php endif; ?>
           <?php if (wc_tax_enabled() && !$cart->display_prices_including_tax()) : ?>
             <?php foreach ($cart->get_tax_totals() as $tax) : ?>
               <li>
@@ -120,6 +148,12 @@ function tomatribe_mini_cart_fragment($fragments) {
   return $fragments;
 }
 add_filter('woocommerce_add_to_cart_fragments', 'tomatribe_mini_cart_fragment');
+
+/* Fragments are cached in sessionStorage until the cart changes - version the cache key so mini cart markup changes show straight away */
+function tomatribe_cart_fragment_name($name) {
+  return $name . '_' . filemtime(__FILE__);
+}
+add_filter('woocommerce_cart_fragment_name', 'tomatribe_cart_fragment_name');
 
 /* WooCommerce add-to-cart script handles AJAX removal from the mini cart */
 function tomatribe_mini_cart_scripts() {

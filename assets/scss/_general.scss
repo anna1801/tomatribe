@@ -36,6 +36,14 @@
     }
 }
 
+.minicart-pricing-box li.minicart-shipping {
+    gap: 15px;
+
+    > span:last-child {
+        white-space: nowrap;
+    }
+}
+
 .minicart-empty {
     text-align: center;
     padding-top: 40px;
