@@ -6598,3 +6598,100 @@ section {
         font-size: 16px;
     }
 }
+
+/* Website popup (template/website-popup.php) */
+.tt-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    visibility: hidden;
+    transition: visibility 0.35s;
+
+    &.is-open {
+        visibility: visible;
+
+        .tt-popup-overlay {
+            opacity: 1;
+        }
+
+        .tt-popup-panel {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    &-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transition: opacity 0.35s;
+    }
+
+    &-panel {
+        position: relative;
+        max-width: min(600px, 100%);
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+        transition: opacity 0.35s, transform 0.35s;
+    }
+
+    &-image {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: calc(100vh - 40px);
+        max-height: calc(100dvh - 40px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    &-link {
+        display: block;
+
+        &:focus-visible {
+            outline: 2px solid #b99a5b;
+            outline-offset: 3px;
+        }
+    }
+
+    &-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: #fff;
+        color: #222;
+        font-size: 30px;
+        line-height: 1;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.2s, color 0.2s;
+
+        &:hover {
+            background: #222;
+            color: #fff;
+        }
+
+        &:focus-visible {
+            outline: 2px solid #b99a5b;
+            outline-offset: 2px;
+        }
+    }
+}
+
+// Body class while the popup is open
+.tt-popup-open {
+    overflow: hidden;
+}

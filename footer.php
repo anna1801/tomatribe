@@ -139,6 +139,8 @@
 </div>
 <?php endif; ?>
 
+<?php get_template_part('template/website-popup'); ?>
+
 <?php wp_footer(); ?>
 </body>
 </html>
