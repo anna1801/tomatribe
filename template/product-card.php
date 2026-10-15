@@ -47,9 +47,9 @@ $rating = (float) $product->get_average_rating();
             <span class="latest-product-category"> <?php echo esc_html($tags[0]->name); ?> </span>
         <?php endif; ?>
         <h3> <a href="<?php echo esc_url($permalink); ?>"> <?php the_title(); ?> </a> </h3>
-        <div class="latest-product-rating">
-            <?php echo tomatribe_rating_stars_html($rating); ?>
-        </div>
+        <!-- <div class="latest-product-rating">
+            <?php // echo tomatribe_rating_stars_html($rating); ?>
+        </div> -->
         <?php if ($prices = tomatribe_get_product_prices($product)) : ?>
             <div class="latest-product-price">
                 <span> <?php echo $prices['price']; ?> </span>

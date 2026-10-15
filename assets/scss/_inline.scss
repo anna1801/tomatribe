@@ -121,8 +121,14 @@
 .tv-nav-wrapper {
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 220px 1fr;
     align-items: center;
+
+    @media (min-width: 1200px) {
+        grid-template-columns: 1fr 350px 1fr;
+    }
+    @media (max-width: 1199px) and (min-width: 768px) {
+        grid-template-columns: 1fr 250px 1fr;
+    }
 }
 
 
@@ -201,7 +207,7 @@
 }
 
 .tv-logo img {
-    width: 110px;
+    // width: 110px;
     max-width: 100%;
     height: auto;
     display: block;
@@ -414,6 +420,7 @@
     justify-content: space-between;
     background: #fff;
     border-bottom: 1px solid #eee;
+    gap: 40px;
 }
 
 // .tv-mobile-logo {
@@ -423,8 +430,10 @@
 // }
 
 .tv-mobile-logo img {
-    width: 80px;
+    // width: 80px;
     display: block;
+    height: 50px;
+    width: 100%;
 }
 
 .tv-mobile-menu-btn {
@@ -522,16 +531,21 @@
     background: transparent;
     font-size: 28px;
     cursor: pointer;
+
+    .pe-7s-close {
+        background: #a1784e;
+        color: #fff;
+    }
 }
 
 .tv-mobile-panel-logo {
     text-align: center;
-    margin: 15px 0 35px;
+    margin: 40px 0 35px;
 }
 
-.tv-mobile-panel-logo img {
-    width: 65px;
-}
+// .tv-mobile-panel-logo img {
+//     width: 65px;
+// }
 
 
 /* ===============================
@@ -1528,7 +1542,7 @@
 
     height: auto;
 
-    padding: 0 15px;
+    padding: 0 5px;
 
     box-sizing: border-box;
 
@@ -1912,7 +1926,7 @@
 }
 
 .latest-product-info h3 {
-    margin: 0 0 9px;
+    margin: 0 0 4px;
 
     padding: 0;
 }
@@ -1972,7 +1986,7 @@
     color: #b18d45;
 
     font-size: 18px;
-    font-weight: 700;
+    //font-weight: 700;
 }
 
 .latest-product-price del {
@@ -2861,7 +2875,7 @@
 ========================================= */
 
 .simple-footer {
-    background: #f7f4ee;
+    background: #f7f4ee url("../img/bg.svg") repeat;
     color: #333333;
     padding: 60px 0 0;
     border-top: 1px solid #e7dfd2;
@@ -2919,18 +2933,18 @@
 }
 
 .footer-about p {
-    color: #777777;
+    color: #333;
     font-size: 14px;
     line-height: 1.9;
     margin: 0;
     max-width: 340px;
 }
 
-.footer-about {
-    img {
-        width: 120px;
-    }
-}
+// .footer-about {
+//     img {
+//         width: 120px;
+//     }
+// }
 
 
 /* =========================================
@@ -2955,7 +2969,7 @@
     align-items: flex-start;
     gap: 10px;
 
-    color: #777777;
+    color: #333;
     font-size: 14px;
     line-height: 1.7;
 
@@ -2969,7 +2983,7 @@
 }
 
 .footer-contact a {
-    color: #777777;
+    color: #333;
     text-decoration: none;
 }
 
@@ -2993,7 +3007,7 @@
 }
 
 .footer-links a {
-    color: #777777;
+    color: #333;
     font-size: 14px;
     text-decoration: none;
     transition: all .3s ease;
@@ -3010,7 +3024,7 @@
 ========================================= */
 
 .social-text {
-    color: #777777;
+    color: #333;
     font-size: 14px;
     line-height: 1.7;
     margin-bottom: 18px;
@@ -3080,7 +3094,7 @@
 ========================================= */
 
 .footer-bottom {
-    border-top: 1px solid #e2dbcf;
+    border-top: 1px solid #c0b9a0;
 
     padding: 20px 0;
 
@@ -3093,7 +3107,7 @@
 
 .footer-bottom p {
     margin: 0;
-    color: #888888;
+    color: #333;
     font-size: 13px;
 }
 

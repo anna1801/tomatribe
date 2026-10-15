@@ -95,7 +95,7 @@
     if($latest_products_show_hide) :
 ?>
     <section class="latest-products-section">
-        <div class="container">
+        <div class="container-fluid">
             <div class="latest-products-heading">
                 <?php 
                     $latest_products_sub_title = get_field('latest_products_sub_title');
