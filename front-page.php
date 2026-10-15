@@ -1,4 +1,48 @@
-<?php get_header(); ?> 
+<?php get_header(); ?>
+
+<?php
+    $category_list_mobile = get_field('category_list_mobile');
+    if ($category_list_mobile) :
+        $category_list_mobile = (array) $category_list_mobile;
+?>
+    <section class="mobile-categories-section">
+        <div class="mobile-categories-list">
+            <?php foreach ($category_list_mobile as $category_id) : ?>
+                <?php
+                    $category = get_term($category_id, 'product_cat');
+                    if (!$category || is_wp_error($category)) :
+                        continue;
+                    endif;
+
+                    $category_link = get_term_link($category);
+                    $cat_featured_image = get_field('cat_featured_image', $category);
+
+                    if (is_array($cat_featured_image)) :
+                        $image_id = $cat_featured_image['ID'];
+                    elseif (is_numeric($cat_featured_image)) :
+                        $image_id = $cat_featured_image;
+                    elseif ($cat_featured_image) :
+                        $image_id = attachment_url_to_postid($cat_featured_image);
+                    else :
+                        $image_id = get_term_meta($category->term_id, 'thumbnail_id', true);
+                    endif;
+                ?>
+                <a href="<?php echo esc_url($category_link); ?>" class="mobile-category-item">
+                    <span class="mobile-category-image">
+                        <?php
+                            if ($image_id) :
+                                echo wp_get_attachment_image($image_id, 'medium', false, array('alt' => $category->name));
+                            else :
+                                echo '<img src="'.esc_url(wc_placeholder_img_src('medium')).'" alt="'.esc_attr($category->name).'">';
+                            endif;
+                        ?>
+                    </span>
+                    <span class="mobile-category-title"><?php echo esc_html($category->name); ?></span>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </section>
+<?php endif; ?>
 
 <?php if (have_rows('hero_banner')) : ?>
     <section class="tribal-hero">
