@@ -1615,7 +1615,7 @@
     width: 100%;
     //height: 265px;
     height: auto;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1 / 1.3;
 
     flex-shrink: 0;
 
@@ -2638,7 +2638,7 @@
     overflow: hidden;
 
     .testimonial-slide {
-        flex: 0 0 calc((100% - 90px) / 4);
+        flex: 0 0 calc((100% - 60px) / 3);
     }
 }
 
@@ -2697,7 +2697,7 @@
     display: block;
     width: 100%;
     height: auto;
-    max-height: 260px;
+    max-height: 380px;
     object-fit: contain;
 }
 
@@ -2810,14 +2810,6 @@
 /* ------------------------------
    RESPONSIVE
 ------------------------------ */
-
-@media (max-width: 1199px) {
-
-    .testimonials-slider:not(.slick-initialized) .testimonial-slide {
-        flex-basis: calc((100% - 60px) / 3);
-    }
-
-}
 
 @media (max-width: 991px) {
 

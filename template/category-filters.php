@@ -1,6 +1,6 @@
 <?php
 /*
- * Category / shop page filter sidebar. Off-canvas drawer below 992px.
+ * Category / shop page filters: dropdown bar above the products, off-canvas drawer below 992px.
  * Usage: get_template_part('template/category-filters', null, array('term' => $term)); (no term on the shop page)
  * Filter changes are applied over AJAX by assets/custom/js/category-filters.js.
  */
@@ -26,7 +26,7 @@ $active_filters = tomatribe_active_filter_count();
             <?php foreach ($data['attributes'] as $attribute) : $selected = tomatribe_filter_values($attribute['name']); ?>
                 <div class="tf-group is-open">
                     <button type="button" class="tf-group-toggle" aria-expanded="true">
-                        <?php echo esc_html($attribute['label']); ?> <i class="pe-7s-angle-up"></i>
+                        <span> <?php echo esc_html($attribute['label']); ?> <span class="tf-group-count"<?php echo $selected ? '' : ' hidden'; ?>> <?php echo count($selected); ?> </span> </span> <i class="pe-7s-angle-up"></i>
                     </button>
                     <div class="tf-group-body">
                         <div class="tf-boxes">
@@ -44,7 +44,7 @@ $active_filters = tomatribe_active_filter_count();
             <?php if ($data['sub_cats']) : ?>
                 <div class="tf-group is-open">
                     <button type="button" class="tf-group-toggle" aria-expanded="true">
-                        <?php echo $term ? 'Product type' : 'Category'; ?> <i class="pe-7s-angle-up"></i>
+                        <span> <?php echo $term ? 'Product type' : 'Category'; ?> <span class="tf-group-count"<?php echo $selected_sub_cats ? '' : ' hidden'; ?>> <?php echo count($selected_sub_cats); ?> </span> </span> <i class="pe-7s-angle-up"></i>
                     </button>
                     <div class="tf-group-body">
                         <?php foreach ($data['sub_cats'] as $sub_cat) : ?>
@@ -65,10 +65,11 @@ $active_filters = tomatribe_active_filter_count();
                     $from = isset($_GET['min_price']) ? max($price_min, min($price_max, (int) floor((float) $_GET['min_price']))) : $price_min;
                     $to = isset($_GET['max_price']) ? max($from, min($price_max, (int) ceil((float) $_GET['max_price']))) : $price_max;
                     $currency = get_woocommerce_currency_symbol();
+                    $price_active = $from > $price_min || $to < $price_max;
             ?>
                 <div class="tf-group is-open">
                     <button type="button" class="tf-group-toggle" aria-expanded="true">
-                        Price <i class="pe-7s-angle-up"></i>
+                        <span> Price <span class="tf-group-count"<?php echo $price_active ? '' : ' hidden'; ?>> 1 </span> </span> <i class="pe-7s-angle-up"></i>
                     </button>
                     <div class="tf-group-body">
                         <div class="tf-price" data-min="<?php echo esc_attr($price_min); ?>" data-max="<?php echo esc_attr($price_max); ?>">

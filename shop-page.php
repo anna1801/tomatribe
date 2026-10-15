@@ -1,6 +1,6 @@
 <?php
 /*
- * Shop page: filter sidebar + product grid, like the category page (see includes/category-filters.php).
+ * Shop page: filter bar + full width product grid, like the category page (see includes/category-filters.php).
  * Used for the shop page via tomatribe_shop_template(). Styling: .tf-category in assets/scss/_general.scss.
  */
 get_header();
@@ -17,15 +17,12 @@ $shop_title = woocommerce_page_title(false);
             <h2> <?php echo esc_html($shop_title); ?> </h2>
         </div>
 
-        <div class="row g-4">
-            <div class="col-12 col-lg-3">
-                <?php get_template_part('template/category-filters'); ?>
-            </div>
-            <div class="col-12 col-lg-9">
-                <div class="tf-results" id="tf-results" aria-live="polite">
-                    <?php get_template_part('template/category-products'); ?>
-                </div>
-            </div>
+        <?php get_template_part('template/category-filters'); ?>
+    </div>
+
+    <div class="container-fluid">
+        <div class="tf-results" id="tf-results" aria-live="polite">
+            <?php get_template_part('template/category-products'); ?>
         </div>
     </div>
 </section>

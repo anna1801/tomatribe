@@ -1,6 +1,6 @@
 <?php
 /*
- * Product category page: filter sidebar + product grid (see includes/category-filters.php).
+ * Product category page: filter bar + full width product grid (see includes/category-filters.php).
  */
 get_header();
 
@@ -19,15 +19,12 @@ $term = get_queried_object();
             <?php endif; ?>
         </div>
 
-        <div class="row g-4">
-            <div class="col-12 col-lg-3">
-                <?php get_template_part('template/category-filters', null, array('term' => $term)); ?>
-            </div>
-            <div class="col-12 col-lg-9">
-                <div class="tf-results" id="tf-results" aria-live="polite">
-                    <?php get_template_part('template/category-products'); ?>
-                </div>
-            </div>
+        <?php get_template_part('template/category-filters', null, array('term' => $term)); ?>
+    </div>
+
+    <div class="container-fluid">
+        <div class="tf-results" id="tf-results" aria-live="polite">
+            <?php get_template_part('template/category-products'); ?>
         </div>
     </div>
 </section>

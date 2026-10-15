@@ -12,6 +12,8 @@
   var priceMin = parseInt($price.data('min'), 10);
   var priceMax = parseInt($price.data('max'), 10);
   var request;
+  // Filter groups are dropdowns in the bar above the products from 992px, an accordion in the drawer below
+  var desktop = window.matchMedia('(min-width: 992px)');
 
   /* ---------- URL <-> form ---------- */
 
@@ -95,6 +97,14 @@
     if ($price.length && (getFrom() > priceMin || getTo() < priceMax)) active++;
     $('.tf-sidebar .tf-clear-all').prop('hidden', !active);
 
+    // Selected count on each group button
+    $form.find('.tf-group').each(function () {
+      var $group = $(this);
+      var count = $group.find('input[type="checkbox"]:checked').length;
+      if ($group.find('.tf-price').length && (getFrom() > priceMin || getTo() < priceMax)) count = 1;
+      $group.find('.tf-group-count').text(count).prop('hidden', !count);
+    });
+
     if ($.fn.niceSelect) $results.find('.tf-orderby').niceSelect();
 
     // Wishlist buttons in the new product cards
@@ -164,10 +174,34 @@
     apply();
   });
 
+  /* ---------- Filter groups ---------- */
+
+  function closeDropdowns($except) {
+    $form.find('.tf-group.is-dropdown').not($except).removeClass('is-dropdown')
+      .find('.tf-group-toggle').attr('aria-expanded', 'false');
+  }
+
+  function syncGroups() {
+    closeDropdowns();
+    $form.find('.tf-group').each(function () {
+      $(this).find('.tf-group-toggle').attr('aria-expanded', !desktop.matches && $(this).hasClass('is-open'));
+    });
+  }
+
   $form.on('click', '.tf-group-toggle', function () {
-    var $group = $(this).closest('.tf-group').toggleClass('is-open');
-    $(this).attr('aria-expanded', $group.hasClass('is-open'));
+    var $group = $(this).closest('.tf-group');
+    var key = desktop.matches ? 'is-dropdown' : 'is-open';
+    if (desktop.matches) closeDropdowns($group);
+    $group.toggleClass(key);
+    $(this).attr('aria-expanded', $group.hasClass(key));
   });
+
+  $(document).on('click', function (e) {
+    if (!$(e.target).closest('.tf-group').length) closeDropdowns();
+  });
+
+  syncGroups();
+  if (desktop.addEventListener) desktop.addEventListener('change', syncGroups);
 
   window.addEventListener('popstate', function () {
     syncFormFromUrl(window.location.href);
@@ -185,6 +219,9 @@
   });
   $(document).on('click', '.tf-sidebar-close, .tf-overlay, .tf-show-results', closeDrawer);
   $(document).on('keydown', function (e) {
-    if (e.key === 'Escape') closeDrawer();
+    if (e.key === 'Escape') {
+      closeDrawer();
+      closeDropdowns();
+    }
   });
 })(jQuery);

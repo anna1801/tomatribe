@@ -150,11 +150,11 @@ while (have_posts()) : the_post();
         ));
 ?>
     <section class="latest-products-section tp-related">
-        <div class="container">
+        <div class="container-fluid">
             <div class="latest-products-heading">
                 <h2> Similar products </h2>
             </div>
-            <div class="row g-4">
+            <div class="row row-12 justify-content-center">
                 <?php while ($related->have_posts()) : $related->the_post(); ?>
                     <div class="col-6 col-lg-3">
                         <?php get_template_part('template/product-card'); ?>

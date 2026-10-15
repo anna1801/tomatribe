@@ -168,6 +168,25 @@
     &:not(.is-open) .tf-group-body {
         display: none;
     }
+
+    &-count {
+        display: inline-block;
+        min-width: 20px;
+        height: 20px;
+        margin-left: 6px;
+        padding: 0 5px;
+        border-radius: 10px;
+        background: var(--tf-text);
+        color: #fff;
+        font-size: 11px;
+        line-height: 20px;
+        text-align: center;
+        vertical-align: middle;
+
+        &[hidden] {
+            display: none;
+        }
+    }
 }
 
 /* Attribute boxes (Size etc.) */
@@ -568,6 +587,104 @@
             opacity: 1;
             visibility: visible;
         }
+    }
+}
+
+/* Filter bar with dropdowns above the products from 992px */
+@media (min-width: 992px) {
+    .tf-sidebar {
+        margin-bottom: 30px;
+        border-top: 1px solid var(--tf-border);
+        border-bottom: 1px solid var(--tf-border);
+
+        &-inner {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            padding: 16px 0;
+        }
+
+        // Title and "Clear all" sit in the bar itself, around the dropdowns
+        &-head {
+            display: contents;
+        }
+
+        &-title {
+            font-size: 22px;
+        }
+
+        .tf-clear-all {
+            order: 1;
+            margin-left: auto;
+        }
+    }
+
+    .tf-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .tf-group {
+        position: relative;
+        border-bottom: 0;
+
+        &-toggle {
+            gap: 12px;
+            width: auto;
+            padding: 9px 14px 9px 18px;
+            border: 1px solid var(--tf-border);
+            font-size: 15px;
+            transition: border-color 0.2s;
+
+            i {
+                font-size: 22px;
+                transform: rotate(180deg);
+            }
+
+            &:hover {
+                border-color: var(--tf-text);
+            }
+        }
+
+        &-body {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            z-index: 20;
+            display: none;
+            width: max-content;
+            min-width: 280px;
+            max-width: 440px;
+            padding: 20px;
+            border: 1px solid var(--tf-border);
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        &.is-dropdown {
+            .tf-group-toggle {
+                border-color: var(--tf-text);
+
+                i {
+                    transform: none;
+                }
+            }
+
+            .tf-group-body {
+                display: block;
+            }
+        }
+    }
+
+    .tf-price {
+        width: 320px;
+    }
+
+    .tf-no-filters {
+        padding-top: 0;
+        margin: 0;
     }
 }
 

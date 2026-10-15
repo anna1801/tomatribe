@@ -534,7 +534,8 @@ jQuery(document).ready(function($) {
 
         $testimonials.slick({
 
-            slidesToShow: 4,
+            // 3 across on desktop: the reviews are screenshots of text, so they need the width to stay readable
+            slidesToShow: 3,
             slidesToScroll: 1,
 
             infinite: true,
@@ -557,13 +558,6 @@ jQuery(document).ready(function($) {
             touchMove: true,
 
             responsive: [
-
-                {
-                    breakpoint: 1200,
-                    settings: {
-                        slidesToShow: 3
-                    }
-                },
 
                 {
                     breakpoint: 992,

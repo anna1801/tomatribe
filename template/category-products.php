@@ -50,9 +50,9 @@ $orderby = isset($_GET['orderby']) ? wc_clean(wp_unslash($_GET['orderby'])) : $d
 </div>
 
 <?php if (have_posts()) : ?>
-    <div class="row g-4">
+    <div class="row row-12">
         <?php while (have_posts()) : the_post(); ?>
-            <div class="col-12 col-sm-6 col-xl-4">
+            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
                 <?php get_template_part('template/product-card'); ?>
             </div>
         <?php endwhile; ?>

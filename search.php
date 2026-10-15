@@ -13,9 +13,10 @@
                 ?>
             </p>
         </div>
-
+    </div>
+    <div class="container-fluid">
         <?php if (have_posts()) : ?>
-            <div class="row g-4">
+            <div class="row row-12 justify-content-center">
                 <?php while (have_posts()) : the_post(); ?>
                     <div class="col-12 col-md-4 col-lg-3">
                         <?php get_template_part('template/product-card'); ?>
