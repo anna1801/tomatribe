@@ -718,3 +718,131 @@ document.addEventListener("DOMContentLoaded", function () {
     setup();
 
 });
+
+
+/* ===============================
+   ABOUT TABS
+   The active tab's bar fills over 6s (CSS animation); when it
+   finishes the next tab opens. Pauses on keyboard focus and
+   while the section is off screen.
+================================ */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const wrapper =
+        document.querySelector(".founders-tabs");
+
+    if (!wrapper) return;
+
+    const tabs = Array.from(wrapper.querySelectorAll(".founders-tab"));
+
+    if (tabs.length < 2) return;
+
+    const panels = wrapper.querySelectorAll(".founders-tab-panel");
+    const images = wrapper.querySelectorAll(".founders-tab-image");
+
+    let current = 0;
+    let focused = false;
+    let visible = true;
+
+
+    function activate(index, moveFocus) {
+
+        tabs.forEach(function (tab, i) {
+
+            const active = i === index;
+
+            tab.classList.toggle("active", active);
+            tab.setAttribute("aria-selected", active ? "true" : "false");
+            tab.tabIndex = active ? 0 : -1;
+
+            panels[i].classList.toggle("active", active);
+
+        });
+
+        // A tab without an image keeps the previous one on screen
+        const hasImage = Array.from(images).some(function (image) {
+            return Number(image.dataset.tab) === index;
+        });
+
+        if (hasImage) {
+            images.forEach(function (image) {
+                image.classList.toggle("active", Number(image.dataset.tab) === index);
+            });
+        }
+
+        current = index;
+
+        if (moveFocus) tabs[index].focus();
+
+    }
+
+
+    function updatePaused() {
+
+        wrapper.classList.toggle("paused", focused || !visible);
+
+    }
+
+
+    tabs.forEach(function (tab, i) {
+
+        tab.addEventListener("click", function () {
+            if (i !== current) activate(i);
+        });
+
+    });
+
+
+    wrapper.querySelector(".founders-tab-nav").addEventListener("keydown", function (event) {
+
+        const last = tabs.length - 1;
+        let next = null;
+
+        if (event.key === "ArrowRight") next = current === last ? 0 : current + 1;
+        if (event.key === "ArrowLeft") next = current === 0 ? last : current - 1;
+        if (event.key === "Home") next = 0;
+        if (event.key === "End") next = last;
+
+        if (next === null) return;
+
+        event.preventDefault();
+        activate(next, true);
+
+    });
+
+
+    // Bar finished filling: move on to the next tab
+    wrapper.addEventListener("animationend", function (event) {
+
+        if (event.animationName !== "founders-tab-progress") return;
+        if (!tabs[current].contains(event.target)) return;
+
+        activate((current + 1) % tabs.length);
+
+    });
+
+
+    // Keyboard focus only; a mouse click on a tab shouldn't stop autoplay
+    wrapper.addEventListener("focusin", function (event) {
+        focused = event.target.matches(":focus-visible");
+        updatePaused();
+    });
+
+    wrapper.addEventListener("focusout", function (event) {
+        if (wrapper.contains(event.relatedTarget)) return;
+        focused = false;
+        updatePaused();
+    });
+
+
+    if ("IntersectionObserver" in window) {
+
+        new IntersectionObserver(function (entries) {
+            visible = entries[0].isIntersecting;
+            updatePaused();
+        }, { threshold: 0.3 }).observe(wrapper);
+
+    }
+
+});

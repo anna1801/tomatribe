@@ -193,29 +193,60 @@
 <?php endif; ?>
 
 <?php
-    $about_featured_image = get_field('about_featured_image');
-    $about_description = get_field('about_description');
-    if($about_featured_image || $about_description) :
+    $about_tabs = get_field('about');
+    if($about_tabs) :
+        $about_tabs = array_values((array) $about_tabs);
+        $has_tabs = count($about_tabs) > 1;
 ?>
     <section class="founders-section" id="about">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center founders-tabs">
                 <div class="col-lg-6">
-                    <?php
-                        if($about_featured_image) :
-                            echo '<div class="founders-image">
-                                    <img src="'.$about_featured_image['url'].'" alt="'.$about_featured_image['alt'].'">
-                                </div>';
-                        endif;
-                    ?>
+                    <div class="founders-image">
+                        <div class="founders-tab-images">
+                            <?php $image_shown = false; ?>
+                            <?php foreach ($about_tabs as $index => $about_tab) : ?>
+                                <?php
+                                    $about_featured_image = $about_tab['about_featured_image'];
+                                    if($about_featured_image) :
+                                        echo '<img src="'.esc_url($about_featured_image['url']).'" alt="'.esc_attr($about_featured_image['alt']).'" class="founders-tab-image '.(!$image_shown ? 'active' : '').'" data-tab="'.$index.'">';
+                                        $image_shown = true;
+                                    endif;
+                                ?>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="founders-content">
-                        <?php
-                            if($about_description) :
-                                echo '<div class="founders-description">'.$about_description.'</div>';
-                            endif;
-                        ?>
+                        <div class="founders-tab-panels">
+                            <?php foreach ($about_tabs as $index => $about_tab) : ?>
+                                <?php
+                                    $about_title = $about_tab['about_title'];
+                                    $about_description = $about_tab['about_description'];
+                                ?>
+                                <div class="founders-tab-panel <?php echo $index === 0 ? 'active' : ''; ?>" id="founders-panel-<?php echo $index; ?>" <?php echo $has_tabs ? 'role="tabpanel" aria-labelledby="founders-tab-'.$index.'"' : ''; ?>>
+                                    <?php
+                                        if($about_title) :
+                                            echo '<h2>'.esc_html($about_title).'</h2>';
+                                        endif;
+                                        if($about_description) :
+                                            echo '<div class="founders-description">'.$about_description.'</div>';
+                                        endif;
+                                    ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php if($has_tabs) : ?>
+                            <div class="founders-tab-nav" role="tablist">
+                                <?php foreach ($about_tabs as $index => $about_tab) : ?>
+                                    <button type="button" class="founders-tab <?php echo $index === 0 ? 'active' : ''; ?>" id="founders-tab-<?php echo $index; ?>" role="tab" aria-controls="founders-panel-<?php echo $index; ?>" aria-selected="<?php echo $index === 0 ? 'true' : 'false'; ?>" tabindex="<?php echo $index === 0 ? '0' : '-1'; ?>">
+                                        <span class="founders-tab-progress"><span></span></span>
+                                        <span class="founders-tab-label"><?php echo esc_html($about_tab['about_title']); ?></span>
+                                    </button>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
