@@ -101,8 +101,13 @@ function tomatribe_mini_cart_html() {
                 $title = $zone && $zone->get_id() ? $zone->get_zone_name() : $rate->get_label();
 
                 $cost = (float) $rate->get_cost();
+
                 if ($cart->display_prices_including_tax()) {
-                  $cost += array_sum($rate->get_shipping_tax());
+                    $shipping_tax = $rate->get_shipping_tax();
+
+                    $cost += is_array($shipping_tax)
+                        ? array_sum($shipping_tax)
+                        : (float) $shipping_tax;
                 }
                 ?>
                 <li class="minicart-shipping">
