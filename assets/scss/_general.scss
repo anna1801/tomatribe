@@ -2763,18 +2763,25 @@
         font-size: inherit;
     }
 
+    // Flex rather than grid so an incomplete last row is centered, like the shop grid (.row-12.gy-4.justify-content-center)
     &-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px 12px;
 
-        @media (max-width: 1199px) {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
+        > .tp-wishlist-item {
+            flex: 0 0 calc((100% - 3 * 12px) / 4);
+            min-width: 0;
+            height: auto; // The card's height: 100% would stop flex from stretching it to the row height
 
-        @media (max-width: 767px) {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
+            @media (max-width: 1199px) {
+                flex-basis: calc((100% - 2 * 12px) / 3);
+            }
+
+            @media (max-width: 767px) {
+                flex-basis: calc((100% - 12px) / 2);
+            }
         }
     }
 

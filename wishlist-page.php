@@ -1,6 +1,6 @@
 <?php
 /*
- * Wishlist page: breadcrumb, heading, the YITH wishlist shortcode (page content, cards in woocommerce/wishlist-view.php)
+ * Wishlist page: breadcrumb, heading, the YITH wishlist shortcode (page content, full width like the shop; cards in woocommerce/wishlist-view.php)
  * and store highlights. Used for the wishlist page via includes/wishlist.php. Styling: .tp-wishlist-section in assets/scss/_general.scss.
  */
 get_header();
@@ -14,13 +14,17 @@ get_header();
             <span class="latest-products-subtitle"> Saved For Later </span>
             <h2> <?php the_title(); ?> </h2>
         </div>
+    </div>
 
+    <div class="container-fluid">
         <?php while (have_posts()) : the_post(); ?>
             <div class="tp-wishlist-content">
                 <?php the_content(); ?>
             </div>
         <?php endwhile; ?>
+    </div>
 
+    <div class="container">
         <?php
             if (have_rows('features_tomatribe', 'option')) :
                 echo '<ul class="tp-highlights">';

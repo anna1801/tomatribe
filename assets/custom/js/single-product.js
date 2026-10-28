@@ -247,6 +247,14 @@
 
     $form.on('reset_image', restoreImage);
 
+    /*
+     * One wishlist button for all sizes: YITH listens for these on the document and swaps its button to the variation.
+     * Handlers on the form itself (WooCommerce's and the ones above) still run.
+     */
+    $form.on('found_variation reset_data', function (event) {
+      event.stopPropagation();
+    });
+
     /* ---------- Size guide drawer ---------- */
     var $guide = $('#tp-size-guide');
     var lastFocus = null;

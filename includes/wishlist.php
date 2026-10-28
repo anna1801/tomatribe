@@ -22,3 +22,13 @@ function tomatribe_wishlist_scripts() {
   wp_enqueue_script('wishlist-js', get_template_directory_uri() . '/assets/custom/js/wishlist.js', array('jquery'), _S_VERSION, true);
 }
 add_action('wp_enqueue_scripts', 'tomatribe_wishlist_scripts', 20);
+
+/* One wishlist entry per product: YITH swaps the button to the selected variation's ID on the product page, store the parent instead */
+function tomatribe_wishlist_parent_product($args) {
+  $product = wc_get_product($args['product_id']);
+  if ($product && $product->is_type('variation')) {
+    $args['product_id'] = $product->get_parent_id();
+  }
+  return $args;
+}
+add_filter('yith_wcwl_adding_to_wishlist_args', 'tomatribe_wishlist_parent_product');

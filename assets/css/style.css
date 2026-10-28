@@ -8831,19 +8831,24 @@ blockquote {
   font-size: inherit;
 }
 .tp-wishlist-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px 12px;
+}
+.tp-wishlist-grid > .tp-wishlist-item {
+  flex: 0 0 calc((100% - 36px) / 4);
+  min-width: 0;
+  height: auto;
 }
 @media (max-width: 1199px) {
-  .tp-wishlist-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .tp-wishlist-grid > .tp-wishlist-item {
+    flex-basis: calc((100% - 24px) / 3);
   }
 }
 @media (max-width: 767px) {
-  .tp-wishlist-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+  .tp-wishlist-grid > .tp-wishlist-item {
+    flex-basis: calc((100% - 12px) / 2);
   }
 }
 .tp-wishlist .latest-product-image {
