@@ -40,6 +40,11 @@ $rating = (float) $product->get_average_rating();
             <a href="<?php echo esc_url($product->add_to_cart_url()); ?>" class="<?php echo esc_attr($cart_classes); ?>" data-quantity="1" data-product_id="<?php echo esc_attr($product->get_id()); ?>" data-product_sku="<?php echo esc_attr($product->get_sku()); ?>" rel="nofollow">
                 <i class="fa fa-shopping-bag"></i> <?php echo esc_html($product->add_to_cart_text()); ?>
             </a>
+            <?php if (tomatribe_can_buy_now($product)) : ?>
+                <a href="<?php echo esc_url(tomatribe_buy_now_url($product)); ?>" class="tp-card-buy-now" rel="nofollow">
+                    <i class="fa fa-bolt"></i> Buy Now
+                </a>
+            <?php endif; ?>
         </div>
     </div>
     <div class="latest-product-info">

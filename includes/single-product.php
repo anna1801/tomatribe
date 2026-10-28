@@ -302,6 +302,18 @@ function tomatribe_buy_now_redirect($url) {
 }
 add_filter('woocommerce_add_to_cart_redirect', 'tomatribe_buy_now_redirect', 99);
 
+/*
+ * Buy Now link for product cards (template/product-card.php, wishlist). Only simple products can be bought straight
+ * from a list; variable products need a size / color picked on the product page.
+ */
+function tomatribe_can_buy_now($product) {
+  return $product->is_type('simple') && $product->is_purchasable() && $product->is_in_stock();
+}
+
+function tomatribe_buy_now_url($product) {
+  return add_query_arg(array('add-to-cart' => $product->get_id(), 'tp_buy_now' => 1), wc_get_checkout_url());
+}
+
 /* Product page script */
 function tomatribe_single_product_scripts() {
   if (!is_product()) return;

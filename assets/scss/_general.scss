@@ -2910,8 +2910,9 @@
             color: #fff;
         }
 
-        // Variable products ("Select options"): outlined
-        &.product_type_variable {
+        // Variable products ("Select options") and Buy Now: outlined
+        &.product_type_variable,
+        &.tp-wishlist-buy-now {
             background: transparent;
             color: var(--tp-text);
 

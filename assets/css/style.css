@@ -8957,11 +8957,11 @@ blockquote {
   background: rgb(161, 120, 78);
   color: #fff;
 }
-.tp-wishlist .product-add-to-cart.tp-wishlist-cart a:not(.added_to_cart).product_type_variable {
+.tp-wishlist .product-add-to-cart.tp-wishlist-cart a:not(.added_to_cart).product_type_variable, .tp-wishlist .product-add-to-cart.tp-wishlist-cart a:not(.added_to_cart).tp-wishlist-buy-now {
   background: transparent;
   color: var(--tp-text);
 }
-.tp-wishlist .product-add-to-cart.tp-wishlist-cart a:not(.added_to_cart).product_type_variable:hover {
+.tp-wishlist .product-add-to-cart.tp-wishlist-cart a:not(.added_to_cart).product_type_variable:hover, .tp-wishlist .product-add-to-cart.tp-wishlist-cart a:not(.added_to_cart).tp-wishlist-buy-now:hover {
   border-color: var(--tp-text);
   background: var(--tp-text);
   color: #fff;
@@ -14339,6 +14339,16 @@ section.about-us .about-content h2 {
 
 .latest-product-cart i {
   margin-right: 6px;
+}
+
+.latest-product-cart a.tp-card-buy-now {
+  margin-top: 8px;
+  background: #fff;
+  color: #1b1b1b;
+}
+.latest-product-cart a.tp-card-buy-now:hover {
+  background: #c99e5a;
+  color: #fff;
 }
 
 /* =========================================================

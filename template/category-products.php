@@ -21,36 +21,38 @@ $orderby_options = apply_filters('woocommerce_catalog_orderby', array(
 $default_orderby = apply_filters('woocommerce_default_catalog_orderby', get_option('woocommerce_default_catalog_orderby', 'menu_order'));
 $orderby = isset($_GET['orderby']) ? wc_clean(wp_unslash($_GET['orderby'])) : $default_orderby;
 ?>
-<div class="tf-toolbar">
-    <button type="button" class="tf-filter-toggle" aria-controls="tf-sidebar">
-        <i class="pe-7s-filter"></i> Filters
-        <?php if ($active_filters) : ?>
-            <span class="tf-filter-badge"> <?php echo esc_html($active_filters); ?> </span>
-        <?php endif; ?>
-    </button>
-    <p class="tf-result-count">
-        <?php
-            if ($total <= $per_page || $per_page < 1) :
-                echo esc_html(sprintf(_n('%d product', '%d products', $total), $total));
-            else :
-                $first = ($paged - 1) * $per_page + 1;
-                $last = min($total, $paged * $per_page);
-                echo esc_html(sprintf('Showing %d–%d of %d products', $first, $last, $total));
-            endif;
-        ?>
-    </p>
-    <div class="tf-sort">
-        <label for="tf-orderby" class="visually-hidden"> Sort by </label>
-        <select id="tf-orderby" class="tf-orderby" data-default="<?php echo esc_attr($default_orderby); ?>">
-            <?php foreach ($orderby_options as $value => $label) : ?>
-                <option value="<?php echo esc_attr($value); ?>" <?php selected($orderby, $value); ?>> <?php echo esc_html($label); ?> </option>
-            <?php endforeach; ?>
-        </select>
+<div class="container">
+    <div class="tf-toolbar">
+        <button type="button" class="tf-filter-toggle" aria-controls="tf-sidebar">
+            <i class="pe-7s-filter"></i> Filters
+            <?php if ($active_filters) : ?>
+                <span class="tf-filter-badge"> <?php echo esc_html($active_filters); ?> </span>
+            <?php endif; ?>
+        </button>
+        <p class="tf-result-count">
+            <?php
+                if ($total <= $per_page || $per_page < 1) :
+                    echo esc_html(sprintf(_n('%d product', '%d products', $total), $total));
+                else :
+                    $first = ($paged - 1) * $per_page + 1;
+                    $last = min($total, $paged * $per_page);
+                    echo esc_html(sprintf('Showing %d–%d of %d products', $first, $last, $total));
+                endif;
+            ?>
+        </p>
+        <div class="tf-sort">
+            <label for="tf-orderby" class="visually-hidden"> Sort by </label>
+            <select id="tf-orderby" class="tf-orderby" data-default="<?php echo esc_attr($default_orderby); ?>">
+                <?php foreach ($orderby_options as $value => $label) : ?>
+                    <option value="<?php echo esc_attr($value); ?>" <?php selected($orderby, $value); ?>> <?php echo esc_html($label); ?> </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
     </div>
 </div>
 
 <?php if (have_posts()) : ?>
-    <div class="row row-12">
+    <div class="row row-12 gy-4 justify-content-center">
         <?php while (have_posts()) : the_post(); ?>
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
                 <?php get_template_part('template/product-card'); ?>

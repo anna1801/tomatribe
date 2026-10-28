@@ -128,6 +128,9 @@ $show_add_to_cart = !empty($show_add_to_cart);
 
                             if (apply_filters('yith_wcwl_table_product_show_add_to_cart', $show_add_to_cart, $item, $wishlist) && $item->is_purchasable() && $in_stock) {
                                 woocommerce_template_loop_add_to_cart(array('quantity' => $show_quantity ? $item->get_quantity() : 1));
+                                if (tomatribe_can_buy_now($product)) {
+                                    echo '<a href="' . esc_url(tomatribe_buy_now_url($product)) . '" class="tp-wishlist-buy-now" rel="nofollow"> Buy Now </a>';
+                                }
                             } elseif (!$in_stock) {
                                 echo '<span class="tp-wishlist-soldout"> ' . esc_html(apply_filters('yith_wcwl_out_of_stock_label', __('Out of stock', 'yith-woocommerce-wishlist'))) . ' </span>';
                             }

@@ -1976,6 +1976,18 @@
     margin-right: 6px;
 }
 
+.latest-product-cart a.tp-card-buy-now {
+    margin-top: 8px;
+
+    background: #fff;
+    color: #1b1b1b;
+
+    &:hover {
+        background: #c99e5a;
+        color: #fff;
+    }
+}
+
 
 /* =========================================================
    PRODUCT INFORMATION
