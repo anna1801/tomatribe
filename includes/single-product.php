@@ -263,6 +263,7 @@ function tomatribe_ajax_add_to_cart() {
       )),
       'cart_hash' => WC()->cart->get_cart_hash(),
       'notices'   => $notices,
+      'redirect'  => tomatribe_is_buy_now() ? wc_get_checkout_url() : '',
     ));
   }
 
@@ -273,6 +274,33 @@ function tomatribe_ajax_add_to_cart() {
 }
 add_action('wp_ajax_tomatribe_add_to_cart', 'tomatribe_ajax_add_to_cart');
 add_action('wp_ajax_nopriv_tomatribe_add_to_cart', 'tomatribe_ajax_add_to_cart');
+
+/*
+ * Buy Now (product page form, AJAX or regular post): checks out this product only.
+ * The cart is emptied once the add to cart validation has passed, so an invalid request keeps the customer's cart,
+ * then the customer goes straight to checkout without the "added to your cart" notice.
+ */
+function tomatribe_is_buy_now() {
+  return !empty($_REQUEST['tp_buy_now']);
+}
+
+function tomatribe_buy_now_empty_cart($passed) {
+  if ($passed && tomatribe_is_buy_now() && !WC()->cart->is_empty()) {
+    WC()->cart->empty_cart();
+  }
+  return $passed;
+}
+add_filter('woocommerce_add_to_cart_validation', 'tomatribe_buy_now_empty_cart', PHP_INT_MAX);
+
+function tomatribe_buy_now_message($message) {
+  return tomatribe_is_buy_now() ? '' : $message;
+}
+add_filter('wc_add_to_cart_message_html', 'tomatribe_buy_now_message');
+
+function tomatribe_buy_now_redirect($url) {
+  return tomatribe_is_buy_now() ? wc_get_checkout_url() : $url;
+}
+add_filter('woocommerce_add_to_cart_redirect', 'tomatribe_buy_now_redirect', 99);
 
 /* Product page script */
 function tomatribe_single_product_scripts() {

@@ -332,23 +332,36 @@
 
     $(document).on('submit', 'form.tp-cart-form', function (event) {
       var $cartForm = $(this);
-      var $button = $cartForm.find('.single_add_to_cart_button');
+      var $buttons = $cartForm.find('.single_add_to_cart_button');
+      // Add to basket or Buy Now (the clicked button isn't part of serializeArray)
+      var submitter = event.originalEvent && event.originalEvent.submitter;
+      var $button = submitter ? $(submitter) : $buttons.first();
+      var buyNow = $button.hasClass('tp-buy-now');
+      var redirecting = false;
 
       if (!params.ajaxUrl) return;
       event.preventDefault();
-      if ($button.hasClass('disabled') || $button.hasClass('loading')) return;
+      if ($button.hasClass('disabled') || $buttons.hasClass('loading')) return;
 
       var data = $cartForm.serializeArray().filter(function (field) {
         return field.name !== 'add-to-cart' && field.name !== 'product_id';
       });
       data.push({ name: 'action', value: 'tomatribe_add_to_cart' });
       data.push({ name: 'product_id', value: $cartForm.find('[name="add-to-cart"]').val() });
+      if (buyNow) data.push({ name: 'tp_buy_now', value: 1 });
 
       showNotices('');
-      $button.addClass('loading').prop('disabled', true);
+      $button.addClass('loading');
+      $buttons.prop('disabled', true);
 
       $.post(params.ajaxUrl, $.param(data))
         .done(function (response) {
+          // Buy Now: the cart now holds only this product, straight to checkout
+          if (response && response.redirect) {
+            redirecting = true;
+            window.location = response.redirect;
+            return;
+          }
           if (response && response.fragments) {
             var wcParams = window.wc_add_to_cart_params;
             if (wcParams && wcParams.cart_redirect_after_add === 'yes') {
@@ -369,10 +382,13 @@
         })
         .fail(function () {
           // Fall back to the regular form post
+          if (buyNow) $cartForm.append('<input type="hidden" name="tp_buy_now" value="1">');
           $cartForm[0].submit();
         })
         .always(function () {
-          $button.removeClass('loading').prop('disabled', false);
+          if (redirecting) return;
+          $button.removeClass('loading');
+          $buttons.prop('disabled', false);
         });
     });
   });

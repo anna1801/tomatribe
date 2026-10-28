@@ -7386,6 +7386,20 @@ blockquote {
   cursor: wait;
 }
 
+.tp-buy-now {
+  margin-top: 12px;
+  background: var(--tp-text);
+  color: #fff;
+}
+.tp-buy-now:hover {
+  background: #f2f2f2;
+  color: var(--tp-text);
+}
+.tp-buy-now.disabled:hover {
+  background: var(--tp-text);
+  color: #fff;
+}
+
 .tp-short-description {
   margin-top: 32px;
   color: #555;
@@ -12676,7 +12690,7 @@ section.about-us .about-content h2 {
     font-size: 16px;
   }
 }
-/* Website popup (template/website-popup.php) */
+
 /* Website popup (template/website-popup.php) */
 .tt-popup {
   position: fixed;
@@ -13512,8 +13526,10 @@ section.about-us .about-content h2 {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center top;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center top;
+       object-position: center top;
   }
   .mobile-category-title {
     display: block;
@@ -13525,7 +13541,6 @@ section.about-us .about-content h2 {
     white-space: nowrap;
   }
 }
-
 .tribal-hero {
   width: 100%;
   height: calc(100vh - 146px);
@@ -14804,7 +14819,6 @@ section.about-us .about-content h2 {
     font-size: 12px;
   }
 }
-
 /* =========================================================
    HOME CATEGORIES
 ========================================================= */

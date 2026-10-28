@@ -1091,6 +1091,23 @@
     }
 }
 
+// Buy Now: right below Add to basket, dark by default
+.tp-buy-now {
+    margin-top: 12px;
+    background: var(--tp-text);
+    color: #fff;
+
+    &:hover {
+        background: #f2f2f2;
+        color: var(--tp-text);
+    }
+
+    &.disabled:hover {
+        background: var(--tp-text);
+        color: #fff;
+    }
+}
+
 .tp-short-description {
     margin-top: 32px;
     color: #555;

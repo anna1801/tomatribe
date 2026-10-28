@@ -6,6 +6,7 @@
  * Variable products use WooCommerce's variation form script: the swatch buttons drive hidden
  * attribute selects (see assets/custom/js/single-product.js). The form is submitted via AJAX
  * (includes/single-product.php) and still works as a normal form post.
+ * Buy Now submits the same form with tp_buy_now: the cart is replaced by this product and the customer goes to checkout.
  */
 $product = $args['product'];
 $size_guide = $args['size_guide'];
@@ -59,6 +60,7 @@ if ($product->is_type('variable')) :
                 <div class="woocommerce-variation-add-to-cart variations_button">
                     <input type="hidden" name="quantity" value="1">
                     <button type="submit" class="single_add_to_cart_button tp-add-to-cart"> <?php echo esc_html($product->single_add_to_cart_text()); ?> </button>
+                    <button type="submit" name="tp_buy_now" value="1" class="single_add_to_cart_button tp-add-to-cart tp-buy-now"> Buy Now </button>
                     <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>">
                     <input type="hidden" name="product_id" value="<?php echo esc_attr($product->get_id()); ?>">
                     <input type="hidden" name="variation_id" class="variation_id" value="0">
@@ -75,6 +77,7 @@ if ($product->is_type('variable')) :
             <input type="hidden" name="quantity" value="1">
             <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>">
             <button type="submit" class="single_add_to_cart_button tp-add-to-cart"> <?php echo esc_html($product->single_add_to_cart_text()); ?> </button>
+            <button type="submit" name="tp_buy_now" value="1" class="single_add_to_cart_button tp-add-to-cart tp-buy-now"> Buy Now </button>
         </form>
     <?php endif; ?>
 
