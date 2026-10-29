@@ -1729,10 +1729,9 @@
 
 
 /* =========================================================
-   IMAGE GALLERY (featured + gallery images, slider with dots)
+   IMAGE GALLERY (featured + gallery images, slider with arrows)
 ========================================================= */
 
-// Transition time matches cardGallerySpeed in assets/custom/js/custom.js
 .latest-product-gallery-track {
     display: flex;
 
@@ -1754,55 +1753,62 @@
     overflow: hidden;
 }
 
-.latest-product-dots {
+.latest-product-arrow {
     position: absolute;
 
-    left: 50%;
-    bottom: 14px;
+    top: 50%;
 
     z-index: 5;
 
     display: flex;
+    align-items: center;
+    justify-content: center;
 
-    gap: 8px;
+    width: 32px;
+    height: 32px;
 
-    transform: translateX(-50%);
+    padding: 0;
 
-    transition: bottom .3s ease;
+    border: 0;
 
-    button {
-        width: 8px;
-        height: 8px;
+    background: transparent;
+    color: #fff;
 
-        padding: 0;
+    font-size: 34px;
+    line-height: 1;
 
-        border: 1px solid #fff;
-        border-radius: 50%;
+    // Keeps the white arrow visible on light images
+    text-shadow: 0 1px 6px rgba(0, 0, 0, .45);
 
-        background: rgba(255, 255, 255, .4);
+    cursor: pointer;
 
-        box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+    transform: translateY(-50%);
 
-        cursor: pointer;
+    transition: opacity .3s ease, visibility .3s ease, color .25s;
 
-        transition: background .2s, transform .2s;
-    }
-
-    button.is-active {
-        background: #fff;
-
-        transform: scale(1.25);
+    &:hover {
+        color: #c99e5a;
     }
 }
 
-// Desktop: move the dots above the add to cart / buy now buttons that slide in on hover
-@media (min-width: 992px) {
-    .latest-product-card:hover .latest-product-dots {
-        bottom: 67px;
+.latest-product-prev {
+    left: 6px;
+}
+
+.latest-product-next {
+    right: 6px;
+}
+
+// Shown on card hover; touch screens (no hover) always show them
+@media (hover: hover) {
+    .latest-product-arrow {
+        opacity: 0;
+        visibility: hidden;
     }
 
-    .latest-product-card:hover .has-buy-now .latest-product-dots {
-        bottom: 118px;
+    .latest-product-card:hover .latest-product-arrow {
+        opacity: 1;
+        visibility: visible;
     }
 }
 

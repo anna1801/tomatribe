@@ -14210,7 +14210,7 @@ section.about-us .about-content h2 {
 }
 
 /* =========================================================
-   IMAGE GALLERY (featured + gallery images, slider with dots)
+   IMAGE GALLERY (featured + gallery images, slider with arrows)
 ========================================================= */
 .latest-product-gallery-track {
   display: flex;
@@ -14227,38 +14227,46 @@ section.about-us .about-content h2 {
   overflow: hidden;
 }
 
-.latest-product-dots {
+.latest-product-arrow {
   position: absolute;
-  left: 50%;
-  bottom: 14px;
+  top: 50%;
   z-index: 5;
   display: flex;
-  gap: 8px;
-  transform: translateX(-50%);
-  transition: bottom 0.3s ease;
-}
-.latest-product-dots button {
-  width: 8px;
-  height: 8px;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
   padding: 0;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 34px;
+  line-height: 1;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease, visibility 0.3s ease, color 0.25s;
 }
-.latest-product-dots button.is-active {
-  background: #fff;
-  transform: scale(1.25);
+.latest-product-arrow:hover {
+  color: #c99e5a;
 }
 
-@media (min-width: 992px) {
-  .latest-product-card:hover .latest-product-dots {
-    bottom: 67px;
+.latest-product-prev {
+  left: 6px;
+}
+
+.latest-product-next {
+  right: 6px;
+}
+
+@media (hover: hover) {
+  .latest-product-arrow {
+    opacity: 0;
+    visibility: hidden;
   }
-  .latest-product-card:hover .has-buy-now .latest-product-dots {
-    bottom: 118px;
+  .latest-product-card:hover .latest-product-arrow {
+    opacity: 1;
+    visibility: visible;
   }
 }
 
