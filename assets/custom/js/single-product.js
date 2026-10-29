@@ -32,7 +32,7 @@
         rows: 0,
         autoplay: true,
         autoplaySpeed: 4000,
-        pauseOnHover: true,
+        pauseOnHover: false,
         infinite: true,
         speed: 600,
         adaptiveHeight: true,
