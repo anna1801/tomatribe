@@ -25,31 +25,40 @@
       setActiveThumb(index);
     }
 
+    // Auto sliding, looping slider of the featured image + gallery (infinite mode adds .slick-cloned copies).
+    // rows: 0 stops Slick 1.9 wrapping each slide in extra divs, so .slick-cloned lands on .tp-gallery-slide itself.
     if (hasSlider) {
-      $main.slick({ fade: true, arrows: false, infinite: false, speed: 400, adaptiveHeight: true });
+      $main.slick({
+        rows: 0,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        pauseOnHover: true,
+        infinite: true,
+        speed: 600,
+        adaptiveHeight: true,
+        arrows: false,
+        dots: true,
+        dotsClass: 'tp-gallery-dots',
+      });
       $main.on('beforeChange', function (event, slick, current, next) {
         setActiveThumb(next);
       });
+    }
+
+    function realSlides() {
+      return $main.find('.tp-gallery-slide').not('.slick-cloned');
     }
 
     $thumbs.on('click', function () {
       goTo(parseInt($(this).attr('data-index'), 10));
     });
 
-    // Hover zoom (jQuery Zoom), desktop only
-    function initZoom($el) {
-      if ($.fn.zoom && window.matchMedia('(hover: hover)').matches && $el.attr('data-full')) {
-        $el.zoom({ url: $el.attr('data-full'), touch: false });
-      }
-    }
-    $main.find('.tp-gallery-zoom').each(function () {
-      initZoom($(this));
-    });
-
-    // Lightbox (WooCommerce's PhotoSwipe, falls back to opening the image)
-    $('.tp-gallery-expand').on('click', function () {
+    // Lightbox (WooCommerce's PhotoSwipe, with prev / next arrows), opened by clicking the image or the expand button.
+    // Falls back to opening the image. Autoplay pauses while it's open and the slider follows the last viewed image.
+    // Slick swallows the click at the end of a swipe, so dragging the slider doesn't open it.
+    function openLightbox() {
       var index = hasSlider ? $main.slick('slickCurrentSlide') : 0;
-      var items = $main.find('.tp-gallery-zoom').map(function () {
+      var items = realSlides().find('.tp-gallery-zoom').map(function () {
         var $el = $(this);
         return {
           src: $el.attr('data-full'),
@@ -60,17 +69,33 @@
       var pswp = $('.pswp')[0];
 
       if (pswp && window.PhotoSwipe && window.PhotoSwipeUI_Default) {
-        new PhotoSwipe(pswp, PhotoSwipeUI_Default, items, { index: index, shareEl: false, history: false, closeOnScroll: false }).init();
+        var lightbox = new PhotoSwipe(pswp, PhotoSwipeUI_Default, items, { index: index, arrowEl: true, shareEl: false, history: false, closeOnScroll: false });
+        setAutoplay(false);
+        lightbox.listen('close', function () {
+          goTo(lightbox.getCurrentIndex());
+          if (!userSelected) setAutoplay(true);
+        });
+        lightbox.init();
       } else if (items[index]) {
         window.open(items[index].src, '_blank');
       }
-    });
+    }
 
-    // Variation image: go to it when it's in the gallery, otherwise show it in place of the first image
-    var $firstZoom = $main.find('.tp-gallery-zoom').first();
+    $('.tp-gallery-expand').on('click', openLightbox);
+    $main.on('click', '.tp-gallery-zoom', openLightbox);
+
+    // Variation image: go to it when it's in the gallery, otherwise show it in place of the first image.
+    // After the shopper picks an option, autoplay stops so the slider doesn't move away from their variation.
+    // The first image's slide and its clone are both updated.
+    var $firstZoom = $main.find('.tp-gallery-slide[data-image-id="' + realSlides().first().attr('data-image-id') + '"] .tp-gallery-zoom');
     var $firstImage = $firstZoom.find('img');
     var $firstThumb = $thumbs.first().find('img');
     var originalImage = null;
+    var userSelected = false;
+
+    function setAutoplay(play) {
+      if (hasSlider) $main.slick(play ? 'slickPlay' : 'slickPause');
+    }
 
     function setAttr($el, name, value) {
       if (value) {
@@ -78,11 +103,6 @@
       } else {
         $el.removeAttr(name);
       }
-    }
-
-    function resetZoom() {
-      $firstZoom.trigger('zoom.destroy');
-      initZoom($firstZoom);
     }
 
     function restoreImage() {
@@ -94,7 +114,6 @@
       setAttr($firstThumb, 'src', originalImage.thumb);
       setAttr($firstThumb, 'srcset', originalImage.thumbSrcset);
       originalImage = null;
-      resetZoom();
     }
 
     function showVariationImage(variation) {
@@ -104,7 +123,9 @@
         return;
       }
 
-      var $slides = $main.find('.tp-gallery-slide');
+      if (userSelected) setAutoplay(false);
+
+      var $slides = realSlides();
       var $slide = $slides.filter('[data-image-id="' + variation.image_id + '"]');
       if ($slide.length) {
         restoreImage();
@@ -131,7 +152,6 @@
       $firstZoom.attr({ 'data-full': image.full_src, 'data-width': image.full_src_w, 'data-height': image.full_src_h });
       setAttr($firstThumb, 'src', image.gallery_thumbnail_src);
       $firstThumb.removeAttr('srcset');
-      resetZoom();
       goTo(0);
     }
 
@@ -169,6 +189,7 @@
     }
 
     $form.on('click', '.tp-swatch', function () {
+      userSelected = true;
       var $select = $(this).closest('.tp-attribute').find('select');
       var value = $(this).attr('data-value');
       if ($select.val() === value) return;
@@ -245,7 +266,11 @@
       setSku($skuValue.attr('data-sku'));
     });
 
-    $form.on('reset_image', restoreImage);
+    $form.on('reset_image', function () {
+      restoreImage();
+      userSelected = false;
+      setAutoplay(true);
+    });
 
     /*
      * One wishlist button for all sizes: YITH listens for these on the document and swaps its button to the variation.

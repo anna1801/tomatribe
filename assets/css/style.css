@@ -7068,6 +7068,7 @@ blockquote {
 .tp-gallery-zoom {
   position: relative;
   overflow: hidden;
+  cursor: zoom-in;
 }
 .tp-gallery-image {
   display: block;
@@ -7089,6 +7090,36 @@ blockquote {
   color: var(--tp-text);
   font-size: 18px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.tp-gallery-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transform: translateX(-50%);
+}
+.tp-gallery-dots li {
+  display: flex;
+}
+.tp-gallery-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  font-size: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s, transform 0.2s;
+}
+.tp-gallery-dots .slick-active button {
+  background: #fff;
+  transform: scale(1.25);
 }
 .tp-gallery-thumbs {
   display: flex;
@@ -7117,6 +7148,16 @@ blockquote {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+/* Gallery lightbox (WooCommerce PhotoSwipe): above the header / back to top button, arrows on touch screens too */
+.pswp {
+  z-index: 100000;
+}
+
+.pswp--touch .pswp__button--arrow--left,
+.pswp--touch .pswp__button--arrow--right {
+  visibility: visible;
 }
 
 /* Summary */

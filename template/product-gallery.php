@@ -1,8 +1,8 @@
 <?php
 /*
- * Product page gallery: main image slider (hover zoom, lightbox button) + thumbnails.
+ * Product page gallery: auto sliding slider of the featured image + gallery (dots, image / expand button opens the lightbox) + thumbnails.
  * get_template_part('template/product-gallery', null, array('product' => $product));
- * Slider, zoom, lightbox and variation images are handled in assets/custom/js/single-product.js.
+ * Slider, lightbox and variation images are handled in assets/custom/js/single-product.js.
  */
 $product = $args['product'];
 $image_ids = array_values(array_unique(array_filter(array_merge(array($product->get_image_id()), $product->get_gallery_image_ids()))));
