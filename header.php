@@ -5,6 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script>
+        /*
+         * Screens (or browser zoom) wider than the base layout scale the whole page up,
+         * so it looks the same instead of shrinking into the middle. Below that it stays responsive.
+         * 1800px = a 1440px laptop at 80% zoom, the size wide screens should match.
+         * CSS reads --site-zoom to correct vh / vw units; scripts read window.tomatribeZoom.
+         */
+        (function () {
+            var baseWidth = 1800;
+            var root = document.documentElement;
+
+            function fit() {
+                var zoom = Math.max(1, window.innerWidth / baseWidth);
+
+                window.tomatribeZoom = zoom;
+
+                if (zoom > 1) {
+                    root.style.zoom = zoom;
+                    root.style.setProperty('--site-zoom', zoom);
+                } else {
+                    root.style.removeProperty('zoom');
+                    root.style.removeProperty('--site-zoom');
+                }
+            }
+
+            fit();
+            window.addEventListener('resize', fit);
+        })();
+    </script>
+
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>

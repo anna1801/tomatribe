@@ -1927,8 +1927,8 @@ textarea:focus {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
+  height: calc(100vh / var(--site-zoom, 1));
+  width: calc(100vw / var(--site-zoom, 1));
   opacity: 0;
   visibility: hidden;
   transition: 0.4s;
@@ -2092,8 +2092,8 @@ textarea:focus {
   top: 0;
   left: 0;
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  width: calc(100vw / var(--site-zoom, 1));
+  height: calc(100vh / var(--site-zoom, 1));
   transition: 0.4s;
   z-index: 999;
   opacity: 0;
@@ -2151,7 +2151,7 @@ textarea:focus {
 .minicart-inner .minicart-inner-content {
   top: 0;
   right: 0;
-  height: 100vh;
+  height: calc(100vh / var(--site-zoom, 1));
   width: 100%;
   max-width: 375px;
   position: absolute;
@@ -7056,7 +7056,7 @@ blockquote {
 }
 @media (min-width: 992px) {
   .tp-gallery {
-    max-width: min(640px, (100vh - 300px) * 5 / 6);
+    max-width: min(640px, (100vh / var(--site-zoom, 1) - 300px) * 5 / 6);
   }
 }
 .tp-gallery-stage {
@@ -7153,6 +7153,7 @@ blockquote {
 /* Gallery lightbox (WooCommerce PhotoSwipe): above the header / back to top button, arrows on touch screens too */
 .pswp {
   z-index: 100000;
+  zoom: calc(1 / var(--site-zoom, 1));
 }
 
 .pswp--touch .pswp__button--arrow--left,
@@ -12778,8 +12779,8 @@ section.about-us .about-content h2 {
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: calc(100vh - 40px);
-  max-height: calc(100dvh - 40px);
+  max-height: calc(100vh / var(--site-zoom, 1) - 40px);
+  max-height: calc(100dvh / var(--site-zoom, 1) - 40px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 .tt-popup-link {
@@ -13589,7 +13590,7 @@ section.about-us .about-content h2 {
 }
 .tribal-hero {
   width: 100%;
-  height: calc(100vh - 146px);
+  height: calc(100vh / var(--site-zoom, 1) - 146px);
   min-height: 620px;
   position: relative;
   overflow: hidden;
@@ -13683,7 +13684,7 @@ section.about-us .about-content h2 {
   margin: 0 0 22px;
   color: #ffffff;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(48px, 5vw, 82px);
+  font-size: clamp(48px, 5vw / var(--site-zoom, 1), 82px);
   font-weight: 400;
   line-height: 0.98;
   letter-spacing: -2px;
@@ -13826,17 +13827,6 @@ section.about-us .about-content h2 {
   }
   to {
     width: 100%;
-  }
-}
-/* ==========================================
-   DESKTOP LARGE
-========================================== */
-@media (min-width: 1600px) {
-  .tribal-hero {
-    min-height: 700px;
-  }
-  .tribal-hero-content {
-    left: 10%;
   }
 }
 /* ==========================================

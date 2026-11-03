@@ -1788,8 +1788,8 @@ textarea:focus {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
+  height: calc(100vh / var(--site-zoom, 1));
+  width: calc(100vw / var(--site-zoom, 1));
   opacity: 0;
   visibility: hidden;
   -webkit-transition: 0.4s;
@@ -1966,8 +1966,8 @@ textarea:focus {
   top: 0;
   left: 0;
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  width: calc(100vw / var(--site-zoom, 1));
+  height: calc(100vh / var(--site-zoom, 1));
   -webkit-transition: 0.4s;
   -o-transition: 0.4s;
   transition: 0.4s;
@@ -2025,7 +2025,7 @@ textarea:focus {
 .minicart-inner .minicart-inner-content {
   top: 0;
   right: 0;
-  height: 100vh;
+  height: calc(100vh / var(--site-zoom, 1));
   width: 100%;
   max-width: 375px;
   position: absolute;

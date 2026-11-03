@@ -854,7 +854,7 @@
 
 .tribal-hero {
     width: 100%;
-    height: calc(100vh - 146px);
+    height: calc(100vh / var(--site-zoom, 1) - 146px);
     min-height: 620px;
     position: relative;
     overflow: hidden;
@@ -990,7 +990,7 @@
 
     font-family: Georgia, "Times New Roman", serif;
 
-    font-size: clamp(48px, 5vw, 82px);
+    font-size: clamp(48px, calc(5vw / var(--site-zoom, 1)), 82px);
 
     font-weight: 400;
 
@@ -1196,23 +1196,6 @@
     to {
         width: 100%;
     }
-}
-
-
-/* ==========================================
-   DESKTOP LARGE
-========================================== */
-
-@media (min-width: 1600px) {
-
-    .tribal-hero {
-        min-height: 700px;
-    }
-
-    .tribal-hero-content {
-        left: 10%;
-    }
-
 }
 
 

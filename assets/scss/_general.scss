@@ -723,7 +723,7 @@
 
     // Desktop: size the main image (~5:6 portrait) so it and the thumbnails fit in the viewport below the header
     @media (min-width: 992px) {
-        max-width: min(640px, calc((100vh - 300px) * 5 / 6));
+        max-width: min(640px, calc((100vh / var(--site-zoom, 1) - 300px) * 5 / 6));
     }
 
     &-stage {
@@ -834,6 +834,8 @@
 /* Gallery lightbox (WooCommerce PhotoSwipe): above the header / back to top button, arrows on touch screens too */
 .pswp {
     z-index: 100000;
+    // PhotoSwipe sizes itself from the window, so undo the wide screen page scaling (header.php)
+    zoom: calc(1 / var(--site-zoom, 1));
 }
 
 .pswp--touch .pswp__button--arrow--left,
@@ -6715,8 +6717,8 @@ section {
         width: auto;
         max-width: 100%;
         height: auto;
-        max-height: calc(100vh - 40px);
-        max-height: calc(100dvh - 40px);
+        max-height: calc(100vh / var(--site-zoom, 1) - 40px);
+        max-height: calc(100dvh / var(--site-zoom, 1) - 40px);
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     }
 

@@ -333,11 +333,16 @@
       }
     });
 
+    // Space for the sticky header, scaled with the page on wide screens (header.php)
+    function headerSpace() {
+      return 120 * (window.tomatribeZoom || 1);
+    }
+
     function openReviews() {
       var $tab = $('#tp-tab-reviews-tab');
       if (!$tab.length) return;
       activateTab($tab);
-      $('html, body').animate({ scrollTop: $tab.offset().top - 120 }, 400);
+      $('html, body').animate({ scrollTop: $tab.offset().top - headerSpace() }, 400);
     }
 
     $('.tp-review-link').on('click', function (event) {
@@ -358,8 +363,8 @@
         $wrapper = $('<div class="woocommerce-notices-wrapper"></div>').insertBefore('.tp-product');
       }
       $wrapper.html(html);
-      if (html && $wrapper.offset().top - 120 < $(window).scrollTop()) {
-        $('html, body').animate({ scrollTop: $wrapper.offset().top - 120 }, 400);
+      if (html && $wrapper.offset().top - headerSpace() < $(window).scrollTop()) {
+        $('html, body').animate({ scrollTop: $wrapper.offset().top - headerSpace() }, 400);
       }
     }
 

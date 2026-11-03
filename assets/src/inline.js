@@ -607,6 +607,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let ticking = false;
     let lastWidth = window.innerWidth;
 
+    // Wide screen page scaling (header.php): rects and the window are in screen pixels, CSS in page pixels
+    const zoom = () => window.tomatribeZoom || 1;
+
 
     function setup() {
 
@@ -625,7 +628,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const paddingRight = parseFloat(getComputedStyle(list).paddingRight) || 0;
 
         distance = Math.ceil(
-            lastItem.getBoundingClientRect().right + paddingRight - list.getBoundingClientRect().right
+            (lastItem.getBoundingClientRect().right - list.getBoundingClientRect().right) / zoom() + paddingRight
         );
 
         if (distance <= 0) {
@@ -649,16 +652,17 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!distance) return;
 
         // Centre the pinned block in the space below the sticky header
-        const headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
-        const space = window.innerHeight - headerBottom - sticky.offsetHeight;
+        const viewportHeight = window.innerHeight / zoom();
+        const headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom / zoom()) : 0;
+        const space = viewportHeight - headerBottom - sticky.offsetHeight;
 
         stickyTop = space >= 0
             ? headerBottom + space / 2
-            : window.innerHeight - sticky.offsetHeight;
+            : viewportHeight - sticky.offsetHeight;
 
         sticky.style.top = stickyTop + "px";
 
-        progress = Math.min(Math.max(stickyTop - section.getBoundingClientRect().top, 0), distance);
+        progress = Math.min(Math.max(stickyTop - section.getBoundingClientRect().top / zoom(), 0), distance);
 
         list.style.transform = "translate3d(" + (-progress) + "px, 0, 0)";
 
@@ -705,12 +709,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         sticky.scrollLeft = 0;
 
-        const listLeft = list.getBoundingClientRect().left + progress;
+        const listLeft = list.getBoundingClientRect().left / zoom() + progress;
         const paddingLeft = parseFloat(getComputedStyle(list).paddingLeft) || 0;
-        const target = Math.min(Math.max(item.getBoundingClientRect().left + progress - listLeft - paddingLeft, 0), distance);
+        const target = Math.min(Math.max(item.getBoundingClientRect().left / zoom() + progress - listLeft - paddingLeft, 0), distance);
         const sectionTop = window.scrollY + section.getBoundingClientRect().top;
 
-        window.scrollTo(0, sectionTop - stickyTop + target);
+        window.scrollTo(0, sectionTop + (target - stickyTop) * zoom());
 
     });
 

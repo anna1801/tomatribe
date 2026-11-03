@@ -165,7 +165,8 @@
   $results.on('click', '.pagination-box a', function (e) {
     e.preventDefault();
     load(this.href, true);
-    $('html, body').animate({ scrollTop: $results.offset().top - 150 }, 300);
+    // Space for the sticky header, scaled with the page on wide screens (header.php)
+    $('html, body').animate({ scrollTop: $results.offset().top - 150 * (window.tomatribeZoom || 1) }, 300);
   });
 
   $(document).on('click', '.tf-clear-all', function () {
